@@ -83,7 +83,11 @@ const PresaleWidget = () => {
             </div>
           </div>
           
-          <Button variant="presale" className="w-full h-12 text-lg font-bold">
+          <Button 
+            variant="presale" 
+            className="w-full h-12 text-lg font-bold"
+            onClick={() => window.location.href = '/wallet-auth'}
+          >
             Connect Wallet & Buy
           </Button>
           

@@ -30,7 +30,12 @@ const Header = () => {
           </Button>
         </nav>
         
-        <Button variant="hero" size="lg" className="hidden md:flex">
+        <Button 
+          variant="hero" 
+          size="lg" 
+          className="hidden md:flex"
+          onClick={() => window.location.href = '/wallet-auth'}
+        >
           Join Presale
         </Button>
         
