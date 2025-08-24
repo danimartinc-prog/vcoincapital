@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* ICO Dark Theme Design System */
+    /* VCoin Design System */
     --background: 220 15% 8%;
     --foreground: 0 0% 95%;
 
@@ -18,8 +18,8 @@ All colors MUST be HSL.
     --popover: 220 15% 12%;
     --popover-foreground: 0 0% 95%;
 
-    --primary: 142 76% 36%;
-    --primary-foreground: 220 15% 8%;
+    --primary: 327 100% 54%;  /* VCoin Fucsia #FF0A7A */
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 220 15% 16%;
     --secondary-foreground: 0 0% 90%;
@@ -27,24 +27,24 @@ All colors MUST be HSL.
     --muted: 220 15% 16%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 45 100% 50%;
-    --accent-foreground: 220 15% 8%;
+    --accent: 327 100% 64%;  /* Lighter fucsia for accents */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 95%;
 
     --border: 220 15% 20%;
     --input: 220 15% 16%;
-    --ring: 142 76% 36%;
+    --ring: 327 100% 54%;
 
     --radius: 0.75rem;
 
-    /* Custom ICO Variables */
-    --gradient-primary: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 45%));
-    --gradient-accent: linear-gradient(135deg, hsl(45 100% 50%), hsl(45 100% 60%));
-    --gradient-hero: linear-gradient(135deg, hsl(220 15% 8%) 0%, hsl(220 15% 12%) 50%, hsl(142 76% 8%) 100%);
-    --glow-primary: 0 0 30px hsl(142 76% 36% / 0.5);
-    --glow-accent: 0 0 20px hsl(45 100% 50% / 0.4);
+    /* VCoin Brand Variables */
+    --gradient-primary: linear-gradient(135deg, hsl(327 100% 54%), hsl(327 100% 64%));
+    --gradient-accent: linear-gradient(135deg, hsl(327 100% 64%), hsl(327 100% 74%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 15% 8%) 0%, hsl(220 15% 12%) 50%, hsl(327 100% 8%) 100%);
+    --glow-primary: 0 0 30px hsl(327 100% 54% / 0.5);
+    --glow-accent: 0 0 20px hsl(327 100% 64% / 0.4);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
@@ -104,6 +104,6 @@ All colors MUST be HSL.
 
   @keyframes pulseGlow {
     from { box-shadow: var(--glow-primary); }
-    to { box-shadow: 0 0 40px hsl(142 76% 36% / 0.8); }
+    to { box-shadow: 0 0 40px hsl(327 100% 54% / 0.8); }
   }
 }

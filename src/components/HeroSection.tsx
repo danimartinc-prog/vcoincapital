@@ -26,31 +26,27 @@ const HeroSection = () => {
         <div className="space-y-8">
           <div className="space-y-4">
             <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-              Cross-border
+              Invierte y crea
               <br />
-              Payments
+              con
               <br />
               <span className="bg-gradient-accent bg-clip-text text-transparent">
-                Reinvented
+                VCoin
               </span>
             </h1>
             
             <p className="text-xl lg:text-2xl text-muted-foreground max-w-2xl">
-              CryptoICO enables users to pay fiat into any bank account around the world 
-              using crypto, by just simply connecting your wallet.
-            </p>
-            
-            <p className="text-lg text-accent font-semibold">
-              Welcome to the PayFi revolution!
+              El token que conecta inversores y emprendedores. Financiación híbrida (cash + VCoin) 
+              con reglas claras y transparencia total.
             </p>
           </div>
           
           <div className="flex flex-wrap gap-4 items-center">
-            <Button variant="hero" size="lg" className="text-lg px-8 py-4">
-              Join Presale Now
+            <Button variant="hero" size="lg" className="text-lg px-8 py-4" onClick={() => window.location.href = '/projects'}>
+              Explorar proyectos
             </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-4">
-              Read Whitepaper
+            <Button variant="outline" size="lg" className="text-lg px-8 py-4" onClick={() => window.location.href = '/how-it-works'}>
+              Cómo funciona
             </Button>
           </div>
           
@@ -74,7 +70,32 @@ const HeroSection = () => {
         </div>
         
         <div className="flex justify-center lg:justify-end">
-          <PresaleWidget />
+          <div className="w-full max-w-md space-y-6">
+            <div className="bg-card/90 backdrop-blur-md border-2 border-primary/20 glow-primary rounded-lg p-6">
+              <h3 className="text-xl font-bold text-center mb-4">Cómo funciona VCoin</h3>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">1</div>
+                  <span className="text-sm">Compra VCoin</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">2</div>
+                  <span className="text-sm">Explora proyectos</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">3</div>
+                  <span className="text-sm">Invierte en híbrido</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">4</div>
+                  <span className="text-sm">Sigue tu cartera</span>
+                </div>
+              </div>
+              <Button className="w-full mt-6" onClick={() => window.location.href = '/projects'}>
+                Comenzar
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

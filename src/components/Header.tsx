@@ -6,37 +6,37 @@ const Header = () => {
     <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <img src={cryptoLogo} alt="CryptoICO" className="w-10 h-10 animate-float" />
+          <img src={cryptoLogo} alt="VCoin" className="w-10 h-10 animate-float" />
           <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-            CryptoICO
+            VCoin
           </span>
         </div>
         
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#tokenomics" className="text-foreground hover:text-primary transition-colors">
-            Tokenomics
+          <a href="/projects" className="text-foreground hover:text-primary transition-colors">
+            Proyectos
           </a>
-          <a href="#roadmap" className="text-foreground hover:text-primary transition-colors">
-            Roadmap
+          <a href="/how-it-works" className="text-foreground hover:text-primary transition-colors">
+            Cómo funciona
           </a>
-          <a href="#team" className="text-foreground hover:text-primary transition-colors">
-            Team
+          <a href="/for-investors" className="text-foreground hover:text-primary transition-colors">
+            Inversores
           </a>
-          <a href="#faq" className="text-foreground hover:text-primary transition-colors">
-            FAQ
+          <a href="/for-founders" className="text-foreground hover:text-primary transition-colors">
+            Emprendedores
           </a>
-          <Button variant="outline" size="sm">
-            Whitepaper
-          </Button>
+          <a href="/vcoin-token" className="text-foreground hover:text-primary transition-colors">
+            Token
+          </a>
         </nav>
         
         <Button 
           variant="hero" 
           size="lg" 
           className="hidden md:flex"
-          onClick={() => window.location.href = '/wallet-auth'}
+          onClick={() => window.location.href = '/projects'}
         >
-          Join Presale
+          Explorar proyectos
         </Button>
         
         {/* Mobile menu button */}

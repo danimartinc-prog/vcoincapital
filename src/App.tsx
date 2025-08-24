@@ -10,6 +10,13 @@ import { config } from './lib/wagmi';
 import Index from "./pages/Index";
 import WalletAuth from "./pages/WalletAuth";
 import Dashboard from "./pages/Dashboard";
+import Projects from "./pages/Projects";
+import ProjectDetail from "./pages/ProjectDetail";
+import HowItWorks from "./pages/HowItWorks";
+import ForInvestors from "./pages/ForInvestors";
+import ForFounders from "./pages/ForFounders";
+import VCoinToken from "./pages/VCoinToken";
+import Legal from "./pages/Legal";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +31,13 @@ const App = () => (
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/project/:slug" element={<ProjectDetail />} />
+              <Route path="/how-it-works" element={<HowItWorks />} />
+              <Route path="/for-investors" element={<ForInvestors />} />
+              <Route path="/for-founders" element={<ForFounders />} />
+              <Route path="/vcoin-token" element={<VCoinToken />} />
+              <Route path="/legal" element={<Legal />} />
               <Route path="/wallet-auth" element={<WalletAuth />} />
               <Route path="/dashboard" element={<Dashboard />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
