@@ -3,10 +3,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Input } from "@/components/ui/input";
+import { useAccount, useSendTransaction, useBalance } from 'wagmi';
+import { parseEther } from 'viem';
+import { toast } from "sonner";
 
 const PresaleWidget = () => {
   const [amount, setAmount] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("ETH");
+  const [isLoading, setIsLoading] = useState(false);
+  
+  const { address, isConnected } = useAccount();
+  const { sendTransaction } = useSendTransaction();
+  const { data: balance } = useBalance({ address });
+  
+  // Your wallet address to receive payments
+  const RECIPIENT_ADDRESS = "0x89df84eB2D672623f2EaC82842bBcCCAB52f0A4C";
   
   const presaleData = {
     raised: 125000,
@@ -21,6 +32,37 @@ const PresaleWidget = () => {
     { symbol: "USDT", name: "Tether", icon: "🟢" },
     { symbol: "CARD", name: "Credit Card", icon: "💳" }
   ];
+
+  const handlePurchase = async () => {
+    if (!isConnected) {
+      window.location.href = '/wallet-auth';
+      return;
+    }
+
+    if (!amount || parseFloat(amount) <= 0) {
+      toast.error("Por favor, introduce una cantidad válida");
+      return;
+    }
+
+    if (paymentMethod === "ETH") {
+      setIsLoading(true);
+      try {
+        await sendTransaction({
+          to: RECIPIENT_ADDRESS,
+          value: parseEther(amount),
+        });
+        toast.success(`¡Compra realizada! Recibirás ${(parseFloat(amount) / presaleData.currentPrice).toFixed(2)} VCoin`);
+        setAmount("");
+      } catch (error) {
+        console.error("Error en la transacción:", error);
+        toast.error("Error en la transacción. Inténtalo de nuevo.");
+      } finally {
+        setIsLoading(false);
+      }
+    } else {
+      toast.info("Próximamente: pagos con USDT y tarjeta de crédito");
+    }
+  };
 
   return (
     <Card className="w-full max-w-md bg-card/90 backdrop-blur-md border-2 border-primary/20 glow-primary">
@@ -86,10 +128,17 @@ const PresaleWidget = () => {
           <Button 
             variant="hero" 
             className="w-full h-12 text-lg font-bold"
-            onClick={() => window.location.href = '/wallet-auth'}
+            onClick={handlePurchase}
+            disabled={isLoading}
           >
-            Conectar Wallet y Comprar
+            {isLoading ? "Procesando..." : isConnected ? "Comprar Ahora" : "Conectar Wallet y Comprar"}
           </Button>
+          
+          {isConnected && balance && (
+            <div className="text-center text-sm text-muted-foreground">
+              Balance: {parseFloat(balance.formatted).toFixed(4)} {balance.symbol}
+            </div>
+          )}
           
           <div className="text-center">
             <Button variant="link" className="text-accent text-sm">
