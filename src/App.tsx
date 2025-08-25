@@ -16,6 +16,7 @@ import HowItWorks from "./pages/HowItWorks";
 import ForInvestors from "./pages/ForInvestors";
 import ForFounders from "./pages/ForFounders";
 import VCoinToken from "./pages/VCoinToken";
+import Whitepaper from "./pages/Whitepaper";
 import Legal from "./pages/Legal";
 import NotFound from "./pages/NotFound";
 
@@ -37,6 +38,7 @@ const App = () => (
               <Route path="/for-investors" element={<ForInvestors />} />
               <Route path="/for-founders" element={<ForFounders />} />
               <Route path="/vcoin-token" element={<VCoinToken />} />
+              <Route path="/whitepaper" element={<Whitepaper />} />
               <Route path="/legal" element={<Legal />} />
               <Route path="/wallet-auth" element={<WalletAuth />} />
               <Route path="/dashboard" element={<Dashboard />} />

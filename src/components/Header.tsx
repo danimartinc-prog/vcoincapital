@@ -28,6 +28,9 @@ const Header = () => {
           <a href="/vcoin-token" className="text-foreground hover:text-primary transition-colors">
             Token
           </a>
+          <a href="/whitepaper" className="text-foreground hover:text-primary transition-colors">
+            Whitepaper
+          </a>
         </nav>
         
         <Button 
