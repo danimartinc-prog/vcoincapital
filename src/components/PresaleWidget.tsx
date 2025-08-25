@@ -9,11 +9,11 @@ const PresaleWidget = () => {
   const [paymentMethod, setPaymentMethod] = useState("ETH");
   
   const presaleData = {
-    raised: 2094223.8,
-    tokensRemaining: 615841208.07,
-    currentPrice: 0.0969,
-    nextPrice: 0.0987,
-    progress: 89.2
+    raised: 125000,
+    tokensRemaining: 875000,
+    currentPrice: 0.10,
+    nextPrice: 0.12,
+    progress: 12.5
   };
 
   const paymentMethods = [
@@ -26,15 +26,15 @@ const PresaleWidget = () => {
     <Card className="w-full max-w-md bg-card/90 backdrop-blur-md border-2 border-primary/20 glow-primary">
       <CardHeader className="text-center">
         <CardTitle className="text-xl mb-2">
-          <span className="text-primary">Buy Now</span> Before Price Rises
+          <span className="text-primary">Comprar Ahora</span> Antes de que Suba el Precio
         </CardTitle>
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
-            <span>USD RAISED SO FAR:</span>
-            <span className="text-accent font-bold">${presaleData.raised.toLocaleString()}</span>
+            <span>EUR RECAUDADOS:</span>
+            <span className="text-accent font-bold">€{presaleData.raised.toLocaleString()}</span>
           </div>
           <div className="flex justify-between text-sm">
-            <span>Tokens Sold:</span>
+            <span>VCoin Disponibles:</span>
             <span className="text-primary">{presaleData.tokensRemaining.toLocaleString()}</span>
           </div>
         </div>
@@ -49,8 +49,8 @@ const PresaleWidget = () => {
         </div>
         
         <div className="flex justify-between items-center p-3 bg-secondary rounded-lg">
-          <span className="text-sm">1 $RTX = ${presaleData.currentPrice}</span>
-          <span className="text-sm text-accent">Next Price: ${presaleData.nextPrice}</span>
+          <span className="text-sm">1 VCoin = €{presaleData.currentPrice}</span>
+          <span className="text-sm text-accent">Siguiente Precio: €{presaleData.nextPrice}</span>
         </div>
         
         <div className="space-y-4">
@@ -70,30 +70,30 @@ const PresaleWidget = () => {
           
           <div className="space-y-2">
             <div className="text-sm text-muted-foreground">
-              {paymentMethod} you pay
+              {paymentMethod} que pagas
             </div>
             <Input
-              placeholder="Enter amount"
+              placeholder="Cantidad"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               className="text-center text-lg font-bold"
             />
             <div className="text-sm text-muted-foreground text-center">
-              $RTX you receive: {amount ? (parseFloat(amount) / presaleData.currentPrice).toFixed(2) : "0"}
+              VCoin que recibes: {amount ? (parseFloat(amount) / presaleData.currentPrice).toFixed(2) : "0"}
             </div>
           </div>
           
           <Button 
-            variant="presale" 
+            variant="hero" 
             className="w-full h-12 text-lg font-bold"
             onClick={() => window.location.href = '/wallet-auth'}
           >
-            Connect Wallet & Buy
+            Conectar Wallet y Comprar
           </Button>
           
           <div className="text-center">
             <Button variant="link" className="text-accent text-sm">
-              $250,000 Giveaway
+              Sorteo €100,000
             </Button>
           </div>
         </div>

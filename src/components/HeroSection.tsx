@@ -45,8 +45,8 @@ const HeroSection = () => {
             <Button variant="hero" size="lg" className="text-lg px-8 py-4" onClick={() => window.location.href = '/projects'}>
               Explorar proyectos
             </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-4" onClick={() => window.location.href = '/how-it-works'}>
-              Cómo funciona
+            <Button variant="outline" size="lg" className="text-lg px-8 py-4" onClick={() => window.location.href = '/wallet-auth'}>
+              Comprar ahora
             </Button>
           </div>
           
@@ -70,32 +70,7 @@ const HeroSection = () => {
         </div>
         
         <div className="flex justify-center lg:justify-end">
-          <div className="w-full max-w-md space-y-6">
-            <div className="bg-card/90 backdrop-blur-md border-2 border-primary/20 glow-primary rounded-lg p-6">
-              <h3 className="text-xl font-bold text-center mb-4">Cómo funciona VCoin</h3>
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">1</div>
-                  <span className="text-sm">Compra VCoin</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">2</div>
-                  <span className="text-sm">Explora proyectos</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">3</div>
-                  <span className="text-sm">Invierte en híbrido</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">4</div>
-                  <span className="text-sm">Sigue tu cartera</span>
-                </div>
-              </div>
-              <Button className="w-full mt-6" onClick={() => window.location.href = '/projects'}>
-                Comenzar
-              </Button>
-            </div>
-          </div>
+          <PresaleWidget />
         </div>
       </div>
     </section>

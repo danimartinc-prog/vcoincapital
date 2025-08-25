@@ -1,7 +1,7 @@
 import { useAccount } from 'wagmi';
 import { Navigate } from 'react-router-dom';
 import WalletConnect from '@/components/WalletConnect';
-import cryptoLogo from "@/assets/crypto-logo.png";
+import vcoinLogo from "@/assets/vcoin-logo.png";
 
 const WalletAuth = () => {
   const { isConnected } = useAccount();
@@ -15,17 +15,17 @@ const WalletAuth = () => {
       <div className="w-full max-w-md">
         <div className="bg-card/90 backdrop-blur-md border-2 border-primary/20 rounded-2xl p-8 text-center space-y-8 glow-primary">
           <div className="flex flex-col items-center gap-4">
-            <img src={cryptoLogo} alt="CryptoICO" className="w-16 h-16 animate-float" />
+            <img src={vcoinLogo} alt="VCoin" className="w-16 h-16 animate-float" />
             <h1 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-              Enter The
+              Entra en la
             </h1>
             <h2 className="text-2xl font-bold text-accent">
-              CryptoICO Presale
+              Preventa VCoin
             </h2>
           </div>
           
           <p className="text-muted-foreground">
-            To join the presale connect your wallet first!
+            ¡Conecta tu wallet para unirte a la preventa!
           </p>
           
           <div className="space-y-4">
@@ -34,7 +34,7 @@ const WalletAuth = () => {
               onClick={() => window.history.back()}
               className="text-sm text-muted-foreground hover:text-foreground transition-colors underline"
             >
-              Go Home
+              Volver al inicio
             </button>
           </div>
         </div>

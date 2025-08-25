@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
-import cryptoLogo from "@/assets/crypto-logo.png";
+import vcoinLogo from "@/assets/vcoin-logo.png";
 
 const Header = () => {
   return (
     <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <img src={cryptoLogo} alt="VCoin" className="w-10 h-10 animate-float" />
+          <img src={vcoinLogo} alt="VCoin" className="w-10 h-10 animate-float" />
           <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
             VCoin
           </span>
