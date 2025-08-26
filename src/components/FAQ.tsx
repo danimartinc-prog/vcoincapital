@@ -7,28 +7,28 @@ const FAQ = () => {
   
   const faqs = [
     {
-      question: "What is CryptoICO and how does it work?",
-      answer: "CryptoICO is a revolutionary PayFi platform that enables users to send fiat payments to any bank account worldwide using cryptocurrency. Simply connect your wallet, select the recipient bank details, and our protocol handles the conversion and transfer automatically."
+      question: "What is VCoin and how does it work?",
+      answer: "VCoin is a utility token that connects investors and entrepreneurs through hybrid funding. Projects can raise both cash and VCoin, creating aligned incentives between founders and their community. Token holders can invest in curated projects and benefit if VCoin's value increases."
     },
     {
       question: "How do I participate in the presale?",
-      answer: "To participate in the presale, connect your wallet to our platform, choose your payment method (ETH, USDT, or Credit Card), enter the amount you want to purchase, and complete the transaction. Your $RTX tokens will be distributed after the presale ends."
+      answer: "To participate in the presale, connect your wallet to our platform, choose your payment method (ETH, USDT, or Credit Card), enter the amount you want to purchase, and complete the transaction. Your VCoin tokens will be distributed after the presale ends."
     },
     {
-      question: "What are the tokenomics of $RTX?",
-      answer: "The total supply of $RTX is 1 billion tokens. 40% is allocated for presale, 25% for liquidity, 15% for development, 10% for marketing, and 10% for the team. This distribution ensures sustainable growth and long-term value creation."
+      question: "What are the benefits of holding VCoin?",
+      answer: "VCoin holders get early access to projects, better allocation terms, and exclusive perks. As the token value grows, your investment power increases. You can also participate in platform governance and access premium features."
     },
     {
-      question: "When will $RTX be listed on exchanges?",
-      answer: "We are planning major CEX listings in Q4 2025 following our mainnet launch. We've already secured partnerships with several top-tier exchanges and will announce them as we get closer to the launch date."
+      question: "How does hybrid funding work?",
+      answer: "Projects set both cash and VCoin goals. If VCoin's price rises during the campaign, founders can capture more value while investors benefit from increased token value. Excess handling rules are transparent and defined upfront."
     },
     {
-      question: "Is CryptoICO secure and audited?",
-      answer: "Yes, CryptoICO has undergone comprehensive security audits by leading blockchain security firms. Our smart contracts are audited, and we implement military-grade encryption and decentralized architecture to ensure maximum security."
+      question: "Is VCoin secure and compliant?",
+      answer: "Yes, VCoin operates with full regulatory compliance including KYC/AML verification. Our smart contracts are audited, and we work with trusted custody partners. All project listings undergo thorough due diligence."
     },
     {
-      question: "What countries will CryptoICO support?",
-      answer: "CryptoICO will initially support major markets including US, EU, UK, and Asia-Pacific regions. We're continuously expanding our network of banking partners to provide global coverage for cross-border payments."
+      question: "What types of projects can I invest in?",
+      answer: "VCoin features curated projects across various sectors including startups, real estate, innovation projects, and more. Each project undergoes due diligence and offers clear terms, risk assessments, and progress tracking."
     }
   ];
 
@@ -40,7 +40,7 @@ const FAQ = () => {
             Frequently Asked <span className="bg-gradient-primary bg-clip-text text-transparent">Questions</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Get answers to the most common questions about CryptoICO, our presale, and the future of cross-border payments.
+            Get answers to the most common questions about VCoin, our platform, and hybrid funding model.
           </p>
         </div>
         

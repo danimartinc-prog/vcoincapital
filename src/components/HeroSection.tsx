@@ -26,27 +26,27 @@ const HeroSection = () => {
         <div className="space-y-8">
           <div className="space-y-4">
             <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-              Invierte y crea
+              Where Entrepreneurs
               <br />
-              con
+              and Investors Meet
               <br />
               <span className="bg-gradient-accent bg-clip-text text-transparent">
-                VCoin
+                Powered by VCoin
               </span>
             </h1>
             
             <p className="text-xl lg:text-2xl text-muted-foreground max-w-2xl">
-              El token que conecta inversores y emprendedores. Financiación híbrida (cash + VCoin) 
-              con reglas claras y transparencia total.
+              VCoin is the token that connects capital with innovation. Invest in real projects, 
+              or launch yours and raise funds in a smarter way.
             </p>
           </div>
           
           <div className="flex flex-wrap gap-4 items-center">
-            <Button variant="hero" size="lg" className="text-lg px-8 py-4" onClick={() => window.location.href = '/projects'}>
-              Explorar proyectos
+            <Button variant="hero" size="lg" className="text-lg px-8 py-4" onClick={() => window.location.href = '/wallet-auth'}>
+              Get VCoin & Invest
             </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-4" onClick={() => window.location.href = '/wallet-auth'}>
-              Comprar ahora
+            <Button variant="outline" size="lg" className="text-lg px-8 py-4" onClick={() => window.location.href = '/for-founders'}>
+              Pitch Your Project
             </Button>
           </div>
           

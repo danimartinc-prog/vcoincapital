@@ -17,15 +17,15 @@ const WalletAuth = () => {
           <div className="flex flex-col items-center gap-4">
             <img src={vcoinLogo} alt="VCoin" className="w-16 h-16 animate-float" />
             <h1 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-              Entra en la
+              Join the
             </h1>
             <h2 className="text-2xl font-bold text-accent">
-              Preventa VCoin
+              VCoin Presale
             </h2>
           </div>
           
           <p className="text-muted-foreground">
-            ¡Conecta tu wallet para unirte a la preventa!
+            Connect your wallet to join the presale!
           </p>
           
           <div className="space-y-4">
@@ -34,7 +34,7 @@ const WalletAuth = () => {
               onClick={() => window.history.back()}
               className="text-sm text-muted-foreground hover:text-foreground transition-colors underline"
             >
-              Volver al inicio
+              Back to home
             </button>
           </div>
         </div>

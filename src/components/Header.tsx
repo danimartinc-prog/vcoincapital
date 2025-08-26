@@ -14,16 +14,16 @@ const Header = () => {
         
         <nav className="hidden md:flex items-center gap-8">
           <a href="/projects" className="text-foreground hover:text-primary transition-colors">
-            Proyectos
+            Projects
           </a>
           <a href="/how-it-works" className="text-foreground hover:text-primary transition-colors">
-            Cómo funciona
+            How it Works
           </a>
           <a href="/for-investors" className="text-foreground hover:text-primary transition-colors">
-            Inversores
+            Investors
           </a>
           <a href="/for-founders" className="text-foreground hover:text-primary transition-colors">
-            Emprendedores
+            Entrepreneurs
           </a>
           <a href="/vcoin-token" className="text-foreground hover:text-primary transition-colors">
             Token
@@ -39,7 +39,7 @@ const Header = () => {
           className="hidden md:flex"
           onClick={() => window.location.href = '/projects'}
         >
-          Explorar proyectos
+          Explore Projects
         </Button>
         
         {/* Mobile menu button */}

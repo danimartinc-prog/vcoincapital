@@ -12,95 +12,95 @@ const Index = () => {
       <main>
         <HeroSection />
         
-        {/* Sección cómo funciona */}
+        {/* How it works section */}
         <section className="py-16">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-12">Cómo funciona VCoin</h2>
+            <h2 className="text-3xl font-bold mb-12">How VCoin Works</h2>
             <div className="grid md:grid-cols-4 gap-6 mb-12">
               <Card>
                 <CardHeader>
-                  <CardTitle>Compra VCoin</CardTitle>
+                  <CardTitle>Buy VCoin</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">Accede al token y a oportunidades exclusivas</p>
+                  <p className="text-sm text-muted-foreground">Get the token and access exclusive opportunities</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle>Explora proyectos</CardTitle>
+                  <CardTitle>Discover Projects</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">Filtra por sector, fase y riesgo</p>
+                  <p className="text-sm text-muted-foreground">Filter by sector, stage and risk level</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle>Invierte en híbrido</CardTitle>
+                  <CardTitle>Invest Directly</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">Cash, VCoin o ambos. Tú decides</p>
+                  <p className="text-sm text-muted-foreground">Use VCoin, cash or both. You decide</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle>Sigue tu cartera</CardTitle>
+                  <CardTitle>Growth Potential</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">Todo en un panel simple y claro</p>
+                  <p className="text-sm text-muted-foreground">Track everything in a simple, clear dashboard</p>
                 </CardContent>
               </Card>
             </div>
             
-            {/* Secciones para inversores y emprendedores */}
+            {/* Sections for investors and entrepreneurs */}
             <div className="grid md:grid-cols-2 gap-8 mb-16">
               <Card className="text-left">
                 <CardHeader>
-                  <CardTitle>Para inversores</CardTitle>
-                  <p className="text-muted-foreground">Multiplica tu alcance con un token de utilidad real</p>
+                  <CardTitle>For Investors</CardTitle>
+                  <p className="text-muted-foreground">Turn one token into multiple opportunities</p>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Usa VCoin para entrar antes en proyectos, conseguir mejores perks y acceder a asignaciones limitadas. 
-                    Si el precio sube, tu poder de inversión puede aumentar.
+                    Access a curated list of real projects. Diversify in startups, real estate, innovation. 
+                    Multiply your capital if the token value rises.
                   </p>
                   <Button onClick={() => window.location.href = '/for-investors'}>
-                    Más información
+                    Buy VCoin & Invest
                   </Button>
                 </CardContent>
               </Card>
               
               <Card className="text-left">
                 <CardHeader>
-                  <CardTitle>Para emprendedores</CardTitle>
-                  <p className="text-muted-foreground">Financiación alineada con tu comunidad</p>
+                  <CardTitle>For Entrepreneurs</CardTitle>
+                  <p className="text-muted-foreground">Funding beyond limits</p>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Define dos metas: cash y VCoin. Recibe capital + comunidad comprometida. 
-                    Decide cómo gestionar excedentes.
+                    Publish your project easily. Receive investment in cash and VCoin. 
+                    Benefit if the token rises → more capital available.
                   </p>
                   <Button onClick={() => window.location.href = '/for-founders'}>
-                    Publicar proyecto
+                    Submit Your Project
                   </Button>
                 </CardContent>
               </Card>
             </div>
             
-            {/* Confianza y seguridad */}
+            {/* Trust & Community */}
             <div className="bg-card p-8 rounded-lg">
-              <h3 className="text-xl font-bold mb-6">Confianza & Seguridad</h3>
+              <h3 className="text-xl font-bold mb-6">Trust & Community</h3>
               <div className="grid md:grid-cols-3 gap-6">
                 <div>
-                  <h4 className="font-semibold mb-2">KYC/AML</h4>
-                  <p className="text-sm text-muted-foreground">Verificación por jurisdicción</p>
+                  <h4 className="font-semibold mb-2">Project Transparency</h4>
+                  <p className="text-sm text-muted-foreground">Clear project information and progress</p>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-2">Custodia segura</h4>
-                  <p className="text-sm text-muted-foreground">Auditorías técnicas</p>
+                  <h4 className="font-semibold mb-2">Secure Smart Contracts</h4>
+                  <p className="text-sm text-muted-foreground">Audited and battle-tested protocols</p>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-2">Cumplimiento</h4>
-                  <p className="text-sm text-muted-foreground">Filtros por país/inversor</p>
+                  <h4 className="font-semibold mb-2">Global Community</h4>
+                  <p className="text-sm text-muted-foreground">Network of investors & founders worldwide</p>
                 </div>
               </div>
             </div>
