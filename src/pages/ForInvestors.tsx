@@ -1,10 +1,23 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Slider } from "@/components/ui/slider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useState } from "react";
 
 const ForInvestors = () => {
+  // Investment simulator state
+  const [vcoinAmount, setVcoinAmount] = useState(5000);
+  const [priceMultiplier, setPriceMultiplier] = useState(100); // 100 = current price
+  
+  const currentPrice = 0.50;
+  const newPrice = currentPrice * (priceMultiplier / 100);
+  const investmentPower = vcoinAmount * newPrice;
+  const currentPower = vcoinAmount * currentPrice;
+  const powerDifference = investmentPower - currentPower;
+  const priceChange = ((newPrice - currentPrice) / currentPrice) * 100;
+
   const benefits = [
     {
       title: "Secure Custody",
@@ -190,29 +203,65 @@ const ForInvestors = () => {
                     <CardTitle>Investment Simulator</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="space-y-2">
-                      <div className="flex justify-between">
-                        <span>Your VCoin:</span>
-                        <span className="font-semibold">5,000 VCOIN</span>
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium">Your VCoin Amount</label>
+                        <input 
+                          type="number" 
+                          value={vcoinAmount}
+                          onChange={(e) => setVcoinAmount(Number(e.target.value))}
+                          className="w-full px-3 py-2 border rounded-md bg-background"
+                          placeholder="Enter VCoin amount"
+                          min="0"
+                        />
                       </div>
-                      <div className="flex justify-between">
-                        <span>Current price:</span>
-                        <span className="font-semibold">$0.50</span>
+                      
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium">VCoin Price: ${newPrice.toFixed(2)}</label>
+                        <Slider
+                          value={[priceMultiplier]}
+                          onValueChange={([value]) => setPriceMultiplier(value)}
+                          min={50}
+                          max={300}
+                          step={10}
+                          className="w-full"
+                        />
+                        <div className="flex justify-between text-xs text-muted-foreground">
+                          <span>$0.25 (-50%)</span>
+                          <span>$1.50 (+200%)</span>
+                        </div>
                       </div>
-                      <div className="flex justify-between">
-                        <span>Investment power:</span>
-                        <span className="font-semibold text-primary">$2,500</span>
+                      
+                      <div className="space-y-2 p-3 bg-secondary rounded-lg">
+                        <div className="flex justify-between">
+                          <span>Your VCoin:</span>
+                          <span className="font-semibold">{vcoinAmount.toLocaleString()} VCOIN</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Current price:</span>
+                          <span className="font-semibold">${currentPrice.toFixed(2)}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>New price:</span>
+                          <span className="font-semibold">${newPrice.toFixed(2)}</span>
+                        </div>
+                        <div className="flex justify-between border-t pt-2">
+                          <span>Investment power:</span>
+                          <span className="font-semibold text-primary">${investmentPower.toLocaleString()}</span>
+                        </div>
                       </div>
+                      
+                      {priceChange !== 0 && (
+                        <div className={`p-3 rounded-lg ${priceChange > 0 ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
+                          <div className="text-sm text-center">
+                            {priceChange > 0 ? 'If VCoin rises' : 'If VCoin falls'} to ${newPrice.toFixed(2)} ({priceChange > 0 ? '+' : ''}{priceChange.toFixed(1)}%)
+                          </div>
+                          <div className={`text-lg font-bold text-center ${priceChange > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                            Your power: ${investmentPower.toLocaleString()} ({priceChange > 0 ? '+' : ''}${powerDifference.toLocaleString()})
+                          </div>
+                        </div>
+                      )}
                     </div>
-                    <div className="p-3 bg-secondary rounded-lg">
-                      <div className="text-sm text-center">
-                        If VCoin rises to $0.75 (+50%)
-                      </div>
-                      <div className="text-lg font-bold text-center text-accent">
-                        Your power: $3,750 (+$1,250)
-                      </div>
-                    </div>
-                    <Button className="w-full">Start Simulation</Button>
                   </CardContent>
                 </Card>
               </div>
