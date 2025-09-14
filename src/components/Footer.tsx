@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import cryptoLogo from "@/assets/crypto-logo.png";
+import vcoinLogo from "@/assets/vcoin-logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -31,14 +31,13 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <img src={cryptoLogo} alt="CryptoICO" className="w-8 h-8" />
+              <img src={vcoinLogo} alt="VCoin" className="w-8 h-8" />
               <span className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                CryptoICO
+                VCoin
               </span>
             </div>
             <p className="text-sm text-muted-foreground max-w-xs">
-              Revolutionizing cross-border payments with blockchain technology. 
-              Join the PayFi revolution today.
+              Where entrepreneurs and investors meet. Fuel innovation with smart funding solutions powered by VCoin.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social, index) => (
@@ -113,10 +112,10 @@ const Footer = () => {
         <div className="border-t border-border pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
-              © {currentYear} CryptoICO. All rights reserved.
+              © {currentYear} VCoin. All rights reserved.
             </p>
             <p className="text-sm text-muted-foreground">
-              Built with ❤️ for the future of payments
+              Built with ❤️ for the future of startups
             </p>
           </div>
         </div>

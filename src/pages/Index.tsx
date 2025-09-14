@@ -1,11 +1,14 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
+import ProjectSubmissionForm from "@/components/ProjectSubmissionForm";
 
 const Index = () => {
+  const [showProjectForm, setShowProjectForm] = useState(false);
   return (
     <div className="min-h-screen">
       <Header />
@@ -79,7 +82,7 @@ const Index = () => {
                     Publish your project easily. Receive investment in cash and VCoin. 
                     Benefit if the token rises → more capital available.
                   </p>
-                  <Button onClick={() => window.location.href = '/for-founders'}>
+                  <Button onClick={() => setShowProjectForm(true)}>
                     Submit Your Project
                   </Button>
                 </CardContent>
@@ -110,6 +113,11 @@ const Index = () => {
         <FAQ />
       </main>
       <Footer />
+      
+      <ProjectSubmissionForm 
+        open={showProjectForm} 
+        onOpenChange={setShowProjectForm}
+      />
     </div>
   );
 };

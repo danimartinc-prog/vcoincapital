@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import ProjectSubmissionForm from "@/components/ProjectSubmissionForm";
 import PresaleWidget from "./PresaleWidget";
 import heroBg from "@/assets/hero-bg.png";
 
 const HeroSection = () => {
+  const [showProjectForm, setShowProjectForm] = useState(false);
   return (
     <section className="min-h-screen pt-20 relative overflow-hidden">
       {/* Background Image */}
@@ -45,7 +48,7 @@ const HeroSection = () => {
             <Button variant="hero" size="lg" className="text-lg px-8 py-4" onClick={() => window.location.href = '/wallet-auth'}>
               Get VCoin & Invest
             </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-4" onClick={() => window.location.href = '/for-founders'}>
+            <Button variant="outline" size="lg" className="text-lg px-8 py-4" onClick={() => setShowProjectForm(true)}>
               Pitch Your Project
             </Button>
           </div>
@@ -73,6 +76,11 @@ const HeroSection = () => {
           <PresaleWidget />
         </div>
       </div>
+      
+      <ProjectSubmissionForm 
+        open={showProjectForm} 
+        onOpenChange={setShowProjectForm}
+      />
     </section>
   );
 };

@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ProjectSubmissionForm from "@/components/ProjectSubmissionForm";
 
 const ForFounders = () => {
+  const [showProjectForm, setShowProjectForm] = useState(false);
   const benefits = [
     {
       title: "Hybrid Funding",
@@ -78,7 +81,7 @@ const ForFounders = () => {
                 and communicate progress. Receive community and runway to scale.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
-                <Button size="lg" onClick={() => window.location.href = '/wallet-auth'}>
+                <Button size="lg" onClick={() => setShowProjectForm(true)}>
                   Submit Your Project
                 </Button>
                 <Button variant="outline" size="lg" onClick={() => window.location.href = '/how-it-works'}>
@@ -329,7 +332,7 @@ const ForFounders = () => {
                 Join entrepreneurs already funding with VCoin's hybrid model.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
-                <Button size="lg" onClick={() => window.location.href = '/wallet-auth'}>
+                <Button size="lg" onClick={() => setShowProjectForm(true)}>
                   Submit Your Project
                 </Button>
                 <Button variant="outline" size="lg" onClick={() => window.location.href = '/projects'}>
@@ -344,6 +347,11 @@ const ForFounders = () => {
         </section>
       </main>
       <Footer />
+      
+      <ProjectSubmissionForm 
+        open={showProjectForm} 
+        onOpenChange={setShowProjectForm}
+      />
     </div>
   );
 };

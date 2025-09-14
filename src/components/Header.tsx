@@ -5,12 +5,12 @@ const Header = () => {
   return (
     <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+        <a href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
           <img src={vcoinLogo} alt="VCoin" className="w-10 h-10 animate-float" />
           <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
             VCoin
           </span>
-        </div>
+        </a>
         
         <nav className="hidden md:flex items-center gap-8">
           <a href="/projects" className="text-foreground hover:text-primary transition-colors">
