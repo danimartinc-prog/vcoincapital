@@ -1,30 +1,48 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Input } from "@/components/ui/input";
-import { useAccount, useSendTransaction, useBalance } from 'wagmi';
-import { parseEther } from 'viem';
+import { useAccount, useBalance } from 'wagmi';
 import { toast } from "sonner";
+import { usePresaleContract } from '@/hooks/usePresaleContract';
+import { useInvestment } from '@/hooks/useInvestment';
+import { useAuth } from '@/hooks/useAuth';
 
-const PresaleWidget = () => {
+interface PresaleWidgetProps {
+  projectId?: string;
+}
+
+const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) => {
   const [amount, setAmount] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("ETH");
-  const [isLoading, setIsLoading] = useState(false);
   
   const { address, isConnected } = useAccount();
-  const { sendTransaction } = useSendTransaction();
   const { data: balance } = useBalance({ address });
+  const { user } = useAuth();
   
-  // Your wallet address to receive payments
-  const RECIPIENT_ADDRESS = "0x89df84eB2D672623f2EaC82842bBcCCAB52f0A4C";
+  const {
+    tokenPrice,
+    totalRaised,
+    tokensRemaining,
+    buyWithETH,
+    buyWithUSDT,
+    calculateTokensForETH,
+    isPending,
+    isConfirming,
+    isConfirmed,
+    hash,
+    error
+  } = usePresaleContract();
+  
+  const { createInvestment, isSubmitting } = useInvestment();
   
   const presaleData = {
-    raised: 125000,
-    tokensRemaining: 875000,
-    currentPrice: 0.10,
-    nextPrice: 0.12,
-    progress: 12.5
+    raised: parseFloat(totalRaised),
+    tokensRemaining: parseFloat(tokensRemaining),
+    currentPrice: parseFloat(tokenPrice),
+    nextPrice: parseFloat(tokenPrice) * 1.2,
+    progress: (parseFloat(totalRaised) / 1000000) * 100 // Assuming 1M total goal
   };
 
   const paymentMethods = [
@@ -33,9 +51,42 @@ const PresaleWidget = () => {
     { symbol: "CARD", name: "Credit Card", icon: "💳" }
   ];
 
+  // Handle transaction confirmation
+  useEffect(() => {
+    if (isConfirmed && hash) {
+      handleTransactionConfirmed();
+    }
+  }, [isConfirmed, hash]);
+
+  // Handle contract errors
+  useEffect(() => {
+    if (error) {
+      console.error("Contract error:", error);
+      toast.error("Error en la transacción del contrato");
+    }
+  }, [error]);
+
+  const handleTransactionConfirmed = async () => {
+    if (!hash || !amount) return;
+    
+    const tokensAmount = parseFloat(calculateTokensForETH(amount));
+    const eurAmount = parseFloat(amount) * 2000; // Mock ETH to EUR conversion (1 ETH = 2000 EUR)
+    
+    await createInvestment(
+      projectId,
+      eurAmount,
+      tokensAmount,
+      hash,
+      paymentMethod as 'ETH' | 'USDT'
+    );
+    
+    setAmount("");
+    toast.success(`¡Transacción confirmada! Recibirás ${tokensAmount.toFixed(2)} VCoin`);
+  };
+
   const handlePurchase = async () => {
-    if (!isConnected) {
-      window.location.href = '/wallet-auth';
+    if (!isConnected || !user) {
+      window.location.href = '/auth';
       return;
     }
 
@@ -44,25 +95,23 @@ const PresaleWidget = () => {
       return;
     }
 
-    if (paymentMethod === "ETH") {
-      setIsLoading(true);
-      try {
-        await sendTransaction({
-          to: RECIPIENT_ADDRESS,
-          value: parseEther(amount),
-        });
-        toast.success(`¡Compra realizada! Recibirás ${(parseFloat(amount) / presaleData.currentPrice).toFixed(2)} VCoin`);
-        setAmount("");
-      } catch (error) {
-        console.error("Error en la transacción:", error);
-        toast.error("Error en la transacción. Inténtalo de nuevo.");
-      } finally {
-        setIsLoading(false);
+    try {
+      if (paymentMethod === "ETH") {
+        await buyWithETH(amount);
+        toast.info("Transacción enviada. Esperando confirmación...");
+      } else if (paymentMethod === "USDT") {
+        await buyWithUSDT(amount);
+        toast.info("Transacción enviada. Esperando confirmación...");
+      } else {
+        toast.info("Próximamente: pagos con tarjeta de crédito");
       }
-    } else {
-      toast.info("Próximamente: pagos con USDT y tarjeta de crédito");
+    } catch (error) {
+      console.error("Error en la compra:", error);
+      toast.error("Error al procesar la compra. Inténtalo de nuevo.");
     }
   };
+
+  const isLoading = isPending || isConfirming || isSubmitting;
 
   return (
     <Card className="w-full max-w-md bg-card/90 backdrop-blur-md border-2 border-primary/20 glow-primary">
@@ -121,7 +170,7 @@ const PresaleWidget = () => {
               className="text-center text-lg font-bold"
             />
             <div className="text-sm text-muted-foreground text-center">
-              VCoin que recibes: {amount ? (parseFloat(amount) / presaleData.currentPrice).toFixed(2) : "0"}
+              VCoin que recibes: {amount ? calculateTokensForETH(amount) : "0"}
             </div>
           </div>
           
