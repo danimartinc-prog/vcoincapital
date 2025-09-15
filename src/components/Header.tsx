@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import vcoinLogo from "@/assets/vcoin-logo.png";
+import AuthButton from "@/components/AuthButton";
 
 const Header = () => {
   return (
@@ -33,14 +34,17 @@ const Header = () => {
           </a>
         </nav>
         
-        <Button 
-          variant="hero" 
-          size="lg" 
-          className="hidden md:flex"
-          onClick={() => window.location.href = '/projects'}
-        >
-          Explore Projects
-        </Button>
+        <div className="flex items-center gap-4">
+          <AuthButton />
+          <Button 
+            variant="hero" 
+            size="lg" 
+            className="hidden md:flex"
+            onClick={() => window.location.href = '/projects'}
+          >
+            Explore Projects
+          </Button>
+        </div>
         
         {/* Mobile menu button */}
         <Button variant="ghost" size="icon" className="md:hidden">

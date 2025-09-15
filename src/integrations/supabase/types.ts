@@ -14,7 +14,251 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      investments: {
+        Row: {
+          amount_eur: number
+          amount_vcoin: number
+          created_at: string
+          id: string
+          investor_id: string
+          project_id: string
+          status: string | null
+          transaction_hash: string | null
+          updated_at: string
+        }
+        Insert: {
+          amount_eur: number
+          amount_vcoin: number
+          created_at?: string
+          id?: string
+          investor_id: string
+          project_id: string
+          status?: string | null
+          transaction_hash?: string | null
+          updated_at?: string
+        }
+        Update: {
+          amount_eur?: number
+          amount_vcoin?: number
+          created_at?: string
+          id?: string
+          investor_id?: string
+          project_id?: string
+          status?: string | null
+          transaction_hash?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "investments_investor_id_fkey"
+            columns: ["investor_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "investments_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          role: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          role?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          role?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      projects: {
+        Row: {
+          category: string
+          company_name: string | null
+          company_website: string | null
+          competition_analysis: string | null
+          contact_email: string | null
+          contact_person: string | null
+          contact_phone: string | null
+          country: string
+          created_at: string
+          description: string | null
+          documents: Json | null
+          founder_id: string
+          funding_history: string | null
+          goal_cash_eur: number
+          goal_vcoin: number
+          id: string
+          investor_count: number | null
+          market_analysis: string | null
+          min_ticket_eur: number
+          min_ticket_vcoin: number
+          raised_amount: number | null
+          revenue_last_year: number | null
+          risk_factors: string | null
+          stage: string
+          status: string | null
+          summary: string
+          team_size: number | null
+          title: string
+          updated_at: string
+          use_of_funds: string | null
+        }
+        Insert: {
+          category: string
+          company_name?: string | null
+          company_website?: string | null
+          competition_analysis?: string | null
+          contact_email?: string | null
+          contact_person?: string | null
+          contact_phone?: string | null
+          country: string
+          created_at?: string
+          description?: string | null
+          documents?: Json | null
+          founder_id: string
+          funding_history?: string | null
+          goal_cash_eur: number
+          goal_vcoin: number
+          id?: string
+          investor_count?: number | null
+          market_analysis?: string | null
+          min_ticket_eur: number
+          min_ticket_vcoin: number
+          raised_amount?: number | null
+          revenue_last_year?: number | null
+          risk_factors?: string | null
+          stage: string
+          status?: string | null
+          summary: string
+          team_size?: number | null
+          title: string
+          updated_at?: string
+          use_of_funds?: string | null
+        }
+        Update: {
+          category?: string
+          company_name?: string | null
+          company_website?: string | null
+          competition_analysis?: string | null
+          contact_email?: string | null
+          contact_person?: string | null
+          contact_phone?: string | null
+          country?: string
+          created_at?: string
+          description?: string | null
+          documents?: Json | null
+          founder_id?: string
+          funding_history?: string | null
+          goal_cash_eur?: number
+          goal_vcoin?: number
+          id?: string
+          investor_count?: number | null
+          market_analysis?: string | null
+          min_ticket_eur?: number
+          min_ticket_vcoin?: number
+          raised_amount?: number | null
+          revenue_last_year?: number | null
+          risk_factors?: string | null
+          stage?: string
+          status?: string | null
+          summary?: string
+          team_size?: number | null
+          title?: string
+          updated_at?: string
+          use_of_funds?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "projects_founder_id_fkey"
+            columns: ["founder_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      transactions: {
+        Row: {
+          amount: number
+          created_at: string
+          currency: string
+          id: string
+          project_id: string | null
+          status: string | null
+          transaction_hash: string
+          transaction_type: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          currency: string
+          id?: string
+          project_id?: string | null
+          status?: string | null
+          transaction_hash: string
+          transaction_type: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          currency?: string
+          id?: string
+          project_id?: string | null
+          status?: string | null
+          transaction_hash?: string
+          transaction_type?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "transactions_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "transactions_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

@@ -7,6 +7,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Upload, X } from "lucide-react";
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/hooks/useAuth';
 
 interface ProjectSubmissionFormProps {
   open: boolean;
@@ -57,6 +59,7 @@ interface FormData {
 
 const ProjectSubmissionForm = ({ open, onOpenChange }: ProjectSubmissionFormProps) => {
   const { toast } = useToast();
+  const { user } = useAuth();
   const [formData, setFormData] = useState<FormData>({
     companyName: "",
     website: "",
@@ -101,8 +104,17 @@ const ProjectSubmissionForm = ({ open, onOpenChange }: ProjectSubmissionFormProp
     setFiles(prev => prev.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!user) {
+      toast({
+        title: "Authentication Required",
+        description: "Please sign in to submit a project.",
+        variant: "destructive"
+      });
+      return;
+    }
     
     // Basic validation
     if (!formData.companyName || !formData.email || !formData.founderName) {
@@ -114,43 +126,99 @@ const ProjectSubmissionForm = ({ open, onOpenChange }: ProjectSubmissionFormProp
       return;
     }
 
-    // Here you would typically send the data to your backend
-    toast({
-      title: "Project Submitted!",
-      description: "We'll review your submission and get back to you within 3-7 days.",
-    });
-    
-    onOpenChange(false);
-    // Reset form
-    setFormData({
-      companyName: "",
-      website: "",
-      founded: "",
-      location: "",
-      projectName: "",
-      oneLinePitch: "",
-      problemSolution: "",
-      targetMarket: "",
-      businessModel: "",
-      fundingAmount: "",
-      useOfFunds: "",
-      revenue: "",
-      projectedRevenue: "",
-      founderBackground: "",
-      teamSize: "",
-      keyTeamMembers: "",
-      currentTraction: "",
-      customers: "",
-      partnerships: "",
-      competition: "",
-      competitiveAdvantage: "",
-      goToMarketStrategy: "",
-      founderName: "",
-      email: "",
-      linkedin: "",
-      phone: "",
-    });
-    setFiles([]);
+    try {
+      // Get user profile
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('id')
+        .eq('user_id', user.id)
+        .single();
+
+      if (!profile) {
+        toast({
+          title: "Profile Error",
+          description: "User profile not found. Please try signing out and back in.",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      // Submit project to database
+      const { error } = await supabase
+        .from('projects')
+        .insert({
+          founder_id: profile.id,
+          title: formData.projectName,
+          summary: formData.oneLinePitch,
+          description: formData.problemSolution,
+          category: 'tech', // Default category
+          stage: 'idea', // Default stage
+          country: formData.location,
+          goal_cash_eur: parseFloat(formData.fundingAmount) || 0,
+          goal_vcoin: parseFloat(formData.fundingAmount) * 10 || 0, // Simplified conversion
+          min_ticket_eur: 1000, // Default minimum
+          min_ticket_vcoin: 10000, // Default minimum
+          company_name: formData.companyName,
+          company_website: formData.website,
+          team_size: parseInt(formData.teamSize) || 0,
+          revenue_last_year: parseFloat(formData.revenue) || 0,
+          use_of_funds: formData.useOfFunds,
+          market_analysis: formData.targetMarket,
+          competition_analysis: formData.competition,
+          contact_person: formData.founderName,
+          contact_email: formData.email,
+          contact_phone: formData.phone,
+          documents: files.map(f => ({ name: f.name, size: f.size }))
+        });
+
+      if (error) {
+        throw error;
+      }
+      
+      toast({
+        title: "Project Submitted!",
+        description: "We'll review your submission and get back to you within 3-7 days.",
+      });
+      
+      onOpenChange(false);
+      
+      // Reset form
+      setFormData({
+        companyName: "",
+        website: "",
+        founded: "",
+        location: "",
+        projectName: "",
+        oneLinePitch: "",
+        problemSolution: "",
+        targetMarket: "",
+        businessModel: "",
+        fundingAmount: "",
+        useOfFunds: "",
+        revenue: "",
+        projectedRevenue: "",
+        founderBackground: "",
+        teamSize: "",
+        keyTeamMembers: "",
+        currentTraction: "",
+        customers: "",
+        partnerships: "",
+        competition: "",
+        competitiveAdvantage: "",
+        goToMarketStrategy: "",
+        founderName: "",
+        email: "",
+        linkedin: "",
+        phone: "",
+      });
+      setFiles([]);
+    } catch (error: any) {
+      toast({
+        title: "Submission Failed",
+        description: error.message || "An error occurred while submitting your project.",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
