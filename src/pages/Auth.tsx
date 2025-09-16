@@ -9,12 +9,16 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/components/ui/use-toast';
 import { User, Session } from '@supabase/supabase-js';
 import vcoinLogo from "@/assets/vcoin-logo.png";
+import Header from '@/components/Header';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
 
 const Auth = () => {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   useEffect(() => {
     // Set up auth state listener
@@ -86,48 +90,51 @@ const Auth = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <img src={vcoinLogo} alt="VCoin" className="w-16 h-16 mx-auto mb-4 animate-float" />
-          <h1 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-            Welcome to VCoin
-          </h1>
-          <p className="text-muted-foreground mt-2">
-            Join the future of startup funding
-          </p>
-        </div>
+    <div className="min-h-screen bg-background">
+      <Header />
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 flex items-center justify-center p-4 pt-20">
+        <div className="w-full max-w-md">
+          <div className="text-center mb-8">
+            <img src={vcoinLogo} alt="VCoin" className="w-16 h-16 mx-auto mb-4 animate-float" />
+            <h1 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+              Welcome to VCoin
+            </h1>
+            <p className="text-muted-foreground mt-2">
+              Join the future of startup funding
+            </p>
+          </div>
 
-        <Card className="border-2 border-primary/20 bg-card/90 backdrop-blur-md glow-primary">
-          <CardHeader>
-            <CardTitle>Authentication</CardTitle>
-            <CardDescription>Sign in or create your account</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Tabs defaultValue="signin" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="signin">Sign In</TabsTrigger>
-                <TabsTrigger value="signup">Sign Up</TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="signin">
-                <SignInForm onSignIn={signIn} loading={loading} />
-              </TabsContent>
-              
-              <TabsContent value="signup">
-                <SignUpForm onSignUp={signUp} loading={loading} />
-              </TabsContent>
-            </Tabs>
-          </CardContent>
-        </Card>
+          <Card className="border-2 border-primary/20 bg-card/90 backdrop-blur-md glow-primary">
+            <CardHeader>
+              <CardTitle>Authentication</CardTitle>
+              <CardDescription>Sign in or create your account</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Tabs defaultValue="signin" className="w-full">
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="signin">{t('auth.signIn')}</TabsTrigger>
+                  <TabsTrigger value="signup">{t('auth.signUp')}</TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="signin">
+                  <SignInForm onSignIn={signIn} loading={loading} />
+                </TabsContent>
+                
+                <TabsContent value="signup">
+                  <SignUpForm onSignUp={signUp} loading={loading} />
+                </TabsContent>
+              </Tabs>
+            </CardContent>
+          </Card>
 
-        <div className="text-center mt-4">
-          <button 
-            onClick={() => window.history.back()}
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors underline"
-          >
-            Back to home
-          </button>
+          <div className="text-center mt-4">
+            <button 
+              onClick={() => window.history.back()}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors underline"
+            >
+              Back to home
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -137,6 +144,7 @@ const Auth = () => {
 const SignInForm = ({ onSignIn, loading }: { onSignIn: (email: string, password: string) => void; loading: boolean }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { t } = useTranslation();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -146,7 +154,7 @@ const SignInForm = ({ onSignIn, loading }: { onSignIn: (email: string, password:
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <Label htmlFor="signin-email">Email</Label>
+        <Label htmlFor="signin-email">{t('auth.email')}</Label>
         <Input
           id="signin-email"
           type="email"
@@ -156,7 +164,7 @@ const SignInForm = ({ onSignIn, loading }: { onSignIn: (email: string, password:
         />
       </div>
       <div>
-        <Label htmlFor="signin-password">Password</Label>
+        <Label htmlFor="signin-password">{t('auth.password')}</Label>
         <Input
           id="signin-password"
           type="password"
@@ -166,7 +174,7 @@ const SignInForm = ({ onSignIn, loading }: { onSignIn: (email: string, password:
         />
       </div>
       <Button type="submit" className="w-full" disabled={loading}>
-        {loading ? 'Signing in...' : 'Sign In'}
+        {loading ? t('auth.loading') : t('auth.signIn')}
       </Button>
     </form>
   );
@@ -176,6 +184,7 @@ const SignUpForm = ({ onSignUp, loading }: { onSignUp: (email: string, password:
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
+  const { t } = useTranslation();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -185,7 +194,7 @@ const SignUpForm = ({ onSignUp, loading }: { onSignUp: (email: string, password:
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <Label htmlFor="signup-name">Full Name</Label>
+        <Label htmlFor="signup-name">{t('dashboard.name')}</Label>
         <Input
           id="signup-name"
           type="text"
@@ -195,7 +204,7 @@ const SignUpForm = ({ onSignUp, loading }: { onSignUp: (email: string, password:
         />
       </div>
       <div>
-        <Label htmlFor="signup-email">Email</Label>
+        <Label htmlFor="signup-email">{t('auth.email')}</Label>
         <Input
           id="signup-email"
           type="email"
@@ -205,7 +214,7 @@ const SignUpForm = ({ onSignUp, loading }: { onSignUp: (email: string, password:
         />
       </div>
       <div>
-        <Label htmlFor="signup-password">Password</Label>
+        <Label htmlFor="signup-password">{t('auth.password')}</Label>
         <Input
           id="signup-password"
           type="password"
@@ -216,7 +225,7 @@ const SignUpForm = ({ onSignUp, loading }: { onSignUp: (email: string, password:
         />
       </div>
       <Button type="submit" className="w-full" disabled={loading}>
-        {loading ? 'Creating account...' : 'Create Account'}
+        {loading ? t('auth.loading') : t('auth.signUp')}
       </Button>
     </form>
   );
