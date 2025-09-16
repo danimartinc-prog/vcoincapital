@@ -7,6 +7,8 @@ import { useAuth } from '@/hooks/useAuth';
 import { useInvestment } from '@/hooks/useInvestment';
 import { supabase } from '@/integrations/supabase/client';
 import { Navigate } from 'react-router-dom';
+import InvestmentStats from '@/components/InvestmentStats';
+import TransactionHistory from '@/components/TransactionHistory';
 
 const Dashboard = () => {
   const { user, profile, loading } = useAuth();
@@ -103,12 +105,18 @@ const Dashboard = () => {
           </Card>
         </div>
 
-        <Tabs defaultValue="investments" className="space-y-6">
-          <TabsList>
-            <TabsTrigger value="investments">Mis Inversiones</TabsTrigger>
-            <TabsTrigger value="projects">Mis Proyectos</TabsTrigger>
+        <Tabs defaultValue="stats" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-5">
+            <TabsTrigger value="stats">Estadísticas</TabsTrigger>
+            <TabsTrigger value="investments">Inversiones</TabsTrigger>
+            <TabsTrigger value="transactions">Transacciones</TabsTrigger>
+            <TabsTrigger value="projects">Proyectos</TabsTrigger>
             <TabsTrigger value="profile">Perfil</TabsTrigger>
           </TabsList>
+
+          <TabsContent value="stats" className="space-y-4">
+            <InvestmentStats investments={investments} />
+          </TabsContent>
 
           <TabsContent value="investments" className="space-y-4">
             <Card>
@@ -172,6 +180,10 @@ const Dashboard = () => {
                 )}
               </CardContent>
             </Card>
+          </TabsContent>
+
+          <TabsContent value="transactions" className="space-y-4">
+            <TransactionHistory />
           </TabsContent>
 
           <TabsContent value="projects" className="space-y-4">

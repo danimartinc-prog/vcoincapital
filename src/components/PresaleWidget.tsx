@@ -8,6 +8,8 @@ import { toast } from "sonner";
 import { usePresaleContract } from '@/hooks/usePresaleContract';
 import { useInvestment } from '@/hooks/useInvestment';
 import { useAuth } from '@/hooks/useAuth';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import CreditCardPayment from '@/components/CreditCardPayment';
 
 interface PresaleWidgetProps {
   projectId?: string;
@@ -16,6 +18,7 @@ interface PresaleWidgetProps {
 const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) => {
   const [amount, setAmount] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("ETH");
+  const [showCardPayment, setShowCardPayment] = useState(false);
   
   const { address, isConnected } = useAccount();
   const { data: balance } = useBalance({ address });
@@ -102,8 +105,8 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
       } else if (paymentMethod === "USDT") {
         await buyWithUSDT(amount);
         toast.info("Transacción enviada. Esperando confirmación...");
-      } else {
-        toast.info("Próximamente: pagos con tarjeta de crédito");
+      } else if (paymentMethod === "CARD") {
+        setShowCardPayment(true);
       }
     } catch (error) {
       console.error("Error en la compra:", error);
@@ -112,6 +115,11 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
   };
 
   const isLoading = isPending || isConfirming || isSubmitting;
+
+  const handleCardPaymentSuccess = () => {
+    setShowCardPayment(false);
+    setAmount("");
+  };
 
   return (
     <Card className="w-full max-w-md bg-card/90 backdrop-blur-md border-2 border-primary/20 glow-primary">
@@ -196,6 +204,18 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
           </div>
         </div>
       </CardContent>
+
+      {/* Credit Card Payment Dialog */}
+      <Dialog open={showCardPayment} onOpenChange={setShowCardPayment}>
+        <DialogContent className="sm:max-w-md">
+          <CreditCardPayment
+            projectId={projectId}
+            amount={amount}
+            onSuccess={handleCardPaymentSuccess}
+            onClose={() => setShowCardPayment(false)}
+          />
+        </DialogContent>
+      </Dialog>
     </Card>
   );
 };
