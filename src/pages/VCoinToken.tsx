@@ -2,68 +2,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { useTranslation } from "react-i18next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const VCoinToken = () => {
-  const tokenomics = [
-    { category: "Ecosystem & Incentives", percentage: 40, amount: "40M VCOIN", description: "Matching pool para proyectos y recompensas" },
-    { category: "Treasury/DAO", percentage: 20, amount: "20M VCOIN", description: "Reserva estratégica y partnerships" },
-    { category: "Team", percentage: 15, amount: "15M VCOIN", description: "Vesting 48 meses, 12 cliff" },
-    { category: "Liquidity", percentage: 10, amount: "10M VCOIN", description: "CEX/DEX + Market Making" },
-    { category: "Reserve", percentage: 10, amount: "10M VCOIN", description: "Seguridad y estabilidad" },
-    { category: "Advisors", percentage: 5, amount: "5M VCOIN", description: "Vesting 24 meses" }
-  ];
-
-  const utilities = [
-    {
-      title: "Medio de inversión",
-      description: "Utiliza VCoin para invertir en proyectos listados en la plataforma",
-      icon: "💰"
-    },
-    {
-      title: "Acceso premium",
-      description: "Early access, mejores límites de ticket y asignaciones prioritarias",
-      icon: "⚡"
-    },
-    {
-      title: "Gobernanza",
-      description: "Vota sobre verticales prioritarias, uso del matching pool y listados",
-      icon: "🗳️"
-    },
-    {
-      title: "Staking",
-      description: "Prioridad de asignación en proyectos muy demandados",
-      icon: "🔒"
-    }
-  ];
-
-  const technicalFAQ = [
-    {
-      question: "¿En qué red está VCoin?",
-      answer: "VCoin está desplegado en Base (L2 de Ethereum) para garantizar bajas comisiones y alta velocidad."
-    },
-    {
-      question: "¿Cuál es el suministro máximo?",
-      answer: "100,000,000 VCOIN es el suministro máximo. No se pueden crear más tokens."
-    },
-    {
-      question: "¿Hay comisiones en la plataforma?",
-      answer: "1% de las inversiones + 1% buyback/burn opcional (configurable por gobernanza)."
-    },
-    {
-      question: "¿Cuándo será auditado?",
-      answer: "Los smart contracts serán auditados antes del lanzamiento en mainnet por firmas reconocidas."
-    },
-    {
-      question: "¿Cómo funciona el precio?",
-      answer: "El precio se determina por oferta y demanda en DEX/CEX. Oráculos proporcionan feeds en tiempo real."
-    },
-    {
-      question: "¿Puedo hacer staking?",
-      answer: "Sí, el staking estará disponible para conseguir prioridad en asignaciones de proyectos populares."
-    }
-  ];
+  const { t } = useTranslation();
 
   return (
     <div className="min-h-screen">
@@ -74,18 +18,17 @@ const VCoinToken = () => {
             {/* Hero */}
             <div className="text-center mb-16">
               <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-                El token que impulsa la financiación híbrida
+                {t('token.title')}
               </h1>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-                VCoin conecta inversores y emprendedores a través de un ecosistema de utilidad real 
-                con gobernanza descentralizada y incentivos alineados.
+                {t('token.subtitle')}
               </p>
               
               {/* Métricas básicas */}
               <div className="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-8">
                 <Card>
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm text-muted-foreground">Ticker</CardTitle>
+                    <CardTitle className="text-sm text-muted-foreground">{t('token.ticker')}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">VCOIN</div>
@@ -93,7 +36,7 @@ const VCoinToken = () => {
                 </Card>
                 <Card>
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm text-muted-foreground">Red</CardTitle>
+                    <CardTitle className="text-sm text-muted-foreground">{t('token.network')}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">Base</div>
@@ -101,7 +44,7 @@ const VCoinToken = () => {
                 </Card>
                 <Card>
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm text-muted-foreground">Suministro</CardTitle>
+                    <CardTitle className="text-sm text-muted-foreground">{t('token.supply')}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">100M</div>
@@ -109,7 +52,7 @@ const VCoinToken = () => {
                 </Card>
                 <Card>
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm text-muted-foreground">Precio inicial</CardTitle>
+                    <CardTitle className="text-sm text-muted-foreground">{t('token.initialPrice')}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">€0.10</div>
@@ -119,19 +62,19 @@ const VCoinToken = () => {
 
               <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-4 max-w-2xl mx-auto">
                 <p className="text-sm text-yellow-600 dark:text-yellow-400">
-                  ⚠️ La información de tokenomics es provisional y puede actualizarse tras auditoría y gobernanza.
+                  {t('token.warning')}
                 </p>
               </div>
             </div>
 
             {/* Utilidad */}
             <div className="mb-16">
-              <h2 className="text-3xl font-bold text-center mb-8">Utilidad del token</h2>
+              <h2 className="text-3xl font-bold text-center mb-8">{t('token.tokenUtility')}</h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {utilities.map((utility, index) => (
+                {(t('token.utilities', { returnObjects: true }) as any[]).map((utility, index) => (
                   <Card key={index} className="text-center border-2 hover:border-primary/50 transition-colors">
                     <CardHeader>
-                      <div className="text-4xl mb-2">{utility.icon}</div>
+                      <div className="text-4xl mb-2">{['💰', '⚡', '🗳️', '🔒'][index]}</div>
                       <CardTitle className="text-lg">{utility.title}</CardTitle>
                     </CardHeader>
                     <CardContent>
@@ -144,10 +87,10 @@ const VCoinToken = () => {
 
             {/* Tokenomics */}
             <div className="mb-16">
-              <h2 className="text-3xl font-bold text-center mb-8">Distribución de tokens</h2>
+              <h2 className="text-3xl font-bold text-center mb-8">{t('token.tokenDistribution')}</h2>
               <div className="grid lg:grid-cols-2 gap-8 items-center">
                 <div className="space-y-4">
-                  {tokenomics.map((item, index) => (
+                  {(t('token.tokenomics', { returnObjects: true }) as any[]).map((item, index) => (
                     <Card key={index}>
                       <CardContent className="p-4">
                         <div className="flex justify-between items-center mb-2">
@@ -183,97 +126,57 @@ const VCoinToken = () => {
 
             {/* Características técnicas */}
             <div className="mb-16">
-              <h2 className="text-3xl font-bold text-center mb-8">Características técnicas</h2>
+              <h2 className="text-3xl font-bold text-center mb-8">{t('token.technicalFeatures')}</h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-lg">Red Base</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground mb-2">
-                      Layer 2 de Ethereum optimizado para bajas comisiones y alta velocidad.
-                    </p>
-                    <div className="space-y-1 text-xs">
-                      <div className="flex justify-between">
-                        <span>Comisión promedio:</span>
-                        <span className="font-semibold">$0.01</span>
+                {(t('token.technicalCards', { returnObjects: true }) as any[]).map((card, index) => (
+                  <Card key={index}>
+                    <CardHeader>
+                      <CardTitle className="text-lg">{card.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground mb-2">
+                        {card.description}
+                      </p>
+                      <div className="space-y-1 text-xs">
+                        {Object.entries(card.details).map(([key, value], detailIndex) => (
+                          detailIndex % 2 === 0 && (
+                            <div key={detailIndex} className="flex justify-between">
+                              <span>{value as string}:</span>
+                              <span className="font-semibold">{card.details[Object.keys(card.details)[detailIndex + 1]]}</span>
+                            </div>
+                          )
+                        ))}
                       </div>
-                      <div className="flex justify-between">
-                        <span>Tiempo de confirmación:</span>
-                        <span className="font-semibold">2 segundos</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-                
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-lg">Seguridad</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground mb-2">
-                      Contratos auditados y verificados en explorer público.
-                    </p>
-                    <div className="space-y-1 text-xs">
-                      <div className="flex justify-between">
-                        <span>Auditoría:</span>
-                        <span className="font-semibold">Pendiente</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Verificación:</span>
-                        <span className="font-semibold">En proceso</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-                
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-lg">Gobernanza</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground mb-2">
-                      Votaciones on-chain para decisiones clave del protocolo.
-                    </p>
-                    <div className="space-y-1 text-xs">
-                      <div className="flex justify-between">
-                        <span>Quórum mínimo:</span>
-                        <span className="font-semibold">5%</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Período de voto:</span>
-                        <span className="font-semibold">7 días</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
             </div>
 
             {/* Contrato placeholder */}
             <div className="mb-16">
-              <h2 className="text-3xl font-bold text-center mb-8">Contrato del token</h2>
+              <h2 className="text-3xl font-bold text-center mb-8">{t('token.tokenContract')}</h2>
               <Card className="max-w-2xl mx-auto">
                 <CardHeader>
-                  <CardTitle>Información del contrato</CardTitle>
+                  <CardTitle>{t('token.contractInfo')}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="p-4 bg-secondary rounded-lg">
-                    <div className="text-sm text-muted-foreground mb-1">Dirección del contrato:</div>
+                    <div className="text-sm text-muted-foreground mb-1">{t('token.contractAddress')}:</div>
                     <div className="font-mono text-sm break-all">
-                      0x... (Disponible tras deploy en mainnet)
+                      {t('token.addressNotAvailable')}
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <Button variant="outline" disabled>
-                      Ver en explorer
+                      {t('token.viewOnExplorer')}
                     </Button>
                     <Button variant="outline" disabled>
-                      Añadir a wallet
+                      {t('token.addToWallet')}
                     </Button>
                   </div>
                   <p className="text-xs text-center text-muted-foreground">
-                    El contrato estará disponible tras el lanzamiento en mainnet
+                    {t('token.contractAvailable')}
                   </p>
                 </CardContent>
               </Card>
@@ -281,9 +184,9 @@ const VCoinToken = () => {
 
             {/* FAQ técnica */}
             <div className="mb-16">
-              <h2 className="text-3xl font-bold text-center mb-8">FAQ técnica</h2>
+              <h2 className="text-3xl font-bold text-center mb-8">{t('token.technicalFAQ')}</h2>
               <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-                {technicalFAQ.map((faq, index) => (
+                {(t('token.faq', { returnObjects: true }) as any[]).map((faq, index) => (
                   <Card key={index}>
                     <CardHeader>
                       <CardTitle className="text-lg">{faq.question}</CardTitle>
@@ -299,30 +202,21 @@ const VCoinToken = () => {
             {/* Disclaimer */}
             <div className="text-center p-8 bg-card rounded-lg border-2 border-yellow-500/20">
               <h3 className="text-xl font-bold mb-4 text-yellow-600 dark:text-yellow-400">
-                ⚠️ Información importante
+                {t('token.importantInfo')}
               </h3>
               <div className="space-y-2 text-sm text-muted-foreground max-w-4xl mx-auto">
-                <p>
-                  VCoin es un token de utilidad para interactuar con esta plataforma. 
-                  Invertir implica riesgos, puede perderse todo el capital.
-                </p>
-                <p>
-                  Algunas ofertas pueden estar restringidas a ciertos países o perfiles 
-                  (p. ej., inversores acreditados). No es asesoramiento financiero ni oferta de valores.
-                </p>
-                <p>
-                  Consulte los términos y la normativa aplicable en su jurisdicción.
-                </p>
-                <p className="font-semibold">
-                  Los parámetros de tokenomics y comisiones pueden evolucionar vía gobernanza descentralizada.
-                </p>
+                {(t('token.disclaimer', { returnObjects: true }) as string[]).map((text, index) => (
+                  <p key={index} className={index === 3 ? 'font-semibold' : ''}>
+                    {text}
+                  </p>
+                ))}
               </div>
               <div className="flex flex-wrap gap-4 justify-center mt-6">
                 <Button variant="outline" onClick={() => window.location.href = '/legal'}>
-                  Términos legales
+                  {t('token.legalTerms')}
                 </Button>
                 <Button onClick={() => window.location.href = '/projects'}>
-                  Ver proyectos
+                  {t('token.viewProjects')}
                 </Button>
               </div>
             </div>

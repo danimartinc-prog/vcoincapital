@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Input } from "@/components/ui/input";
 import { useAccount, useBalance } from 'wagmi';
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { usePresaleContract } from '@/hooks/usePresaleContract';
 import { useInvestment } from '@/hooks/useInvestment';
@@ -16,6 +17,7 @@ interface PresaleWidgetProps {
 }
 
 const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) => {
+  const { t } = useTranslation();
   const [amount, setAmount] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("ETH");
   const [showCardPayment, setShowCardPayment] = useState(false);
@@ -125,7 +127,7 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
     <Card className="w-full max-w-md bg-card/90 backdrop-blur-md border-2 border-primary/20 glow-primary">
       <CardHeader className="text-center">
         <CardTitle className="text-xl mb-2">
-          <span className="text-primary">Comprar Ahora</span> Antes de que Suba el Precio
+          {t('presale.title')}
         </CardTitle>
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
@@ -172,13 +174,13 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
               {paymentMethod} que pagas
             </div>
             <Input
-              placeholder="Cantidad"
+              placeholder={t('presale.youPay')}
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               className="text-center text-lg font-bold"
             />
             <div className="text-sm text-muted-foreground text-center">
-              VCoin que recibes: {amount ? calculateTokensForETH(amount) : "0"}
+              {t('presale.youGet')}: {amount ? calculateTokensForETH(amount) : "0"}
             </div>
           </div>
           
@@ -188,7 +190,7 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
             onClick={handlePurchase}
             disabled={isLoading}
           >
-            {isLoading ? "Procesando..." : isConnected ? "Comprar Ahora" : "Conectar Wallet y Comprar"}
+            {isLoading ? t('presale.processing') : isConnected ? t('presale.buyNow') : t('presale.connectWallet')}
           </Button>
           
           {isConnected && balance && (

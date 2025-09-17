@@ -71,5 +71,313 @@
     "ru": "Русский",
     "zh": "中文",
     "ar": "العربية"
+  },
+  "howItWorks": {
+    "title": "How VCoin Works",
+    "subtitle": "The platform that connects capital and talent with hybrid financing. 6 simple steps for investors and entrepreneurs.",
+    "generalProcess": "General Process",
+    "forInvestors": "For Investors",
+    "forFounders": "For Entrepreneurs",
+    "investorFlow": "Investor Flow",
+    "investorDescription": "From buying VCoin to tracking your investment portfolio.",
+    "founderFlow": "Entrepreneur Flow", 
+    "founderDescription": "From publishing your project to receiving hybrid financing.",
+    "readyToStart": "Ready to Start?",
+    "startDescription": "Join the hybrid financing revolution with VCoin.",
+    "exploreProjects": "Explore Projects",
+    "connectWallet": "Connect Wallet",
+    "moreInfoInvestors": "More info for investors",
+    "moreInfoFounders": "More info for entrepreneurs",
+    "steps": {
+      "general": [
+        {
+          "title": "Buy VCoin",
+          "description": "Investors acquire VCoin and see their balance"
+        },
+        {
+          "title": "Explore Projects",
+          "description": "Marketplace with advanced filters"
+        },
+        {
+          "title": "Hybrid Ticket",
+          "description": "Cash, VCoin or mixed according to the project"
+        },
+        {
+          "title": "Dynamic Allocation",
+          "description": "Price simulator and clear rules"
+        },
+        {
+          "title": "Closure & Distribution",
+          "description": "Project receives cash and VCoin"
+        },
+        {
+          "title": "Tracking",
+          "description": "Dashboard with milestones and metrics"
+        }
+      ],
+      "investor": [
+        {
+          "title": "Onboarding + KYC/AML",
+          "description": "Create your account and complete verification according to your country of residence."
+        },
+        {
+          "title": "Buy VCoin",
+          "description": "Acquire VCoin through fiat on-ramp or connect your existing wallet."
+        },
+        {
+          "title": "Explore Projects",
+          "description": "Browse the marketplace with sector, phase, ROI and risk filters."
+        },
+        {
+          "title": "Invest",
+          "description": "Select your ticket (cash/VCoin/mixed) and review the price simulator."
+        },
+        {
+          "title": "Confirm",
+          "description": "Accept terms, surplus rules and confirm your investment."
+        },
+        {
+          "title": "Tracking",
+          "description": "Access your dashboard with milestones, documents and investment status."
+        }
+      ],
+      "founder": [
+        {
+          "title": "Registration",
+          "description": "Create account and verify your identity and company according to jurisdiction."
+        },
+        {
+          "title": "Publish Project",
+          "description": "Define cash and VCoin goals, upload documents and pitch deck."
+        },
+        {
+          "title": "Configure Rules",
+          "description": "Set surplus rule and offer type (rewards/financial)."
+        },
+        {
+          "title": "Active Campaign",
+          "description": "Communicate with investors and publish regular updates."
+        },
+        {
+          "title": "Round Closure",
+          "description": "Receive cash in bank account and VCoin in wallet/custody."
+        },
+        {
+          "title": "Execution",
+          "description": "Deliver milestones and maintain communication with your community."
+        }
+      ]
+    }
+  },
+  "token": {
+    "title": "The token that powers hybrid financing",
+    "subtitle": "VCoin connects investors and entrepreneurs through a real utility ecosystem with decentralized governance and aligned incentives.",
+    "ticker": "Ticker",
+    "network": "Network",
+    "supply": "Supply",
+    "initialPrice": "Initial Price",
+    "warning": "⚠️ Tokenomics information is provisional and may be updated after audit and governance.",
+    "tokenUtility": "Token Utility",
+    "tokenDistribution": "Token Distribution",
+    "technicalFeatures": "Technical Features",
+    "tokenContract": "Token Contract",
+    "contractInfo": "Contract Information",
+    "contractAddress": "Contract Address",
+    "addressNotAvailable": "0x... (Available after mainnet deployment)",
+    "viewOnExplorer": "View on explorer",
+    "addToWallet": "Add to wallet",
+    "contractAvailable": "The contract will be available after mainnet launch",
+    "technicalFAQ": "Technical FAQ",
+    "importantInfo": "⚠️ Important Information",
+    "legalTerms": "Legal Terms",
+    "viewProjects": "View Projects",
+    "utilities": [
+      {
+        "title": "Investment Medium",
+        "description": "Use VCoin to invest in projects listed on the platform"
+      },
+      {
+        "title": "Premium Access",
+        "description": "Early access, better ticket limits and priority allocations"
+      },
+      {
+        "title": "Governance",
+        "description": "Vote on priority verticals, matching pool usage and listings"
+      },
+      {
+        "title": "Staking",
+        "description": "Allocation priority in highly demanded projects"
+      }
+    ],
+    "tokenomics": [
+      {
+        "category": "Ecosystem & Incentives",
+        "percentage": 40,
+        "amount": "40M VCOIN",
+        "description": "Matching pool for projects and rewards"
+      },
+      {
+        "category": "Treasury/DAO",
+        "percentage": 20,
+        "amount": "20M VCOIN",
+        "description": "Strategic reserve and partnerships"
+      },
+      {
+        "category": "Team",
+        "percentage": 15,
+        "amount": "15M VCOIN",
+        "description": "48-month vesting, 12 cliff"
+      },
+      {
+        "category": "Liquidity",
+        "percentage": 10,
+        "amount": "10M VCOIN",
+        "description": "CEX/DEX + Market Making"
+      },
+      {
+        "category": "Reserve",
+        "percentage": 10,
+        "amount": "10M VCOIN",
+        "description": "Security and stability"
+      },
+      {
+        "category": "Advisors",
+        "percentage": 5,
+        "amount": "5M VCOIN",
+        "description": "24-month vesting"
+      }
+    ],
+    "technicalCards": [
+      {
+        "title": "Base Network",
+        "description": "Ethereum Layer 2 optimized for low fees and high speed.",
+        "details": {
+          "avgFee": "Average fee:",
+          "avgFeeValue": "$0.01",
+          "confirmTime": "Confirmation time:",
+          "confirmTimeValue": "2 seconds"
+        }
+      },
+      {
+        "title": "Security",
+        "description": "Audited and verified contracts on public explorer.",
+        "details": {
+          "audit": "Audit:",
+          "auditValue": "Pending",
+          "verification": "Verification:",
+          "verificationValue": "In progress"
+        }
+      },
+      {
+        "title": "Governance",
+        "description": "On-chain voting for key protocol decisions.",
+        "details": {
+          "minQuorum": "Minimum quorum:",
+          "minQuorumValue": "5%",
+          "votingPeriod": "Voting period:",
+          "votingPeriodValue": "7 days"
+        }
+      }
+    ],
+    "faq": [
+      {
+        "question": "What network is VCoin on?",
+        "answer": "VCoin is deployed on Base (Ethereum L2) to ensure low fees and high speed."
+      },
+      {
+        "question": "What is the maximum supply?",
+        "answer": "100,000,000 VCOIN is the maximum supply. No more tokens can be created."
+      },
+      {
+        "question": "Are there platform fees?",
+        "answer": "1% of investments + 1% optional buyback/burn (configurable by governance)."
+      },
+      {
+        "question": "When will it be audited?",
+        "answer": "Smart contracts will be audited before mainnet launch by recognized firms."
+      },
+      {
+        "question": "How does pricing work?",
+        "answer": "Price is determined by supply and demand on DEX/CEX. Oracles provide real-time feeds."
+      },
+      {
+        "question": "Can I stake?",
+        "answer": "Yes, staking will be available to get priority in popular project allocations."
+      }
+    ],
+    "disclaimer": [
+      "VCoin is a utility token to interact with this platform. Investing involves risks, all capital may be lost.",
+      "Some offers may be restricted to certain countries or profiles (e.g., accredited investors). This is not financial advice or securities offering.",
+      "Please consult the terms and applicable regulations in your jurisdiction.",
+      "Tokenomics parameters and fees may evolve via decentralized governance."
+    ]
+  },
+  "whitepaper": {
+    "title": "VCoin Whitepaper",
+    "subtitle": "The future of hybrid financing: connecting investors and entrepreneurs through a decentralized and transparent ecosystem.",
+    "version": "Whitepaper v1.0",
+    "downloadPDF": "Download PDF",
+    "readOnline": "Read Online",
+    "tableOfContents": "Table of Contents",
+    "sections": [
+      {
+        "id": "executive",
+        "title": "Executive Summary"
+      },
+      {
+        "id": "vision",
+        "title": "Vision and Mission"
+      },
+      {
+        "id": "problem",
+        "title": "Problem We Solve"
+      },
+      {
+        "id": "solution",
+        "title": "The VCoin Solution"
+      },
+      {
+        "id": "tokenomics",
+        "title": "Tokenomics"
+      },
+      {
+        "id": "utility",
+        "title": "Token Utility"
+      },
+      {
+        "id": "technology",
+        "title": "Technology"
+      },
+      {
+        "id": "market",
+        "title": "Market Analysis"
+      },
+      {
+        "id": "roadmap",
+        "title": "Roadmap"
+      }
+    ]
+  },
+  "hero": {
+    "title": "Where Entrepreneurs",
+    "titleLine2": "and Investors Meet",
+    "titleLine3": "Powered by VCoin",
+    "subtitle": "VCoin is the token that connects capital with innovation. Invest in real projects, or launch yours and raise funds in a smarter way.",
+    "getVCoin": "Get VCoin & Invest",
+    "pitchProject": "Pitch Your Project"
+  },
+  "presale": {
+    "title": "VCoin Presale",
+    "subtitle": "Get VCoin tokens at launch price",
+    "buyWith": "Buy with",
+    "youPay": "You pay",
+    "youGet": "You get",
+    "connectWallet": "Connect Wallet",
+    "buyNow": "Buy Now",
+    "processing": "Processing...",
+    "success": "Purchase successful!",
+    "error": "Purchase failed",
+    "minAmount": "Minimum: 0.01 ETH",
+    "maxAmount": "Maximum: 10 ETH"
   }
 }
