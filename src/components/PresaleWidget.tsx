@@ -70,10 +70,10 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
   }, [isConfirmed, hash]);
 
   // Handle contract errors
-  useEffect(() => {
+    useEffect(() => {
     if (error) {
       console.error("Contract error:", error);
-      toast.error("Error en la transacción del contrato");
+      toast.error(t('presale.purchaseError'));
     }
   }, [error]);
 
@@ -92,35 +92,36 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
     );
     
     setAmount("");
-    toast.success(`¡Transacción confirmada! Recibirás ${tokensAmount.toFixed(2)} VCoin`);
+    toast.success(t('presale.transactionConfirmed', { amount: tokensAmount.toFixed(2) }));
   };
 
   const handlePurchase = async () => {
     if (!amount || parseFloat(amount) <= 0) {
-      toast.error("Por favor, introduce una cantidad válida");
+      toast.error(t('presale.invalidAmount'));
       return;
     }
 
     try {
       if (paymentMethod === "ETH" || paymentMethod === "USDT") {
         if (!isConnected) {
-          toast.error("Please connect your wallet first");
+          // Redirect to wallet auth page
+          window.location.href = '/wallet-auth';
           return;
         }
         
         if (paymentMethod === "ETH") {
           await buyWithETH(amount);
-          toast.info("Transacción enviada. Esperando confirmación...");
+          toast.info(t('presale.transactionSent'));
         } else {
           await buyWithUSDT(amount);
-          toast.info("Transacción enviada. Esperando confirmación...");
+          toast.info(t('presale.transactionSent'));
         }
       } else if (paymentMethod === "CARD") {
         setShowCardPayment(true);
       }
     } catch (error) {
       console.error("Error en la compra:", error);
-      toast.error("Error al procesar la compra. Inténtalo de nuevo.");
+      toast.error(t('presale.purchaseError'));
     }
   };
 
@@ -139,11 +140,11 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
         </CardTitle>
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
-            <span>EUR RECAUDADOS:</span>
+            <span>{t('presale.eurRaised')}</span>
             <span className="text-accent font-bold">€{presaleData.raised.toLocaleString()}</span>
           </div>
           <div className="flex justify-between text-sm">
-            <span>VCoin Disponibles:</span>
+            <span>{t('presale.vcoinAvailable')}</span>
             <span className="text-primary">{presaleData.tokensRemaining.toLocaleString()}</span>
           </div>
         </div>
@@ -153,13 +154,13 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
         <div className="space-y-2">
           <Progress value={presaleData.progress} className="h-3" />
           <div className="text-center text-sm text-muted-foreground">
-            {presaleData.progress}% Sold
+            {presaleData.progress}% {t('presale.sold')}
           </div>
         </div>
         
         <div className="flex justify-between items-center p-3 bg-secondary rounded-lg">
           <span className="text-sm">1 VCoin = €{presaleData.currentPrice}</span>
-          <span className="text-sm text-accent">Siguiente Precio: €{presaleData.nextPrice}</span>
+          <span className="text-sm text-accent">{t('presale.nextPrice')}: €{presaleData.nextPrice}</span>
         </div>
         
         <div className="space-y-4">
@@ -179,10 +180,11 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
           
           <div className="space-y-2">
             <div className="text-sm text-muted-foreground">
-              {paymentMethod === "CARD" ? "EUR que pagas" : `${paymentMethod} que pagas`}
+              {paymentMethod === "CARD" ? t('presale.youPayEur') : 
+               paymentMethod === "ETH" ? t('presale.youPayEth') : t('presale.youPayUsdt')}
             </div>
             <Input
-              placeholder={paymentMethod === "CARD" ? "Amount in EUR" : t('presale.youPay')}
+              placeholder={paymentMethod === "CARD" ? t('presale.youPayEur') : t('presale.youPay')}
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               className="text-center text-lg font-bold"
@@ -206,13 +208,13 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
           
           {isConnected && balance && (
             <div className="text-center text-sm text-muted-foreground">
-              Balance: {parseFloat(balance.formatted).toFixed(4)} {balance.symbol}
+              {t('presale.balance')}: {parseFloat(balance.formatted).toFixed(4)} {balance.symbol}
             </div>
           )}
           
           <div className="text-center">
             <Button variant="link" className="text-accent text-sm">
-              Sorteo €100,000
+              {t('presale.giveaway')}
             </Button>
           </div>
         </div>

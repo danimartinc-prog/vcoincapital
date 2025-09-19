@@ -381,6 +381,20 @@
     "success": "Purchase successful!",
     "error": "Purchase failed",
     "minAmount": "Minimum: 0.01 ETH",
-    "maxAmount": "Maximum: 10 ETH"
+    "maxAmount": "Maximum: 10 ETH",
+    "eurRaised": "EUR RAISED:",
+    "vcoinAvailable": "VCoin Available:",
+    "sold": "Sold",
+    "nextPrice": "Next Price:",
+    "youPayEth": "ETH you pay",
+    "youPayUsdt": "USDT you pay",
+    "youPayEur": "EUR you pay",
+    "giveaway": "€100,000 Giveaway",
+    "connectWalletFirst": "Please connect your wallet first",
+    "invalidAmount": "Please enter a valid amount",
+    "transactionSent": "Transaction sent. Waiting for confirmation...",
+    "transactionConfirmed": "Transaction confirmed! You will receive {{amount}} VCoin",
+    "purchaseError": "Error processing purchase. Please try again.",
+    "balance": "Balance:"
   }
 }
