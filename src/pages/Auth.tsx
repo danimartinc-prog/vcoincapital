@@ -85,6 +85,29 @@ const Auth = () => {
     setLoading(false);
   };
 
+  const resetPassword = async (email: string) => {
+    setLoading(true);
+    const redirectUrl = `${window.location.origin}/auth`;
+    
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: redirectUrl
+    });
+
+    if (error) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive"
+      });
+    } else {
+      toast({
+        title: "Success",
+        description: "Password reset email sent. Check your inbox."
+      });
+    }
+    setLoading(false);
+  };
+
   if (user) {
     return <Navigate to="/dashboard" replace />;
   }
@@ -111,9 +134,10 @@ const Auth = () => {
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="signin" className="w-full">
-                <TabsList className="grid w-full grid-cols-2">
+                <TabsList className="grid w-full grid-cols-3">
                   <TabsTrigger value="signin">{t('auth.signIn')}</TabsTrigger>
                   <TabsTrigger value="signup">{t('auth.signUp')}</TabsTrigger>
+                  <TabsTrigger value="reset">{t('auth.resetPassword')}</TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="signin">
@@ -122,6 +146,10 @@ const Auth = () => {
                 
                 <TabsContent value="signup">
                   <SignUpForm onSignUp={signUp} loading={loading} />
+                </TabsContent>
+
+                <TabsContent value="reset">
+                  <ResetPasswordForm onReset={resetPassword} loading={loading} />
                 </TabsContent>
               </Tabs>
             </CardContent>
@@ -226,6 +254,35 @@ const SignUpForm = ({ onSignUp, loading }: { onSignUp: (email: string, password:
       </div>
       <Button type="submit" className="w-full" disabled={loading}>
         {loading ? t('auth.loading') : t('auth.signUp')}
+      </Button>
+    </form>
+  );
+};
+
+const ResetPasswordForm = ({ onReset, loading }: { onReset: (email: string) => void; loading: boolean }) => {
+  const [email, setEmail] = useState('');
+  const { t } = useTranslation();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onReset(email);
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div>
+        <Label htmlFor="reset-email">{t('auth.email')}</Label>
+        <Input
+          id="reset-email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          placeholder={t('auth.enterEmailForReset')}
+        />
+      </div>
+      <Button type="submit" className="w-full" disabled={loading}>
+        {loading ? t('auth.loading') : t('auth.sendResetLink')}
       </Button>
     </form>
   );

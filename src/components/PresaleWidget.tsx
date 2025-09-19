@@ -90,8 +90,8 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
   };
 
   const handlePurchase = async () => {
-    if (!isConnected || !user) {
-      window.location.href = '/auth';
+    if (!isConnected) {
+      toast.error("Please connect your wallet first");
       return;
     }
 
