@@ -19,6 +19,7 @@ import ForFounders from "./pages/ForFounders";
 import VCoinToken from "./pages/VCoinToken";
 import Whitepaper from "./pages/Whitepaper";
 import Legal from "./pages/Legal";
+import PaymentSuccess from "./pages/PaymentSuccess";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -44,6 +45,7 @@ const App = () => (
               <Route path="/legal" element={<Legal />} />
               <Route path="/wallet-auth" element={<WalletAuth />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/payment-success" element={<PaymentSuccess />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

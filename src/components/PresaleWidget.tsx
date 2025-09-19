@@ -10,7 +10,7 @@ import { usePresaleContract } from '@/hooks/usePresaleContract';
 import { useInvestment } from '@/hooks/useInvestment';
 import { useAuth } from '@/hooks/useAuth';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
-import CreditCardPayment from '@/components/CreditCardPayment';
+import StripePayment from '@/components/StripePayment';
 
 interface PresaleWidgetProps {
   projectId?: string;
@@ -48,6 +48,12 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
     currentPrice: parseFloat(tokenPrice),
     nextPrice: parseFloat(tokenPrice) * 1.2,
     progress: (parseFloat(totalRaised) / 1000000) * 100 // Assuming 1M total goal
+  };
+
+  // Convert ETH amount to EUR for display
+  const convertToEur = (ethAmount: string) => {
+    if (!ethAmount) return "0";
+    return (parseFloat(ethAmount) * 2000).toFixed(2); // Mock conversion rate
   };
 
   const paymentMethods = [
@@ -90,23 +96,25 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
   };
 
   const handlePurchase = async () => {
-    if (!isConnected) {
-      toast.error("Please connect your wallet first");
-      return;
-    }
-
     if (!amount || parseFloat(amount) <= 0) {
       toast.error("Por favor, introduce una cantidad válida");
       return;
     }
 
     try {
-      if (paymentMethod === "ETH") {
-        await buyWithETH(amount);
-        toast.info("Transacción enviada. Esperando confirmación...");
-      } else if (paymentMethod === "USDT") {
-        await buyWithUSDT(amount);
-        toast.info("Transacción enviada. Esperando confirmación...");
+      if (paymentMethod === "ETH" || paymentMethod === "USDT") {
+        if (!isConnected) {
+          toast.error("Please connect your wallet first");
+          return;
+        }
+        
+        if (paymentMethod === "ETH") {
+          await buyWithETH(amount);
+          toast.info("Transacción enviada. Esperando confirmación...");
+        } else {
+          await buyWithUSDT(amount);
+          toast.info("Transacción enviada. Esperando confirmación...");
+        }
       } else if (paymentMethod === "CARD") {
         setShowCardPayment(true);
       }
@@ -171,16 +179,19 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
           
           <div className="space-y-2">
             <div className="text-sm text-muted-foreground">
-              {paymentMethod} que pagas
+              {paymentMethod === "CARD" ? "EUR que pagas" : `${paymentMethod} que pagas`}
             </div>
             <Input
-              placeholder={t('presale.youPay')}
+              placeholder={paymentMethod === "CARD" ? "Amount in EUR" : t('presale.youPay')}
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               className="text-center text-lg font-bold"
             />
             <div className="text-sm text-muted-foreground text-center">
-              {t('presale.youGet')}: {amount ? calculateTokensForETH(amount) : "0"}
+              {paymentMethod === "CARD" 
+                ? `${t('presale.youGet')}: ${amount ? (parseFloat(amount) / presaleData.currentPrice).toFixed(2) : "0"} VCoin`
+                : `${t('presale.youGet')}: ${amount ? calculateTokensForETH(amount) : "0"} VCoin (€${convertToEur(amount)})`
+              }
             </div>
           </div>
           
@@ -190,7 +201,7 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
             onClick={handlePurchase}
             disabled={isLoading}
           >
-            {isLoading ? t('presale.processing') : isConnected ? t('presale.buyNow') : t('presale.connectWallet')}
+            {isLoading ? t('presale.processing') : t('presale.buyNow')}
           </Button>
           
           {isConnected && balance && (
@@ -207,10 +218,10 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
         </div>
       </CardContent>
 
-      {/* Credit Card Payment Dialog */}
+      {/* Stripe Payment Dialog */}
       <Dialog open={showCardPayment} onOpenChange={setShowCardPayment}>
         <DialogContent className="sm:max-w-md">
-          <CreditCardPayment
+          <StripePayment
             projectId={projectId}
             amount={amount}
             onSuccess={handleCardPaymentSuccess}
