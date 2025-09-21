@@ -134,9 +134,6 @@ export type Database = {
           company_name: string | null
           company_website: string | null
           competition_analysis: string | null
-          contact_email: string | null
-          contact_person: string | null
-          contact_phone: string | null
           country: string
           created_at: string
           description: string | null
@@ -166,9 +163,6 @@ export type Database = {
           company_name?: string | null
           company_website?: string | null
           competition_analysis?: string | null
-          contact_email?: string | null
-          contact_person?: string | null
-          contact_phone?: string | null
           country: string
           created_at?: string
           description?: string | null
@@ -198,9 +192,6 @@ export type Database = {
           company_name?: string | null
           company_website?: string | null
           competition_analysis?: string | null
-          contact_email?: string | null
-          contact_person?: string | null
-          contact_phone?: string | null
           country?: string
           created_at?: string
           description?: string | null
