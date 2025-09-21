@@ -63,7 +63,9 @@
   },
   "common": {
     "loading": "Loading...",
-    "language": "Language"
+    "language": "Language",
+    "legal": "Legal",
+    "quickLinks": "Quick Links"
   },
   "languages": {
     "en": "English",
@@ -422,5 +424,73 @@
     "secureSmartContractsDescription": "Audited and battle-tested protocols",
     "globalCommunity": "Global Community",
     "globalCommunityDescription": "Network of investors & founders worldwide"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Get answers to the most common questions about VCoin, our platform, and hybrid funding model.",
+    "questions": {
+      "whatIsVCoin": "What is VCoin and how does it work?",
+      "whatIsVCoinAnswer": "VCoin is a utility token that connects investors and entrepreneurs through hybrid funding. Projects can raise both cash and VCoin, creating aligned incentives between founders and their community. Token holders can invest in curated projects and benefit if VCoin's value increases.",
+      "howToParticipate": "How do I participate in the presale?",
+      "howToParticipateAnswer": "To participate in the presale, connect your wallet to our platform, choose your payment method (ETH, USDT, or Credit Card), enter the amount you want to purchase, and complete the transaction. Your VCoin tokens will be distributed after the presale ends.",
+      "benefits": "What are the benefits of holding VCoin?",
+      "benefitsAnswer": "VCoin holders get early access to projects, better allocation terms, and exclusive perks. As the token value grows, your investment power increases. You can also participate in platform governance and access premium features.",
+      "hybridFunding": "How does hybrid funding work?",
+      "hybridFundingAnswer": "Projects set both cash and VCoin goals. If VCoin's price rises during the campaign, founders can capture more value while investors benefit from increased token value. Excess handling rules are transparent and defined upfront.",
+      "security": "Is VCoin secure and compliant?",
+      "securityAnswer": "Yes, VCoin operates with full regulatory compliance including KYC/AML verification. Our smart contracts are audited, and we work with trusted custody partners. All project listings undergo thorough due diligence.",
+      "projectTypes": "What types of projects can I invest in?",
+      "projectTypesAnswer": "VCoin features curated projects across various sectors including startups, real estate, innovation projects, and more. Each project undergoes due diligence and offers clear terms, risk assessments, and progress tracking."
+    },
+    "stillHaveQuestions": "Still have questions?",
+    "contactSupport": "Contact Support"
+  },
+  "footer": {
+    "subtitle": "Where entrepreneurs and investors meet. Fuel innovation with smart funding solutions powered by VCoin.",
+    "subscribe": "Stay Updated",
+    "subscribeSubtitle": "Get the latest updates on VCoin and new project launches",
+    "emailPlaceholder": "Enter your email",
+    "subscribeButton": "Subscribe",
+    "copyright": "© {{year}} VCoin. All rights reserved.",
+    "builtWith": "Built with ❤️ for the future of startups",
+    "social": {
+      "twitter": "Twitter",
+      "discord": "Discord", 
+      "telegram": "Telegram",
+      "medium": "Medium"
+    },
+    "links": {
+      "whitepaper": "Whitepaper",
+      "tokenomics": "Tokenomics",
+      "roadmap": "Roadmap",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service",
+      "riskDisclosure": "Risk Disclosure"
+    }
+  },
+  "investment": {
+    "portfolioTotal": "Portfolio Total",
+    "portfolioTotalDescription": "Current portfolio value",
+    "totalInvested": "Total Invested",
+    "totalInvestedDescription": "Total capital invested",
+    "vcoinHoldings": "VCoin Holdings",
+    "vcoinHoldingsDescription": "VCoin tokens accumulated",
+    "completedInvestments": "Completed Investments",
+    "completedInvestmentsDescription": "Completed investments"
+  },
+  "payment": {
+    "amountToInvest": "Amount to Invest",
+    "cryptoTab": "Crypto",
+    "cardTab": "Credit Card",
+    "balance": "Balance",
+    "cardNumber": "Card Number",
+    "expiryDate": "Expiry Date",
+    "cvv": "CVV",
+    "holderName": "Cardholder Name",
+    "holderNamePlaceholder": "As it appears on card",
+    "country": "Country",
+    "selectCountry": "Select country",
+    "cancel": "Cancel",
+    "payNow": "Pay Now"
   }
 }

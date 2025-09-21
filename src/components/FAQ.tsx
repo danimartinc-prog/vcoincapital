@@ -1,34 +1,36 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 const FAQ = () => {
+  const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   
   const faqs = [
     {
-      question: "What is VCoin and how does it work?",
-      answer: "VCoin is a utility token that connects investors and entrepreneurs through hybrid funding. Projects can raise both cash and VCoin, creating aligned incentives between founders and their community. Token holders can invest in curated projects and benefit if VCoin's value increases."
+      question: t('faq.questions.whatIsVCoin'),
+      answer: t('faq.questions.whatIsVCoinAnswer')
     },
     {
-      question: "How do I participate in the presale?",
-      answer: "To participate in the presale, connect your wallet to our platform, choose your payment method (ETH, USDT, or Credit Card), enter the amount you want to purchase, and complete the transaction. Your VCoin tokens will be distributed after the presale ends."
+      question: t('faq.questions.howToParticipate'),
+      answer: t('faq.questions.howToParticipateAnswer')
     },
     {
-      question: "What are the benefits of holding VCoin?",
-      answer: "VCoin holders get early access to projects, better allocation terms, and exclusive perks. As the token value grows, your investment power increases. You can also participate in platform governance and access premium features."
+      question: t('faq.questions.benefits'),
+      answer: t('faq.questions.benefitsAnswer')
     },
     {
-      question: "How does hybrid funding work?",
-      answer: "Projects set both cash and VCoin goals. If VCoin's price rises during the campaign, founders can capture more value while investors benefit from increased token value. Excess handling rules are transparent and defined upfront."
+      question: t('faq.questions.hybridFunding'),
+      answer: t('faq.questions.hybridFundingAnswer')
     },
     {
-      question: "Is VCoin secure and compliant?",
-      answer: "Yes, VCoin operates with full regulatory compliance including KYC/AML verification. Our smart contracts are audited, and we work with trusted custody partners. All project listings undergo thorough due diligence."
+      question: t('faq.questions.security'),
+      answer: t('faq.questions.securityAnswer')
     },
     {
-      question: "What types of projects can I invest in?",
-      answer: "VCoin features curated projects across various sectors including startups, real estate, innovation projects, and more. Each project undergoes due diligence and offers clear terms, risk assessments, and progress tracking."
+      question: t('faq.questions.projectTypes'),
+      answer: t('faq.questions.projectTypesAnswer')
     }
   ];
 
@@ -37,10 +39,10 @@ const FAQ = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            Frequently Asked <span className="bg-gradient-primary bg-clip-text text-transparent">Questions</span>
+            {t('faq.title')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Get answers to the most common questions about VCoin, our platform, and hybrid funding model.
+            {t('faq.subtitle')}
           </p>
         </div>
         
@@ -80,9 +82,9 @@ const FAQ = () => {
         </div>
         
         <div className="text-center mt-12">
-          <p className="text-muted-foreground mb-4">Still have questions?</p>
+          <p className="text-muted-foreground mb-4">{t('faq.stillHaveQuestions')}</p>
           <Button variant="outline" size="lg">
-            Contact Support
+            {t('faq.contactSupport')}
           </Button>
         </div>
       </div>
