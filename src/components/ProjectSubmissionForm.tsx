@@ -144,7 +144,7 @@ const ProjectSubmissionForm = ({ open, onOpenChange }: ProjectSubmissionFormProp
       }
 
       // Submit project to database
-      const { error } = await supabase
+      const { data: project, error } = await supabase
         .from('projects')
         .insert({
           founder_id: profile.id,
@@ -165,14 +165,28 @@ const ProjectSubmissionForm = ({ open, onOpenChange }: ProjectSubmissionFormProp
           use_of_funds: formData.useOfFunds,
           market_analysis: formData.targetMarket,
           competition_analysis: formData.competition,
-          contact_person: formData.founderName,
-          contact_email: formData.email,
-          contact_phone: formData.phone,
           documents: files.map(f => ({ name: f.name, size: f.size }))
-        });
+        })
+        .select()
+        .single();
 
       if (error) {
         throw error;
+      }
+
+      // Insert contact information into the separate protected table
+      const { error: contactError } = await supabase
+        .from('project_contacts')
+        .insert({
+          project_id: project.id,
+          contact_person: formData.founderName,
+          contact_email: formData.email,
+          contact_phone: formData.phone
+        });
+
+      if (contactError) {
+        console.error('Error inserting contact information:', contactError);
+        // Don't throw here as the project was already created successfully
       }
       
       toast({

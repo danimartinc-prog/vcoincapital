@@ -98,6 +98,36 @@ export type Database = {
         }
         Relationships: []
       }
+      project_contacts: {
+        Row: {
+          contact_email: string | null
+          contact_person: string | null
+          contact_phone: string | null
+          created_at: string
+          id: string
+          project_id: string
+          updated_at: string
+        }
+        Insert: {
+          contact_email?: string | null
+          contact_person?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          id?: string
+          project_id: string
+          updated_at?: string
+        }
+        Update: {
+          contact_email?: string | null
+          contact_person?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          id?: string
+          project_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       projects: {
         Row: {
           category: string
