@@ -50,10 +50,40 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
     progress: (parseFloat(totalRaised) / 1000000) * 100 // Assuming 1M total goal
   };
 
-  // Convert ETH amount to EUR for display
-  const convertToEur = (ethAmount: string) => {
-    if (!ethAmount) return "0";
-    return (parseFloat(ethAmount) * 2000).toFixed(2); // Mock conversion rate
+  // Calculate tokens based on payment method and VCoin price (€0.1 per VCoin)
+  const calculateTokens = (inputAmount: string) => {
+    if (!inputAmount || parseFloat(inputAmount) <= 0) return "0";
+    
+    const amount = parseFloat(inputAmount);
+    const vcoinPrice = 0.1; // 1 VCoin = €0.1
+    
+    if (paymentMethod === "CARD") {
+      // Direct EUR input
+      return (amount / vcoinPrice).toFixed(2);
+    } else if (paymentMethod === "ETH") {
+      // Convert ETH to EUR, then to VCoin
+      const ethToEur = amount * 2000; // Mock ETH price: 1 ETH = €2000
+      return (ethToEur / vcoinPrice).toFixed(2);
+    } else if (paymentMethod === "USDT") {
+      // USDT ≈ USD ≈ €0.9 (mock rate)
+      const usdtToEur = amount * 0.9;
+      return (usdtToEur / vcoinPrice).toFixed(2);
+    }
+    return "0";
+  };
+
+  const getEurEquivalent = (inputAmount: string) => {
+    if (!inputAmount || parseFloat(inputAmount) <= 0) return "0";
+    
+    const amount = parseFloat(inputAmount);
+    if (paymentMethod === "CARD") {
+      return amount.toFixed(2);
+    } else if (paymentMethod === "ETH") {
+      return (amount * 2000).toFixed(2); // 1 ETH = €2000
+    } else if (paymentMethod === "USDT") {
+      return (amount * 0.9).toFixed(2); // 1 USDT = €0.9
+    }
+    return "0";
   };
 
   const paymentMethods = [
@@ -184,16 +214,13 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
                paymentMethod === "ETH" ? t('presale.youPayEth') : t('presale.youPayUsdt')}
             </div>
             <Input
-              placeholder={paymentMethod === "CARD" ? t('presale.youPayEur') : t('presale.youPay')}
+              placeholder={t('presale.enterAmount')}
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               className="text-center text-lg font-bold"
             />
             <div className="text-sm text-muted-foreground text-center">
-              {paymentMethod === "CARD" 
-                ? `${t('presale.youGet')}: ${amount ? (parseFloat(amount) / presaleData.currentPrice).toFixed(2) : "0"} VCoin`
-                : `${t('presale.youGet')}: ${amount ? calculateTokensForETH(amount) : "0"} VCoin (€${convertToEur(amount)})`
-              }
+              {t('presale.youGet')}: {calculateTokens(amount)} VCoin (€{getEurEquivalent(amount)})
             </div>
           </div>
           
@@ -212,11 +239,6 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
             </div>
           )}
           
-          <div className="text-center">
-            <Button variant="link" className="text-accent text-sm">
-              {t('presale.giveaway')}
-            </Button>
-          </div>
         </div>
       </CardContent>
 
