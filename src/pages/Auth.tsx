@@ -12,6 +12,7 @@ import vcoinLogo from "@/assets/vcoin-logo.png";
 import Header from '@/components/Header';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
+import SEO from '@/components/SEO';
 
 const Auth = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -114,23 +115,24 @@ const Auth = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO page="auth" />
       <Header />
       <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 flex items-center justify-center p-4 pt-20">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <img src={vcoinLogo} alt="VCoin" className="w-16 h-16 mx-auto mb-4 animate-float" />
             <h1 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-              Welcome to VCoin
+              {t('auth.welcome')}
             </h1>
             <p className="text-muted-foreground mt-2">
-              Join the future of startup funding
+              {t('auth.subtitle')}
             </p>
           </div>
 
           <Card className="border-2 border-primary/20 bg-card/90 backdrop-blur-md glow-primary">
             <CardHeader>
-              <CardTitle>Authentication</CardTitle>
-              <CardDescription>Sign in or create your account</CardDescription>
+              <CardTitle>{t('auth.authTitle')}</CardTitle>
+              <CardDescription>{t('auth.authDescription')}</CardDescription>
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="signin" className="w-full">
@@ -160,7 +162,7 @@ const Auth = () => {
               onClick={() => window.history.back()}
               className="text-sm text-muted-foreground hover:text-foreground transition-colors underline"
             >
-              Back to home
+              {t('auth.backToHome')}
             </button>
           </div>
         </div>

@@ -11,6 +11,7 @@ import InvestmentStats from '@/components/InvestmentStats';
 import TransactionHistory from '@/components/TransactionHistory';
 import Header from '@/components/Header';
 import { useTranslation } from 'react-i18next';
+import SEO from '@/components/SEO';
 
 const Dashboard = () => {
   const { user, profile, loading } = useAuth();
@@ -67,6 +68,7 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO page="dashboard" />
       <Header />
       <div className="container mx-auto px-4 py-8 mt-20">
         <div className="mb-8">

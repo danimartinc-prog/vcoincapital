@@ -5,12 +5,14 @@ import { Progress } from "@/components/ui/progress";
 import { useTranslation } from "react-i18next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const VCoinToken = () => {
   const { t } = useTranslation();
 
   return (
     <div className="min-h-screen">
+      <SEO page="token" />
       <Header />
       <main className="pt-20">
         <section className="py-16">

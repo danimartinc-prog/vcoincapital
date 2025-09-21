@@ -19,7 +19,7 @@ const SEO = ({ page, title, description, image, type = 'website' }: SEOProps) =>
   const seoDescription = description || t(`seo.${page}.description`);
   const seoImage = image || `${baseUrl}/og-image.jpg`;
   
-  const languages = ['en', 'es', 'fr', 'de', 'pt', 'ru', 'zh', 'ar'];
+  const languages = ['en', 'es'];
   
   const jsonLd = {
     "@context": "https://schema.org",
