@@ -1,26 +1,21 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useTranslation } from "react-i18next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEO from "@/components/SEO";
 
 const Legal = () => {
-  const { t } = useTranslation();
-
   return (
     <div className="min-h-screen">
-      <SEO page="legal" />
       <Header />
       <main className="pt-20">
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h1 className="text-4xl lg:text-5xl font-bold mb-4">
-                {t('legal.title')}
+                Información legal
               </h1>
               <p className="text-xl text-muted-foreground">
-                {t('legal.subtitle')}
+                Términos, riesgos y políticas que rigen el uso de VCoin
               </p>
             </div>
 

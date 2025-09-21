@@ -1,0 +1,103 @@
+{
+  "nav": {
+    "projects": "Projekte",
+    "howItWorks": "Wie es funktioniert",
+    "investors": "Investoren",
+    "entrepreneurs": "Unternehmer",
+    "token": "Token",
+    "whitepaper": "Whitepaper",
+    "dashboard": "Dashboard",
+    "signIn": "Anmelden",
+    "signOut": "Abmelden",
+    "exploreProjects": "Projekte erkunden"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Willkommen, {{name}}",
+    "totalInvested": "Gesamt investiert",
+    "totalVCoin": "VCoin gesamt",
+    "projects": "Projekte",
+    "asFounder": "Als Gründer",
+    "inInvestments": "In {{count}} Investitionen",
+    "accumulatedTokens": "Angesammelte Token",
+    "statistics": "Statistiken",
+    "investments": "Investitionen",
+    "transactions": "Transaktionen",
+    "profile": "Profil",
+    "investmentHistory": "Investitionshistorie",
+    "loadingInvestments": "Lade Investitionen...",
+    "noInvestments": "Sie haben noch keine Investitionen",
+    "myProjects": "Meine Projekte",
+    "loadingProjects": "Lade Projekte...",
+    "noProjects": "Sie haben noch keine Projekte eingereicht",
+    "submitProject": "Projekt einreichen",
+    "profileInfo": "Profilinformationen",
+    "email": "E-Mail",
+    "name": "Name",
+    "role": "Rolle",
+    "memberSince": "Mitglied seit",
+    "notSpecified": "Nicht angegeben",
+    "unknown": "Unbekannt",
+    "unknownProject": "Unbekanntes Projekt",
+    "invested": "Investiert",
+    "goal": "Ziel",
+    "raised": "Gesammelt"
+  },
+  "auth": {
+    "loading": "Wird geladen...",
+    "signInTitle": "Bei VCoin anmelden",
+    "signInSubtitle": "Zugang zu Ihrem Investment-Dashboard",
+    "signUpTitle": "Konto erstellen",
+    "signUpSubtitle": "Treten Sie dem VCoin-Ökosystem bei",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "noAccount": "Noch kein Konto?",
+    "haveAccount": "Bereits ein Konto?",
+    "signUpLink": "Hier registrieren",
+    "signInLink": "Hier anmelden"
+  },
+  "common": {
+    "loading": "Wird geladen...",
+    "language": "Sprache",
+    "cancel": "Abbrechen"
+  },
+  "languages": {
+    "en": "English",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "pt": "Português",
+    "ru": "Русский",
+    "zh": "中文",
+    "ar": "العربية"
+  },
+  "payments": {
+    "stripe": {
+      "title": "Stripe-Zahlung",
+      "youWillReceive": "Sie erhalten",
+      "redirectMessage": "Sie werden zur sicheren Zahlungsseite von Stripe weitergeleitet",
+      "processing": "Verarbeitung...",
+      "payButton": "Mit Stripe bezahlen",
+      "invalidAmount": "Bitte geben Sie einen gültigen Betrag ein",
+      "error": "Fehler bei der Zahlungsverarbeitung. Bitte versuchen Sie es erneut."
+    }
+  },
+  "countries": {
+    "ES": "Spanien",
+    "FR": "Frankreich", 
+    "DE": "Deutschland",
+    "IT": "Italien",
+    "PT": "Portugal",
+    "NL": "Niederlande",
+    "BE": "Belgien",
+    "AT": "Österreich"
+  },
+  "seo": {
+    "index": {
+      "title": "VCoin — Wo Unternehmer und Investoren sich treffen",
+      "description": "Treten Sie der Zukunft der Startup-Finanzierung mit VCoin bei. Verbinden Sie Unternehmer mit Investoren über unsere revolutionäre tokenisierte Investmentplattform."
+    }
+  }
+}

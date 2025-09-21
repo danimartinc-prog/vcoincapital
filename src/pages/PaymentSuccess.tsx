@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import vcoinLogo from "@/assets/vcoin-logo.png";
-import SEO from "@/components/SEO";
 
 const PaymentSuccess = () => {
   const { t } = useTranslation();
@@ -19,7 +18,6 @@ const PaymentSuccess = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 flex items-center justify-center p-4">
-      <SEO page="paymentSuccess" />
       <div className="w-full max-w-md">
         <Card className="bg-card/90 backdrop-blur-md border-2 border-primary/20 glow-primary">
           <CardHeader className="text-center">
@@ -30,34 +28,35 @@ const PaymentSuccess = () => {
               <img src={vcoinLogo} alt="VCoin" className="w-12 h-12" />
             </div>
             <CardTitle className="text-2xl text-green-500">
-              {t('paymentSuccess.title')}
+              Payment Successful!
             </CardTitle>
           </CardHeader>
           
           <CardContent className="text-center space-y-6">
             <p className="text-muted-foreground">
-              {t('paymentSuccess.message')}
+              Your VCoin tokens have been successfully purchased. 
+              You will receive them in your wallet shortly.
             </p>
             
             <div className="bg-secondary/50 rounded-lg p-4">
               <p className="text-sm text-muted-foreground mb-2">
-                {t('paymentSuccess.transactionId')}
+                Transaction ID:
               </p>
               <p className="text-xs font-mono break-all">
-                {sessionId || t('paymentSuccess.processing')}
+                {sessionId || "Processing..."}
               </p>
             </div>
             
             <div className="space-y-3">
               <Button asChild variant="hero" className="w-full">
                 <Link to="/dashboard">
-                  {t('paymentSuccess.goToDashboard')}
+                  Go to Dashboard
                 </Link>
               </Button>
               
               <Button asChild variant="outline" className="w-full">
                 <Link to="/">
-                  {t('paymentSuccess.backToHome')}
+                  Back to Home
                 </Link>
               </Button>
             </div>

@@ -17,19 +17,19 @@
     "totalInvested": "Total Invertido",
     "totalVCoin": "VCoin Total",
     "projects": "Proyectos",
-    "asFounder": "Como Fundador",
+    "asFounder": "Como fundador",
     "inInvestments": "En {{count}} inversiones",
-    "accumulatedTokens": "Tokens Acumulados",
+    "accumulatedTokens": "Tokens acumulados",
     "statistics": "Estadísticas",
     "investments": "Inversiones",
     "transactions": "Transacciones",
     "profile": "Perfil",
     "investmentHistory": "Historial de Inversiones",
     "loadingInvestments": "Cargando inversiones...",
-    "noInvestments": "Aún no has realizado inversiones",
+    "noInvestments": "No tienes inversiones aún",
     "myProjects": "Mis Proyectos",
     "loadingProjects": "Cargando proyectos...",
-    "noProjects": "Aún no has enviado proyectos",
+    "noProjects": "No has enviado ningún proyecto aún",
     "submitProject": "Enviar Proyecto",
     "profileInfo": "Información del Perfil",
     "email": "Email",
@@ -38,207 +38,148 @@
     "memberSince": "Miembro desde",
     "notSpecified": "No especificado",
     "unknown": "Desconocido",
-    "unknownProject": "Proyecto desconocido",
+    "unknownProject": "Proyecto Desconocido",
     "invested": "Invertido",
-    "goal": "Meta",
+    "goal": "Objetivo",
     "raised": "Recaudado"
   },
   "auth": {
     "loading": "Cargando...",
-    "signInTitle": "Iniciar sesión en VCoin",
+    "signInTitle": "Iniciar Sesión en VCoin",
     "signInSubtitle": "Accede a tu panel de inversiones",
-    "signUpTitle": "Crear cuenta",
+    "signUpTitle": "Crear Cuenta",
     "signUpSubtitle": "Únete al ecosistema VCoin",
     "email": "Email",
     "password": "Contraseña",
     "signIn": "Iniciar Sesión",
     "signUp": "Registrarse",
+    "resetPassword": "Recuperar Contraseña",
+    "enterEmailForReset": "Introduce tu dirección de email",
+    "sendResetLink": "Enviar Enlace de Recuperación",
     "noAccount": "¿No tienes cuenta?",
     "haveAccount": "¿Ya tienes cuenta?",
     "signUpLink": "Regístrate aquí",
-    "signInLink": "Inicia sesión aquí",
-    "resetPassword": "Restablecer Contraseña",
-    "enterEmailForReset": "Ingresa tu email para restablecer contraseña",
-    "sendResetLink": "Enviar Enlace de Restablecimiento",
-    "welcome": "Bienvenido a VCoin",
-    "subtitle": "Únete al futuro de la financiación de startups",
-    "authTitle": "Autenticación",
-    "authDescription": "Inicia sesión o crea tu cuenta",
-    "backToHome": "Volver al inicio"
+    "signInLink": "Inicia sesión aquí"
   },
   "common": {
     "loading": "Cargando...",
     "language": "Idioma",
-    "cancel": "Cancelar"
+    "legal": "Legal",
+    "quickLinks": "Enlaces rápidos"
   },
   "languages": {
     "en": "English",
-    "es": "Español"
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "pt": "Português",
+    "ru": "Русский",
+    "zh": "中文",
+    "ar": "العربية"
   },
-  "payments": {
-    "stripe": {
-      "title": "Pago con Stripe",
-      "youWillReceive": "Recibirás",
-      "redirectMessage": "Serás redirigido a la página de pago segura de Stripe",
-      "processing": "Procesando...",
-      "payButton": "Pagar con Stripe",
-      "invalidAmount": "Por favor ingresa un monto válido",
-      "error": "Error procesando el pago. Inténtalo de nuevo."
-    },
-    "creditCard": {
-      "title": "Pago con Tarjeta de Crédito",
-      "cardNumber": "Número de Tarjeta",
-      "expiryDate": "MM/AA",
-      "cvv": "CVV",
-      "cardholderName": "Nombre del Titular",
-      "payButton": "Pagar {{amount}}",
-      "processing": "Procesando...",
-      "invalidCard": "Por favor ingresa datos válidos de la tarjeta",
-      "paymentFailed": "Pago fallido. Inténtalo de nuevo.",
-      "paymentSuccess": "¡Pago exitoso!",
-      "features": {
-        "secure": "Encriptación SSL segura",
-        "instant": "Entrega instantánea de tokens",
-        "support": "Soporte al cliente 24/7"
-      }
-    },
-    "methods": {
-      "title": "Elige Método de Pago",
-      "subtitle": "Selecciona tu opción de pago preferida",
-      "crypto": "Criptomoneda",
-      "cryptoDesc": "Paga con Bitcoin, Ethereum u otras criptomonedas",
-      "card": "Tarjeta de Crédito",
-      "cardDesc": "Paga de forma segura con tu tarjeta de crédito o débito",
-      "paypal": "PayPal",
-      "paypalDesc": "Paga con tu cuenta de PayPal",
-      "bankTransfer": "Transferencia Bancaria",
-      "bankDesc": "Transferencia bancaria directa (SEPA)",
-      "coming": "Próximamente",
-      "select": "Seleccionar"
-    }
+  "hero": {
+    "title": "El futuro de la",
+    "titleLine2": "inversión está",
+    "titleLine3": "aquí",
+    "subtitle": "Conecta inversores y emprendedores a través de un ecosistema de financiación híbrida potenciado por VCoin",
+    "getVCoin": "Obtener VCoin",
+    "pitchProject": "Presentar proyecto"
   },
-  "countries": {
-    "ES": "España",
-    "FR": "Francia",
-    "DE": "Alemania",
-    "IT": "Italia",
-    "PT": "Portugal",
-    "NL": "Países Bajos",
-    "BE": "Bélgica",
-    "AT": "Austria"
-  },
-  "seo": {
-    "index": {
-      "title": "VCoin — Donde se Encuentran Emprendedores e Inversores",
-      "description": "Únete al futuro de la financiación de startups con VCoin. Conecta emprendedores con inversores a través de nuestra plataforma de inversión tokenizada revolucionaria."
-    },
-    "projects": {
-      "title": "Descubre Proyectos de Inversión | VCoin",
-      "description": "Navega e invierte en proyectos de startups cuidadosamente seleccionados. Diversifica tu cartera con el modelo de financiación híbrida de VCoin."
-    },
-    "howItWorks": {
-      "title": "Cómo Funciona VCoin | Plataforma de Financiación Híbrida",
-      "description": "Aprende cómo VCoin revoluciona la financiación de startups a través de inversiones híbridas efectivo+token. Simple, transparente y eficiente."
-    },
-    "investors": {
-      "title": "Para Inversores | Plataforma de Inversión VCoin",
-      "description": "Descubre cómo VCoin empodera a los inversores con acceso a startups en etapa temprana, diversificación de cartera e inversiones transparentes."
-    },
-    "founders": {
-      "title": "Para Fundadores | Financiación de Startups VCoin",
-      "description": "Recauda capital para tu startup con el modelo de financiación híbrida de VCoin. Accede a inversores globales y acelera tu crecimiento."
-    },
-    "dashboard": {
-      "title": "Panel | Portal de Inversión VCoin",
-      "description": "Gestiona tus inversiones VCoin, rastrea el rendimiento de tu cartera y monitorea tu viaje de financiación de startups."
-    },
-    "auth": {
-      "title": "Iniciar Sesión | Plataforma de Inversión VCoin",
-      "description": "Accede a tu cuenta VCoin para gestionar inversiones, rastrear proyectos y unirte al futuro de la financiación de startups."
-    },
-    "token": {
-      "title": "Token VCoin | Token de Utilidad para Plataforma de Inversión",
-      "description": "Aprende sobre la tokenómica de VCoin, características de utilidad y cómo nuestro token impulsa el futuro de la financiación de startups."
-    },
-    "whitepaper": {
-      "title": "Whitepaper VCoin | Documentación Técnica",
-      "description": "Lee el whitepaper integral de VCoin que cubre nuestra tecnología, tokenómica y visión para el futuro de la financiación de startups."
-    },
-    "legal": {
-      "title": "Información Legal | Términos y Políticas VCoin",
-      "description": "Revisa los términos de servicio de VCoin, política de privacidad, divulgaciones de riesgo e información de cumplimiento regulatorio."
-    },
-    "notFound": {
-      "title": "Página No Encontrada | VCoin",
-      "description": "La página que buscas no existe. Regresa a la página principal de VCoin para explorar oportunidades de inversión."
-    },
-    "paymentSuccess": {
-      "title": "Pago Exitoso | VCoin",
-      "description": "Tu compra de tokens VCoin fue exitosa. ¡Bienvenido al futuro de la financiación de startups!"
-    },
-    "walletAuth": {
-      "title": "Conectar Billetera | Preventa VCoin",
-      "description": "Conecta tu billetera cripto para participar en la preventa de VCoin y únete a la revolución de inversión."
-    },
-    "projectDetail": {
-      "title": "{{projectName}} | Detalles del Proyecto de Inversión",
-      "description": "Descubre oportunidades de inversión en {{projectName}}. Revisa detalles del proyecto, objetivos de financiación y términos de inversión."
-    }
-  },
-  "legal": {
-    "title": "Información Legal",
-    "subtitle": "Términos, riesgos y políticas que rigen el uso de VCoin",
-    "tabs": {
-      "terms": "Términos",
-      "risks": "Riesgos",
-      "privacy": "Privacidad",
-      "cookies": "Cookies"
-    }
-  },
-  "whitepaper": {
-    "title": "Whitepaper de VCoin",
-    "subtitle": "El futuro de la financiación híbrida: conectando inversores y emprendedores a través de un ecosistema descentralizado y transparente.",
-    "version": "Whitepaper v1.0",
-    "download": "Descargar PDF",
-    "readOnline": "Leer Online",
-    "tableOfContents": "Índice de Contenidos",
-    "sections": {
-      "executive": "Resumen Ejecutivo",
-      "vision": "Visión y Misión",
-      "problem": "Problema que Resolvemos",
-      "solution": "La Solución VCoin",
-      "tokenomics": "Tokenomics",
-      "utility": "Utilidad del Token",
-      "technology": "Tecnología",
-      "market": "Análisis de Mercado",
-      "roadmap": "Roadmap"
-    }
-  },
-  "notFound": {
-    "message": "¡Ups! Página no encontrada",
-    "returnHome": "Volver al Inicio"
-  },
-  "paymentSuccess": {
-    "title": "¡Pago Exitoso!",
-    "message": "Tus tokens VCoin han sido comprados exitosamente. Los recibirás en tu billetera pronto.",
-    "transactionId": "ID de Transacción:",
+  "presale": {
+    "title": "Preventa de VCoin",
+    "subtitle": "Obtén tokens VCoin al precio de lanzamiento",
+    "buyWith": "Comprar con",
+    "youPay": "Pagas",
+    "youGet": "Obtienes",
+    "connectWallet": "Conectar billetera",
+    "buyNow": "Comprar ahora",
     "processing": "Procesando...",
-    "goToDashboard": "Ir al Dashboard",
-    "backToHome": "Volver al Inicio"
+    "success": "¡Compra exitosa!",
+    "error": "Compra fallida",
+    "minAmount": "Mínimo: 0.01 ETH",
+    "maxAmount": "Máximo: 10 ETH",
+    "eurRaised": "EUR RECAUDADOS:",
+    "vcoinAvailable": "VCoin disponible:",
+    "sold": "Vendido",
+    "nextPrice": "Próximo precio:",
+    "youPayEth": "ETH que pagas",
+    "youPayUsdt": "USDT que pagas",
+    "youPayEur": "EUR que pagas",
+    "giveaway": "Sorteo de €100,000",
+    "connectWalletFirst": "Por favor conecta tu billetera primero",
+    "invalidAmount": "Por favor ingresa una cantidad válida",
+    "transactionSent": "Transacción enviada. Esperando confirmación...",
+    "transactionConfirmed": "¡Transacción confirmada! Recibirás {{amount}} VCoin",
+    "purchaseError": "Error al procesar la compra. Inténtalo de nuevo.",
+    "balance": "Saldo:"
   },
-  "walletAuth": {
-    "title": "Únete a la",
-    "subtitle": "Preventa de VCoin",
-    "connectMessage": "¡Conecta tu billetera para unirte a la preventa!",
-    "backToHome": "Volver al inicio"
+  "index": {
+    "howItWorks": "Cómo funciona VCoin",
+    "buyVCoin": "Comprar VCoin",
+    "buyVCoinDescription": "Obtén el token y accede a oportunidades exclusivas",
+    "discoverProjects": "Descubrir proyectos",
+    "discoverProjectsDescription": "Filtra por sector, etapa y nivel de riesgo",
+    "investDirectly": "Invertir directamente",
+    "investDirectlyDescription": "Usa VCoin, efectivo o ambos. Tú decides",
+    "growthPotential": "Potencial de crecimiento",
+    "growthPotentialDescription": "Rastrea todo en un panel simple y claro",
+    "forInvestors": "Para inversores",
+    "forInvestorsSubtitle": "Convierte un token en múltiples oportunidades",
+    "forInvestorsDescription": "Accede a una lista curada de proyectos reales. Diversifica en startups, bienes raíces, innovación. Multiplica tu capital si el valor del token aumenta.",
+    "buyVCoinInvest": "Comprar VCoin e invertir",
+    "forEntrepreneurs": "Para emprendedores",
+    "forEntrepreneursSubtitle": "Financiación sin límites",
+    "forEntrepreneursDescription": "Publica tu proyecto fácilmente. Recibe inversión en efectivo y VCoin. Benefíciate si el token sube → más capital disponible.",
+    "submitProject": "Enviar tu proyecto",
+    "trustCommunity": "Confianza y comunidad",
+    "projectTransparency": "Transparencia del proyecto",
+    "projectTransparencyDescription": "Información clara del proyecto y progreso",
+    "secureSmartContracts": "Contratos inteligentes seguros",
+    "secureSmartContractsDescription": "Protocolos auditados y probados en batalla",
+    "globalCommunity": "Comunidad global",
+    "globalCommunityDescription": "Red de inversores y fundadores de todo el mundo"
   },
-  "projectDetail": {
-    "notFound": "Proyecto no encontrado",
-    "backToProjects": "Volver a proyectos",
-    "cashGoal": "Objetivo Cash",
-    "vcoinGoal": "Objetivo VCoin",
-    "raisedAmount": "Cantidad Recaudada",
-    "invest": "Invertir",
-    "moreInfo": "Más Información"
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "subtitle": "Obtén respuestas a las preguntas más comunes sobre VCoin, nuestra plataforma y el modelo de financiación híbrida.",
+    "questions": {
+      "whatIsVCoin": "¿Qué es VCoin y cómo funciona?",
+      "whatIsVCoinAnswer": "VCoin es un token de utilidad que conecta a inversores y emprendedores a través de financiación híbrida. Los proyectos pueden recaudar tanto efectivo como VCoin, creando incentivos alineados entre fundadores y su comunidad. Los poseedores de tokens pueden invertir en proyectos curados y beneficiarse si el valor de VCoin aumenta.",
+      "howToParticipate": "¿Cómo participo en la preventa?",
+      "howToParticipateAnswer": "Para participar en la preventa, conecta tu billetera a nuestra plataforma, elige tu método de pago (ETH, USDT o tarjeta de crédito), ingresa la cantidad que quieres comprar y completa la transacción. Tus tokens VCoin se distribuirán después de que termine la preventa.",
+      "benefits": "¿Cuáles son los beneficios de poseer VCoin?",
+      "benefitsAnswer": "Los poseedores de VCoin obtienen acceso temprano a proyectos, mejores términos de asignación y beneficios exclusivos. A medida que el valor del token crece, tu poder de inversión aumenta. También puedes participar en la gobernanza de la plataforma y acceder a características premium.",
+      "hybridFunding": "¿Cómo funciona la financiación híbrida?",
+      "hybridFundingAnswer": "Los proyectos establecen objetivos tanto en efectivo como en VCoin. Si el precio de VCoin sube durante la campaña, los fundadores pueden capturar más valor mientras los inversores se benefician del aumento del valor del token. Las reglas de manejo de exceso son transparentes y definidas por adelantado.",
+      "security": "¿Es VCoin seguro y cumple con las regulaciones?",
+      "securityAnswer": "Sí, VCoin opera con total cumplimiento regulatorio incluyendo verificación KYC/AML. Nuestros contratos inteligentes están auditados y trabajamos con socios de custodia confiables. Todas las listadas de proyectos pasan por una exhaustiva diligencia debida.",
+      "projectTypes": "¿En qué tipos de proyectos puedo invertir?",
+      "projectTypesAnswer": "VCoin presenta proyectos curados en varios sectores incluyendo startups, bienes raíces, proyectos de innovación y más. Cada proyecto pasa por diligencia debida y ofrece términos claros, evaluaciones de riesgo y seguimiento de progreso."
+    },
+    "stillHaveQuestions": "¿Aún tienes preguntas?",
+    "contactSupport": "Contactar soporte"
+  },
+  "footer": {
+    "subtitle": "Donde emprendedores e inversores se encuentran. Impulsa la innovación con soluciones de financiación inteligentes potenciadas por VCoin.",
+    "subscribe": "Mantenerse actualizado",
+    "subscribeSubtitle": "Obtén las últimas actualizaciones sobre VCoin y nuevos lanzamientos de proyectos",
+    "emailPlaceholder": "Ingresa tu correo electrónico",
+    "subscribeButton": "Suscribirse",
+    "copyright": "© {{year}} VCoin. Todos los derechos reservados.",
+    "builtWith": "Construido con ❤️ para el futuro de las startups",
+    "social": {
+      "twitter": "Twitter",
+      "discord": "Discord", 
+      "telegram": "Telegram",
+      "medium": "Medium"
+    },
+    "links": {
+      "whitepaper": "Whitepaper",
+      "tokenomics": "Tokenomics",
+      "roadmap": "Hoja de ruta",
+      "privacyPolicy": "Política de privacidad",
+      "termsOfService": "Términos de servicio",
+      "riskDisclosure": "Divulgación de riesgos"
+    }
   }
 }

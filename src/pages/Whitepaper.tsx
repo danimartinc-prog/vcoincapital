@@ -2,10 +2,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { useTranslation } from "react-i18next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEO from "@/components/SEO";
 import { 
   BookOpen, 
   Target, 
@@ -21,10 +19,8 @@ import {
 } from "lucide-react";
 
 const Whitepaper = () => {
-  const { t } = useTranslation();
-  
   const sections = [
-    { id: "resumen", title: t('whitepaper.sections.executive'), icon: BookOpen },
+    { id: "resumen", title: "Resumen Ejecutivo", icon: BookOpen },
     { id: "vision", title: "Visión y Misión", icon: Target },
     { id: "problema", title: "Problema que Resolvemos", icon: TrendingUp },
     { id: "solucion", title: "La Solución VCoin", icon: Zap },
@@ -41,7 +37,6 @@ const Whitepaper = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
-      <SEO page="whitepaper" />
       <Header />
       
       {/* Hero Section */}
