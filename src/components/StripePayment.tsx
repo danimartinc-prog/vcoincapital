@@ -20,7 +20,7 @@ const StripePayment = ({ projectId, amount, onSuccess, onClose }: StripePaymentP
 
   const handlePayment = async () => {
     if (!amount || parseFloat(amount) <= 0) {
-      toast.error("Please enter a valid amount");
+      toast.error(t('payments.stripe.invalidAmount'));
       return;
     }
 
@@ -54,7 +54,7 @@ const StripePayment = ({ projectId, amount, onSuccess, onClose }: StripePaymentP
       }
     } catch (error) {
       console.error('Payment error:', error);
-      toast.error('Error processing payment. Please try again.');
+      toast.error(t('payments.stripe.error'));
     } finally {
       setIsProcessing(false);
     }
@@ -64,19 +64,19 @@ const StripePayment = ({ projectId, amount, onSuccess, onClose }: StripePaymentP
     <Card className="w-full">
       <CardHeader>
         <CardTitle className="text-center">
-          Stripe Payment
+          {t('payments.stripe.title')}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="text-center space-y-2">
           <div className="text-2xl font-bold">€{amount}</div>
           <div className="text-sm text-muted-foreground">
-            You will receive: {amount ? (parseFloat(amount) / 0.1).toFixed(2) : "0"} VCoin
+            {t('payments.stripe.youWillReceive')}: {amount ? (parseFloat(amount) / 0.1).toFixed(2) : "0"} VCoin
           </div>
         </div>
         
         <div className="text-xs text-muted-foreground text-center">
-          You will be redirected to Stripe's secure payment page
+          {t('payments.stripe.redirectMessage')}
         </div>
         
         <div className="flex gap-3">
@@ -93,7 +93,7 @@ const StripePayment = ({ projectId, amount, onSuccess, onClose }: StripePaymentP
             disabled={isProcessing}
             className="flex-1"
           >
-            {isProcessing ? 'Processing...' : 'Pay with Stripe'}
+            {isProcessing ? t('payments.stripe.processing') : t('payments.stripe.payButton')}
           </Button>
         </div>
       </CardContent>

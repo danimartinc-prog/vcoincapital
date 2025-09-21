@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import SEO from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import FAQ from "@/components/FAQ";
@@ -13,6 +14,7 @@ const Index = () => {
   const { t } = useTranslation();
   return (
     <div className="min-h-screen">
+      <SEO page="index" />
       <Header />
       <main>
         <HeroSection />

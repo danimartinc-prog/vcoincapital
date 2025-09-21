@@ -24,6 +24,15 @@ const LanguageSwitcher = () => {
 
   const handleLanguageChange = (languageCode: string) => {
     i18n.changeLanguage(languageCode);
+    
+    // Update URL with language parameter
+    const url = new URL(window.location.href);
+    url.searchParams.set('lang', languageCode);
+    window.history.replaceState({}, '', url.toString());
+    
+    // Persist in cookie and localStorage
+    document.cookie = `i18next=${languageCode}; path=/; max-age=${7 * 24 * 60 * 60}; domain=${window.location.hostname}`;
+    localStorage.setItem('i18nextLng', languageCode);
   };
 
   const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];

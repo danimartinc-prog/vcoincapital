@@ -492,5 +492,145 @@
     "selectCountry": "Select country",
     "cancel": "Cancel",
     "payNow": "Pay Now"
+  },
+  "payments": {
+    "stripe": {
+      "title": "Stripe Payment",
+      "youWillReceive": "You will receive",
+      "redirectMessage": "You will be redirected to Stripe's secure payment page",
+      "processing": "Processing...",
+      "payButton": "Pay with Stripe",
+      "invalidAmount": "Please enter a valid amount",
+      "error": "Error processing payment. Please try again."
+    },
+    "card": {
+      "title": "Card Payment",
+      "securePayment": "Secure and encrypted payment",
+      "youWillReceive": "You will receive",
+      "processing": "Processing...",
+      "payNow": "Pay Now",
+      "card": "Card",
+      "authRequired": "You must be authenticated",
+      "paymentRejected": "Payment rejected by bank",
+      "successMessage": "Payment successful! You will receive {{amount}} VCoin",
+      "error": "Error processing payment",
+      "investmentSuccess": "Investment made successfully!",
+      "labels": {
+        "cardNumber": "Card Number",
+        "expiryDate": "Expiry Date",
+        "holderName": "Cardholder Name",
+        "country": "Country"
+      },
+      "placeholders": {
+        "cardNumber": "1234 5678 9012 3456",
+        "expiryDate": "MM/YY",
+        "holderName": "As it appears on the card"
+      },
+      "validation": {
+        "invalidCardNumber": "Invalid card number",
+        "invalidExpiryDate": "Invalid expiry date",
+        "invalidCVV": "Invalid CVV",
+        "holderNameRequired": "Cardholder name required"
+      },
+      "securityNotice": "Your data is protected with 256-bit SSL encryption"
+    },
+    "crypto": {
+      "amountLabel": "Amount to Invest",
+      "youWillReceive": "You will receive",
+      "fee": "Fee",
+      "availableBalance": "Available balance",
+      "secureTransactions": "Secure blockchain transactions",
+      "invalidAmount": "Please enter a valid amount",
+      "transactionSent": "Transaction sent. Waiting for confirmation...",
+      "error": "Error processing purchase"
+    },
+    "methods": {
+      "crypto": {
+        "title": "Cryptocurrencies",
+        "description": "ETH, USDT - Instant processing",
+        "badge": "Recommended",
+        "features": {
+          "noFees": "No additional fees",
+          "instant": "Instant transaction",
+          "web3": "Web3 compatible"
+        }
+      },
+      "card": {
+        "title": "Credit/Debit Card",
+        "description": "Visa, Mastercard, American Express",
+        "badge": "Coming Soon",
+        "features": {
+          "fast": "Fast processing",
+          "familiar": "Familiar and easy",
+          "noWallet": "No wallet needed"
+        }
+      }
+    },
+    "features": {
+      "fastProcessing": {
+        "title": "Fast Processing",
+        "description": "Confirmation in seconds with blockchain"
+      },
+      "secure": {
+        "title": "100% Secure",
+        "description": "Bank-level encryption"
+      },
+      "available": {
+        "title": "24/7 Available",
+        "description": "Invest anytime"
+      }
+    }
+  },
+  "countries": {
+    "ES": "Spain",
+    "FR": "France",
+    "DE": "Germany",
+    "IT": "Italy",
+    "PT": "Portugal",
+    "NL": "Netherlands",
+    "BE": "Belgium",
+    "AT": "Austria"
+  },
+  "seo": {
+    "index": {
+      "title": "VCoin — Where Entrepreneurs and Investors Meet",
+      "description": "Join the future of startup funding with VCoin. Connect entrepreneurs with investors through our revolutionary tokenized investment platform."
+    },
+    "projects": {
+      "title": "Investment Projects | VCoin Platform",
+      "description": "Discover and invest in innovative startup projects with VCoin. Browse verified opportunities and make secure investments."
+    },
+    "howItWorks": {
+      "title": "How VCoin Works | Investment Platform Guide",
+      "description": "Learn how VCoin connects entrepreneurs and investors through tokenized funding. Step-by-step guide to the future of startup investment."
+    },
+    "forInvestors": {
+      "title": "For Investors | VCoin Investment Opportunities",
+      "description": "Diversify your portfolio with VCoin. Access curated startup investments with transparent processes and secure transactions."
+    },
+    "forFounders": {
+      "title": "For Founders | VCoin Startup Funding",
+      "description": "Raise capital for your startup with VCoin. Get funded through our tokenized investment platform with global investor access."
+    },
+    "dashboard": {
+      "title": "Investment Dashboard | VCoin Portfolio",
+      "description": "Manage your VCoin investments, track portfolio performance, and monitor your startup funding activities."
+    },
+    "auth": {
+      "title": "Sign In | VCoin Platform",
+      "description": "Access your VCoin account to manage investments, track projects, and participate in the future of startup funding."
+    },
+    "vcoinToken": {
+      "title": "VCoin Token | Utility & Tokenomics",
+      "description": "Learn about VCoin token utility, distribution, and tokenomics. Understand the native token powering our investment platform."
+    },
+    "whitepaper": {
+      "title": "VCoin Whitepaper | Technical Documentation",
+      "description": "Read the complete VCoin whitepaper with technical details, tokenomics, and our vision for the future of startup funding."
+    },
+    "legal": {
+      "title": "Legal Information | VCoin Terms & Privacy",
+      "description": "Review VCoin's terms of service, privacy policy, and legal information for our tokenized investment platform."
+    }
   }
 }

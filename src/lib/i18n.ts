@@ -34,8 +34,13 @@ i18n
       escapeValue: false,
     },
     detection: {
-      order: ['localStorage', 'navigator', 'htmlTag'],
-      caches: ['localStorage'],
+      order: ['querystring', 'cookie', 'localStorage', 'navigator', 'htmlTag'],
+      lookupQuerystring: 'lang',
+      lookupCookie: 'i18next',
+      lookupLocalStorage: 'i18nextLng',
+      caches: ['localStorage', 'cookie'],
+      cookieMinutes: 10080, // 7 days
+      cookieDomain: window.location.hostname,
     },
   });
 

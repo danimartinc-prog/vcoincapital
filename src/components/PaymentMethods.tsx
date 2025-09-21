@@ -7,17 +7,20 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAccount, useBalance } from 'wagmi';
 import { toast } from 'sonner';
+import { useTranslation } from 'react-i18next';
 import { usePresaleContract } from '@/hooks/usePresaleContract';
 import { useInvestment } from '@/hooks/useInvestment';
 import { useAuth } from '@/hooks/useAuth';
 import { Wallet, CreditCard, Shield, Zap, Clock } from 'lucide-react';
 import CreditCardPayment from '@/components/CreditCardPayment';
+import { formatNumber } from '@/lib/formatters';
 
 interface PaymentMethodsProps {
   projectId: string;
 }
 
 const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
+  const { t } = useTranslation();
   const [amount, setAmount] = useState('');
   const [selectedMethod, setSelectedMethod] = useState('crypto');
   
@@ -36,20 +39,28 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
   const paymentMethods = [
     {
       id: 'crypto',
-      title: 'Criptomonedas',
-      description: 'ETH, USDT - Procesamiento instantáneo',
+      title: t('payments.methods.crypto.title'),
+      description: t('payments.methods.crypto.description'),
       icon: Wallet,
-      features: ['Sin comisiones adicionales', 'Transacción inmediata', 'Compatible con Web3'],
-      badge: 'Recomendado',
+      features: [
+        t('payments.methods.crypto.features.noFees'),
+        t('payments.methods.crypto.features.instant'),
+        t('payments.methods.crypto.features.web3')
+      ],
+      badge: t('payments.methods.crypto.badge'),
       badgeVariant: 'default' as const
     },
     {
       id: 'card',
-      title: 'Tarjeta de Crédito/Débito',
-      description: 'Visa, Mastercard, American Express',
+      title: t('payments.methods.card.title'),
+      description: t('payments.methods.card.description'),
       icon: CreditCard,
-      features: ['Procesamiento rápido', 'Familiar y fácil', 'Sin wallet necesario'],
-      badge: 'Próximamente',
+      features: [
+        t('payments.methods.card.features.fast'),
+        t('payments.methods.card.features.familiar'),
+        t('payments.methods.card.features.noWallet')
+      ],
+      badge: t('payments.methods.card.badge'),
       badgeVariant: 'secondary' as const
     }
   ];
@@ -66,7 +77,7 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
     }
 
     if (!amount || parseFloat(amount) <= 0) {
-      toast.error('Por favor, introduce una cantidad válida');
+      toast.error(t('payments.crypto.invalidAmount'));
       return;
     }
 
@@ -76,10 +87,10 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
       } else if (crypto === 'USDT') {
         await buyWithUSDT(amount);
       }
-      toast.info('Transacción enviada. Esperando confirmación...');
+      toast.info(t('payments.crypto.transactionSent'));
     } catch (error) {
       console.error('Error en la compra:', error);
-      toast.error('Error al procesar la compra');
+      toast.error(t('payments.crypto.error'));
     }
   };
 
@@ -129,7 +140,7 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
               {/* Amount Input */}
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="amount">Cantidad a Invertir</Label>
+                  <Label htmlFor="amount">{t('payments.crypto.amountLabel')}</Label>
                   <Input
                     id="amount"
                     placeholder="0.1"
@@ -139,7 +150,7 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
                   />
                   {amount && (
                     <div className="text-center text-sm text-muted-foreground">
-                      Recibirás: {calculateTokensForETH(amount)} VCoin
+                      {t('payments.crypto.youWillReceive')}: {calculateTokensForETH(amount)} VCoin
                     </div>
                   )}
                 </div>
@@ -160,7 +171,7 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
                       </div>
                       <span className="text-xs text-muted-foreground">{crypto.name}</span>
                       <Badge variant="outline" className="text-xs">
-                        Comisión: {crypto.fee}
+                        {t('payments.crypto.fee')}: {crypto.fee}
                       </Badge>
                     </Button>
                   ))}
@@ -169,9 +180,9 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
                 {/* Wallet Info */}
                 {isConnected && balance && (
                   <div className="p-3 bg-muted rounded-lg text-center">
-                    <div className="text-sm text-muted-foreground">Balance disponible</div>
+                    <div className="text-sm text-muted-foreground">{t('payments.crypto.availableBalance')}</div>
                     <div className="font-semibold">
-                      {parseFloat(balance.formatted).toFixed(4)} {balance.symbol}
+                      {formatNumber(parseFloat(balance.formatted))} {balance.symbol}
                     </div>
                   </div>
                 )}
@@ -179,7 +190,7 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
                 {/* Security Notice */}
                 <div className="flex items-center gap-2 p-3 bg-muted/50 rounded-lg text-sm text-muted-foreground">
                   <Shield className="h-4 w-4" />
-                  Transacciones seguras en blockchain
+                  {t('payments.crypto.secureTransactions')}
                 </div>
               </div>
             </TabsContent>
@@ -189,7 +200,7 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
                 projectId={projectId}
                 amount={amount || '100'}
                 onSuccess={() => {
-                  toast.success('¡Inversión realizada con éxito!');
+                  toast.success(t('payments.card.investmentSuccess'));
                   setAmount('');
                 }}
               />
@@ -202,25 +213,25 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="text-center p-4">
           <Zap className="h-8 w-8 mx-auto mb-2 text-primary" />
-          <h3 className="font-semibold mb-1">Procesamiento Rápido</h3>
+          <h3 className="font-semibold mb-1">{t('payments.features.fastProcessing.title')}</h3>
           <p className="text-sm text-muted-foreground">
-            Confirmación en segundos con blockchain
+            {t('payments.features.fastProcessing.description')}
           </p>
         </Card>
         
         <Card className="text-center p-4">
           <Shield className="h-8 w-8 mx-auto mb-2 text-accent" />
-          <h3 className="font-semibold mb-1">100% Seguro</h3>
+          <h3 className="font-semibold mb-1">{t('payments.features.secure.title')}</h3>
           <p className="text-sm text-muted-foreground">
-            Encriptación de nivel bancario
+            {t('payments.features.secure.description')}
           </p>
         </Card>
         
         <Card className="text-center p-4">
           <Clock className="h-8 w-8 mx-auto mb-2 text-secondary-foreground" />
-          <h3 className="font-semibold mb-1">24/7 Disponible</h3>
+          <h3 className="font-semibold mb-1">{t('payments.features.available.title')}</h3>
           <p className="text-sm text-muted-foreground">
-            Invierte en cualquier momento
+            {t('payments.features.available.description')}
           </p>
         </Card>
       </div>

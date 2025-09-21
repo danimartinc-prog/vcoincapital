@@ -7,8 +7,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { CreditCard, Lock, Shield } from 'lucide-react';
 import { toast } from 'sonner';
+import { useTranslation } from 'react-i18next';
 import { useInvestment } from '@/hooks/useInvestment';
 import { useAuth } from '@/hooks/useAuth';
+import { formatCurrency } from '@/lib/formatters';
 
 interface CreditCardPaymentProps {
   projectId: string;
@@ -18,6 +20,7 @@ interface CreditCardPaymentProps {
 }
 
 const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCardPaymentProps) => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     cardNumber: '',
     expiryDate: '',
@@ -74,22 +77,22 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
     const { cardNumber, expiryDate, cvv, holderName } = formData;
     
     if (!cardNumber || cardNumber.replace(/\s/g, '').length < 13) {
-      toast.error('Número de tarjeta inválido');
+      toast.error(t('payments.card.validation.invalidCardNumber'));
       return false;
     }
     
     if (!expiryDate || expiryDate.length !== 5) {
-      toast.error('Fecha de vencimiento inválida');
+      toast.error(t('payments.card.validation.invalidExpiryDate'));
       return false;
     }
     
     if (!cvv || cvv.length < 3) {
-      toast.error('CVV inválido');
+      toast.error(t('payments.card.validation.invalidCVV'));
       return false;
     }
     
     if (!holderName.trim()) {
-      toast.error('Nombre del titular requerido');
+      toast.error(t('payments.card.validation.holderNameRequired'));
       return false;
     }
     
@@ -109,7 +112,7 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
         transactionId: `card_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
       };
     } else {
-      throw new Error('Pago rechazado por el banco');
+      throw new Error(t('payments.card.paymentRejected'));
     }
   };
 
@@ -117,7 +120,7 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
     e.preventDefault();
     
     if (!user) {
-      toast.error('Debes estar autenticado');
+      toast.error(t('payments.card.authRequired'));
       return;
     }
     
@@ -127,7 +130,7 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
     
     try {
       // Simulate payment processing
-      toast.info('Procesando pago...');
+      toast.info(t('payments.card.processing'));
       const paymentResult = await simulatePayment();
       
       if (paymentResult.success) {
@@ -145,13 +148,13 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
         );
         
         if (investment) {
-          toast.success(`¡Pago exitoso! Recibirás ${vcoinAmount} VCoin`);
+          toast.success(t('payments.card.successMessage', { amount: vcoinAmount }));
           onSuccess?.();
         }
       }
     } catch (error) {
       console.error('Payment error:', error);
-      toast.error(error instanceof Error ? error.message : 'Error al procesar el pago');
+      toast.error(error instanceof Error ? error.message : t('payments.card.error'));
     } finally {
       setProcessing(false);
     }
@@ -162,7 +165,7 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
     if (/^4/.test(cleaned)) return 'Visa';
     if (/^5[1-5]/.test(cleaned)) return 'Mastercard';
     if (/^3[47]/.test(cleaned)) return 'Amex';
-    return 'Tarjeta';
+    return t('payments.card.card');
   };
 
   return (
@@ -170,11 +173,11 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <CreditCard className="h-5 w-5" />
-          Pago con Tarjeta
+          {t('payments.card.title')}
         </CardTitle>
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Shield className="h-4 w-4" />
-          Pago seguro y encriptado
+          {t('payments.card.securePayment')}
         </div>
       </CardHeader>
       
@@ -182,19 +185,19 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Amount Display */}
           <div className="p-3 bg-muted rounded-lg text-center">
-            <div className="text-lg font-bold">€{parseFloat(amount).toLocaleString()}</div>
+            <div className="text-lg font-bold">{formatCurrency(parseFloat(amount))}</div>
             <div className="text-sm text-muted-foreground">
-              Recibirás: {(parseFloat(amount) * 100).toLocaleString()} VCoin
+              {t('payments.card.youWillReceive')}: {(parseFloat(amount) * 100).toLocaleString()} VCoin
             </div>
           </div>
           
           {/* Card Number */}
           <div className="space-y-2">
-            <Label htmlFor="cardNumber">Número de Tarjeta</Label>
+            <Label htmlFor="cardNumber">{t('payments.card.labels.cardNumber')}</Label>
             <div className="relative">
               <Input
                 id="cardNumber"
-                placeholder="1234 5678 9012 3456"
+                placeholder={t('payments.card.placeholders.cardNumber')}
                 value={formData.cardNumber}
                 onChange={handleCardNumberChange}
                 className="pr-20"
@@ -210,10 +213,10 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
           {/* Expiry and CVV */}
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="expiryDate">Vencimiento</Label>
+              <Label htmlFor="expiryDate">{t('payments.card.labels.expiryDate')}</Label>
               <Input
                 id="expiryDate"
-                placeholder="MM/AA"
+                placeholder={t('payments.card.placeholders.expiryDate')}
                 value={formData.expiryDate}
                 onChange={handleExpiryChange}
               />
@@ -232,10 +235,10 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
           
           {/* Cardholder Name */}
           <div className="space-y-2">
-            <Label htmlFor="holderName">Nombre del Titular</Label>
+            <Label htmlFor="holderName">{t('payments.card.labels.holderName')}</Label>
             <Input
               id="holderName"
-              placeholder="Como aparece en la tarjeta"
+              placeholder={t('payments.card.placeholders.holderName')}
               value={formData.holderName}
               onChange={(e) => handleInputChange('holderName', e.target.value.toUpperCase())}
             />
@@ -243,20 +246,20 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
           
           {/* Country */}
           <div className="space-y-2">
-            <Label htmlFor="country">País</Label>
+            <Label htmlFor="country">{t('payments.card.labels.country')}</Label>
             <Select value={formData.country} onValueChange={(value) => handleInputChange('country', value)}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="ES">España</SelectItem>
-                <SelectItem value="FR">Francia</SelectItem>
-                <SelectItem value="DE">Alemania</SelectItem>
-                <SelectItem value="IT">Italia</SelectItem>
-                <SelectItem value="PT">Portugal</SelectItem>
-                <SelectItem value="NL">Países Bajos</SelectItem>
-                <SelectItem value="BE">Bélgica</SelectItem>
-                <SelectItem value="AT">Austria</SelectItem>
+                <SelectItem value="ES">{t('countries.ES')}</SelectItem>
+                <SelectItem value="FR">{t('countries.FR')}</SelectItem>
+                <SelectItem value="DE">{t('countries.DE')}</SelectItem>
+                <SelectItem value="IT">{t('countries.IT')}</SelectItem>
+                <SelectItem value="PT">{t('countries.PT')}</SelectItem>
+                <SelectItem value="NL">{t('countries.NL')}</SelectItem>
+                <SelectItem value="BE">{t('countries.BE')}</SelectItem>
+                <SelectItem value="AT">{t('countries.AT')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -264,7 +267,7 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
           {/* Security Notice */}
           <div className="flex items-center gap-2 p-3 bg-muted/50 rounded-lg text-xs text-muted-foreground">
             <Lock className="h-3 w-3" />
-            Tus datos están protegidos con encriptación SSL de 256 bits
+            {t('payments.card.securityNotice')}
           </div>
           
           {/* Action Buttons */}
@@ -276,14 +279,14 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
               disabled={processing}
               className="flex-1"
             >
-              Cancelar
+              {t('common.cancel')}
             </Button>
             <Button
               type="submit"
               disabled={processing}
               className="flex-1"
             >
-              {processing ? 'Procesando...' : 'Pagar Ahora'}
+              {processing ? t('payments.card.processing') : t('payments.card.payNow')}
             </Button>
           </div>
         </form>
