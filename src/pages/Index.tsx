@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,6 +10,7 @@ import ProjectSubmissionForm from "@/components/ProjectSubmissionForm";
 
 const Index = () => {
   const [showProjectForm, setShowProjectForm] = useState(false);
+  const { t } = useTranslation();
   return (
     <div className="min-h-screen">
       <Header />
@@ -18,38 +20,38 @@ const Index = () => {
         {/* How it works section */}
         <section className="py-16">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-12">How VCoin Works</h2>
+            <h2 className="text-3xl font-bold mb-12">{t('index.howItWorks')}</h2>
             <div className="grid md:grid-cols-4 gap-6 mb-12">
               <Card>
                 <CardHeader>
-                  <CardTitle>Buy VCoin</CardTitle>
+                  <CardTitle>{t('index.buyVCoin')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">Get the token and access exclusive opportunities</p>
+                  <p className="text-sm text-muted-foreground">{t('index.buyVCoinDescription')}</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle>Discover Projects</CardTitle>
+                  <CardTitle>{t('index.discoverProjects')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">Filter by sector, stage and risk level</p>
+                  <p className="text-sm text-muted-foreground">{t('index.discoverProjectsDescription')}</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle>Invest Directly</CardTitle>
+                  <CardTitle>{t('index.investDirectly')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">Use VCoin, cash or both. You decide</p>
+                  <p className="text-sm text-muted-foreground">{t('index.investDirectlyDescription')}</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
-                  <CardTitle>Growth Potential</CardTitle>
+                  <CardTitle>{t('index.growthPotential')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">Track everything in a simple, clear dashboard</p>
+                  <p className="text-sm text-muted-foreground">{t('index.growthPotentialDescription')}</p>
                 </CardContent>
               </Card>
             </div>
@@ -58,32 +60,30 @@ const Index = () => {
             <div className="grid md:grid-cols-2 gap-8 mb-16">
               <Card className="text-left">
                 <CardHeader>
-                  <CardTitle>For Investors</CardTitle>
-                  <p className="text-muted-foreground">Turn one token into multiple opportunities</p>
+                  <CardTitle>{t('index.forInvestors')}</CardTitle>
+                  <p className="text-muted-foreground">{t('index.forInvestorsSubtitle')}</p>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Access a curated list of real projects. Diversify in startups, real estate, innovation. 
-                    Multiply your capital if the token value rises.
+                    {t('index.forInvestorsDescription')}
                   </p>
                   <Button onClick={() => window.location.href = '/for-investors'}>
-                    Buy VCoin & Invest
+                    {t('index.buyVCoinInvest')}
                   </Button>
                 </CardContent>
               </Card>
               
               <Card className="text-left">
                 <CardHeader>
-                  <CardTitle>For Entrepreneurs</CardTitle>
-                  <p className="text-muted-foreground">Funding beyond limits</p>
+                  <CardTitle>{t('index.forEntrepreneurs')}</CardTitle>
+                  <p className="text-muted-foreground">{t('index.forEntrepreneursSubtitle')}</p>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Publish your project easily. Receive investment in cash and VCoin. 
-                    Benefit if the token rises → more capital available.
+                    {t('index.forEntrepreneursDescription')}
                   </p>
                   <Button onClick={() => setShowProjectForm(true)}>
-                    Submit Your Project
+                    {t('index.submitProject')}
                   </Button>
                 </CardContent>
               </Card>
@@ -91,19 +91,19 @@ const Index = () => {
             
             {/* Trust & Community */}
             <div className="bg-card p-8 rounded-lg">
-              <h3 className="text-xl font-bold mb-6">Trust & Community</h3>
+              <h3 className="text-xl font-bold mb-6">{t('index.trustCommunity')}</h3>
               <div className="grid md:grid-cols-3 gap-6">
                 <div>
-                  <h4 className="font-semibold mb-2">Project Transparency</h4>
-                  <p className="text-sm text-muted-foreground">Clear project information and progress</p>
+                  <h4 className="font-semibold mb-2">{t('index.projectTransparency')}</h4>
+                  <p className="text-sm text-muted-foreground">{t('index.projectTransparencyDescription')}</p>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-2">Secure Smart Contracts</h4>
-                  <p className="text-sm text-muted-foreground">Audited and battle-tested protocols</p>
+                  <h4 className="font-semibold mb-2">{t('index.secureSmartContracts')}</h4>
+                  <p className="text-sm text-muted-foreground">{t('index.secureSmartContractsDescription')}</p>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-2">Global Community</h4>
-                  <p className="text-sm text-muted-foreground">Network of investors & founders worldwide</p>
+                  <h4 className="font-semibold mb-2">{t('index.globalCommunity')}</h4>
+                  <p className="text-sm text-muted-foreground">{t('index.globalCommunityDescription')}</p>
                 </div>
               </div>
             </div>

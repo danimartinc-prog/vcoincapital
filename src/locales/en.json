@@ -396,5 +396,31 @@
     "transactionConfirmed": "Transaction confirmed! You will receive {{amount}} VCoin",
     "purchaseError": "Error processing purchase. Please try again.",
     "balance": "Balance:"
+  },
+  "index": {
+    "howItWorks": "How VCoin Works",
+    "buyVCoin": "Buy VCoin",
+    "buyVCoinDescription": "Get the token and access exclusive opportunities",
+    "discoverProjects": "Discover Projects",
+    "discoverProjectsDescription": "Filter by sector, stage and risk level",
+    "investDirectly": "Invest Directly",
+    "investDirectlyDescription": "Use VCoin, cash or both. You decide",
+    "growthPotential": "Growth Potential",
+    "growthPotentialDescription": "Track everything in a simple, clear dashboard",
+    "forInvestors": "For Investors",
+    "forInvestorsSubtitle": "Turn one token into multiple opportunities",
+    "forInvestorsDescription": "Access a curated list of real projects. Diversify in startups, real estate, innovation. Multiply your capital if the token value rises.",
+    "buyVCoinInvest": "Buy VCoin & Invest",
+    "forEntrepreneurs": "For Entrepreneurs",
+    "forEntrepreneursSubtitle": "Funding beyond limits",
+    "forEntrepreneursDescription": "Publish your project easily. Receive investment in cash and VCoin. Benefit if the token rises → more capital available.",
+    "submitProject": "Submit Your Project",
+    "trustCommunity": "Trust & Community",
+    "projectTransparency": "Project Transparency",
+    "projectTransparencyDescription": "Clear project information and progress",
+    "secureSmartContracts": "Secure Smart Contracts",
+    "secureSmartContractsDescription": "Audited and battle-tested protocols",
+    "globalCommunity": "Global Community",
+    "globalCommunityDescription": "Network of investors & founders worldwide"
   }
 }
