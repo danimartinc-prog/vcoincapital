@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import vcoinLogo from "@/assets/vcoin-logo.png";
+import vcoinLogo from "@/assets/new-logo.png";
 import { useTranslation } from "react-i18next";
 
 const Footer = () => {
