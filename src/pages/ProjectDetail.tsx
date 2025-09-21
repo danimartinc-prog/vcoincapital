@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -8,10 +9,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
+import { formatCurrency } from "@/lib/formatters";
 import { mockProjects } from "@/data/mockProjects";
 
 const ProjectDetail = () => {
   const { slug } = useParams();
+  const { t } = useTranslation();
   const project = mockProjects.find(p => p.slug === slug);
   const [vcoinPriceVariation, setVcoinPriceVariation] = useState([0]);
   
@@ -21,9 +25,9 @@ const ProjectDetail = () => {
         <Header />
         <main className="pt-20 flex items-center justify-center h-screen">
           <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4">Proyecto no encontrado</h1>
+            <h1 className="text-4xl font-bold mb-4">{t('projectDetail.notFound')}</h1>
             <Button onClick={() => window.location.href = '/projects'}>
-              Volver a proyectos
+              {t('projectDetail.backToProjects')}
             </Button>
           </div>
         </main>
@@ -40,6 +44,7 @@ const ProjectDetail = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO page="projectDetail" />
       <Header />
       <main className="pt-20">
         <section className="py-16">
@@ -62,10 +67,10 @@ const ProjectDetail = () => {
                   <div className="grid md:grid-cols-3 gap-4 mb-6">
                     <Card>
                       <CardHeader className="pb-3">
-                        <CardTitle className="text-sm">Objetivo Cash</CardTitle>
+                        <CardTitle className="text-sm">{t('projectDetail.cashGoal')}</CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <div className="text-2xl font-bold">€{project.goal_cash_eur.toLocaleString()}</div>
+                        <div className="text-2xl font-bold">{formatCurrency(project.goal_cash_eur)}</div>
                       </CardContent>
                     </Card>
                     <Card>
