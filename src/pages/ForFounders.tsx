@@ -1,12 +1,15 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import ProjectSubmissionForm from "@/components/ProjectSubmissionForm";
 
 const ForFounders = () => {
+  const { t } = useTranslation();
   const [showProjectForm, setShowProjectForm] = useState(false);
   const benefits = [
     {
@@ -67,6 +70,7 @@ const ForFounders = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO page="forFounders" />
       <Header />
       <main className="pt-20">
         <section className="py-16">
@@ -74,18 +78,17 @@ const ForFounders = () => {
             {/* Hero */}
             <div className="text-center mb-16">
               <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-                Funding beyond limits
+                {t('forFounders.hero.title')}
               </h1>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-                Publish your project with cash + VCoin goals. Upload documents, define excess rules 
-                and communicate progress. Receive community and runway to scale.
+                {t('forFounders.hero.subtitle')}
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Button size="lg" onClick={() => setShowProjectForm(true)}>
-                  Submit Your Project
+                  {t('forFounders.hero.submitProject')}
                 </Button>
                 <Button variant="outline" size="lg" onClick={() => window.location.href = '/how-it-works'}>
-                  View Complete Process
+                  {t('forFounders.hero.viewProcess')}
                 </Button>
               </div>
             </div>

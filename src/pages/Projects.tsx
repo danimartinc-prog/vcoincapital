@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,10 +8,13 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { mockProjects } from "@/data/mockProjects";
 import { Project } from "@/types/project";
+import { formatCurrency, formatPercent } from "@/lib/formatters";
 
 const Projects = () => {
+  const { t } = useTranslation();
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [stageFilter, setStageFilter] = useState("all");
@@ -36,61 +40,62 @@ const Projects = () => {
 
   const getStatusText = (status: Project['status']) => {
     switch (status) {
-      case 'open': return 'Abierto';
-      case 'closing-soon': return 'Cerrando pronto';
-      case 'closed': return 'Cerrado';
-      case 'funded': return 'Financiado';
+      case 'open': return t('projects.status.open');
+      case 'closing-soon': return t('projects.status.closingSoon');
+      case 'closed': return t('projects.status.closed');
+      case 'funded': return t('projects.status.funded');
       default: return status;
     }
   };
 
   return (
     <div className="min-h-screen">
+      <SEO page="projects" />
       <Header />
       <main className="pt-20">
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h1 className="text-4xl lg:text-5xl font-bold mb-4">
-                Proyectos listos para tu próximo movimiento
+                {t('projects.title')}
               </h1>
               <p className="text-xl text-muted-foreground">
-                Tickets híbridos, métricas claras y documentación verificada.
+                {t('projects.subtitle')}
               </p>
             </div>
 
             {/* Filtros */}
             <div className="flex flex-wrap gap-4 mb-8">
               <Input
-                placeholder="Buscar proyectos..."
+                placeholder={t('projects.searchPlaceholder')}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="max-w-sm"
               />
               <Select value={categoryFilter} onValueChange={setCategoryFilter}>
                 <SelectTrigger className="w-48">
-                  <SelectValue placeholder="Categoría" />
+                  <SelectValue placeholder={t('projects.filters.category')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">Todas las categorías</SelectItem>
+                  <SelectItem value="all">{t('projects.filters.allCategories')}</SelectItem>
                   <SelectItem value="SaaS">SaaS</SelectItem>
                   <SelectItem value="eCom">eCommerce</SelectItem>
                   <SelectItem value="Local">Local</SelectItem>
                   <SelectItem value="Crypto">Crypto</SelectItem>
-                  <SelectItem value="Impact">Impacto</SelectItem>
+                  <SelectItem value="Impact">{t('projects.categories.impact')}</SelectItem>
                   <SelectItem value="Hardware">Hardware</SelectItem>
                   <SelectItem value="Fintech">Fintech</SelectItem>
                 </SelectContent>
               </Select>
               <Select value={stageFilter} onValueChange={setStageFilter}>
                 <SelectTrigger className="w-48">
-                  <SelectValue placeholder="Fase" />
+                  <SelectValue placeholder={t('projects.filters.stage')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">Todas las fases</SelectItem>
-                  <SelectItem value="idea">Idea</SelectItem>
+                  <SelectItem value="all">{t('projects.filters.allStages')}</SelectItem>
+                  <SelectItem value="idea">{t('projects.stages.idea')}</SelectItem>
                   <SelectItem value="MVP">MVP</SelectItem>
-                  <SelectItem value="growth">Crecimiento</SelectItem>
+                  <SelectItem value="growth">{t('projects.stages.growth')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -114,35 +119,35 @@ const Projects = () => {
                     
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
-                        <span>Objetivo:</span>
+                        <span>{t('projects.goal')}:</span>
                         <span className="font-semibold">
-                          €{project.goal_cash_eur.toLocaleString()} + {project.goal_vcoin.toLocaleString()} VCOIN
+                          {formatCurrency(project.goal_cash_eur)} + {project.goal_vcoin.toLocaleString()} VCOIN
                         </span>
                       </div>
                       <Progress value={project.progress_percentage} className="h-2" />
                       <div className="text-center text-sm text-muted-foreground">
-                        {project.progress_percentage}% financiado
+                        {formatPercent(project.progress_percentage)} {t('projects.funded')}
                       </div>
                     </div>
 
-                    <div className="text-sm space-y-1">
-                      <div className="flex justify-between">
-                        <span>Ticket mínimo:</span>
-                        <span>€{project.min_ticket_eur} / {project.min_ticket_vcoin} VCOIN</span>
+                      <div className="text-sm space-y-1">
+                        <div className="flex justify-between">
+                          <span>{t('projects.minTicket')}:</span>
+                          <span>{formatCurrency(project.min_ticket_eur)} / {project.min_ticket_vcoin} VCOIN</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>{t('projects.excessRule')}:</span>
+                          <Badge variant="outline" className="text-xs">
+                            {project.oversubscription_rule}
+                          </Badge>
+                        </div>
                       </div>
-                      <div className="flex justify-between">
-                        <span>Regla excedente:</span>
-                        <Badge variant="outline" className="text-xs">
-                          {project.oversubscription_rule}
-                        </Badge>
-                      </div>
-                    </div>
 
                     <Button 
                       className="w-full" 
                       onClick={() => window.location.href = `/project/${project.slug}`}
                     >
-                      Ver proyecto
+                      {t('projects.viewProject')}
                     </Button>
                   </CardContent>
                 </Card>
@@ -151,7 +156,7 @@ const Projects = () => {
 
             {filteredProjects.length === 0 && (
               <div className="text-center py-12">
-                <p className="text-muted-foreground">No se encontraron proyectos con los filtros aplicados.</p>
+                <p className="text-muted-foreground">{t('projects.noProjectsFound')}</p>
               </div>
             )}
           </div>

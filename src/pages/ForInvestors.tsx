@@ -2,11 +2,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
+import { useTranslation } from "react-i18next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { useState } from "react";
+import { formatCurrency, formatNumber, formatPercent } from "@/lib/formatters";
 
 const ForInvestors = () => {
+  const { t } = useTranslation();
   // Investment simulator state
   const [vcoinAmount, setVcoinAmount] = useState(5000);
   const [priceMultiplier, setPriceMultiplier] = useState(100); // 100 = current price
@@ -74,6 +78,7 @@ const ForInvestors = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO page="forInvestors" />
       <Header />
       <main className="pt-20">
         <section className="py-16">
@@ -81,18 +86,17 @@ const ForInvestors = () => {
             {/* Hero */}
             <div className="text-center mb-16">
               <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-                Turn one token into multiple opportunities
+                {t('forInvestors.hero.title')}
               </h1>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-                Access a curated list of real projects. Diversify in startups, real estate, innovation. 
-                Multiply your capital if the token value rises.
+                {t('forInvestors.hero.subtitle')}
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Button size="lg" onClick={() => window.location.href = '/projects'}>
-                  Explore Projects
+                  {t('forInvestors.hero.exploreProjects')}
                 </Button>
                 <Button variant="outline" size="lg" onClick={() => window.location.href = '/how-it-works'}>
-                  How it Works
+                  {t('forInvestors.hero.howItWorks')}
                 </Button>
               </div>
             </div>

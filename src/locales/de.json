@@ -60,7 +60,8 @@
   },
   "common": {
     "loading": "Wird geladen...",
-    "language": "Sprache"
+    "language": "Sprache",
+    "cancel": "Abbrechen"
   },
   "languages": {
     "en": "English",
@@ -71,5 +72,32 @@
     "ru": "Русский",
     "zh": "中文",
     "ar": "العربية"
+  },
+  "payments": {
+    "stripe": {
+      "title": "Stripe-Zahlung",
+      "youWillReceive": "Sie erhalten",
+      "redirectMessage": "Sie werden zur sicheren Zahlungsseite von Stripe weitergeleitet",
+      "processing": "Verarbeitung...",
+      "payButton": "Mit Stripe bezahlen",
+      "invalidAmount": "Bitte geben Sie einen gültigen Betrag ein",
+      "error": "Fehler bei der Zahlungsverarbeitung. Bitte versuchen Sie es erneut."
+    }
+  },
+  "countries": {
+    "ES": "Spanien",
+    "FR": "Frankreich", 
+    "DE": "Deutschland",
+    "IT": "Italien",
+    "PT": "Portugal",
+    "NL": "Niederlande",
+    "BE": "Belgien",
+    "AT": "Österreich"
+  },
+  "seo": {
+    "index": {
+      "title": "VCoin — Wo Unternehmer und Investoren sich treffen",
+      "description": "Treten Sie der Zukunft der Startup-Finanzierung mit VCoin bei. Verbinden Sie Unternehmer mit Investoren über unsere revolutionäre tokenisierte Investmentplattform."
+    }
   }
 }

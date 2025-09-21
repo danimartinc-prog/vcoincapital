@@ -632,5 +632,113 @@
       "title": "Legal Information | VCoin Terms & Privacy",
       "description": "Review VCoin's terms of service, privacy policy, and legal information for our tokenized investment platform."
     }
+  },
+  "projects": {
+    "title": "Projects ready for your next move",
+    "subtitle": "Hybrid tickets, clear metrics and verified documentation.",
+    "searchPlaceholder": "Search projects...",
+    "filters": {
+      "category": "Category",
+      "stage": "Stage",
+      "allCategories": "All categories",
+      "allStages": "All stages"
+    },
+    "categories": {
+      "impact": "Impact"
+    },
+    "stages": {
+      "idea": "Idea",
+      "growth": "Growth"
+    },
+    "status": {
+      "open": "Open",
+      "closingSoon": "Closing Soon",
+      "closed": "Closed",
+      "funded": "Funded"
+    },
+    "goal": "Goal",
+    "funded": "funded",
+    "minTicket": "Minimum ticket",
+    "excessRule": "Excess rule",
+    "viewProject": "View project",
+    "noProjectsFound": "No projects found with applied filters."
+  },
+  "forInvestors": {
+    "hero": {
+      "title": "Turn one token into multiple opportunities",
+      "subtitle": "Access a curated list of real projects. Diversify in startups, real estate, innovation. Multiply your capital if the token value rises.",
+      "exploreProjects": "Explore Projects",
+      "howItWorks": "How it Works"
+    },
+    "benefits": {
+      "title": "Multiply your reach with a real utility token",
+      "subtitle": "Use VCoin to get early access to projects, secure better perks and access limited allocations. If the price rises, your investment power can increase. Always with transparent excess rules before investing.",
+      "secureCustody": {
+        "title": "Secure Custody",
+        "description": "Your funds are protected with technical audits and trusted partners."
+      },
+      "kycCompliant": {
+        "title": "KYC/AML Compliant",
+        "description": "Verification by jurisdiction and full regulatory compliance."
+      },
+      "feeTransparency": {
+        "title": "Fee Transparency",
+        "description": "No surprises. All fees are clearly specified upfront."
+      },
+      "smartDiversification": {
+        "title": "Smart Diversification",
+        "description": "Access multiple sectors and project stages from a single dashboard."
+      },
+      "clearRules": {
+        "title": "Clear Rules",
+        "description": "Price simulator and excess rules visible before investing."
+      },
+      "earlyAccess": {
+        "title": "Early Access",
+        "description": "VCoin holders get priority in high-demand projects."
+      }
+    }
+  },
+  "forFounders": {
+    "hero": {
+      "title": "Funding beyond limits",
+      "subtitle": "Publish your project with cash + VCoin goals. Upload documents, define excess rules and communicate progress. Receive community and runway to scale.",
+      "submitProject": "Submit Your Project",
+      "viewProcess": "View Complete Process"
+    }
+  },
+  "tokenomics": {
+    "title": "Tokenomics",
+    "subtitle": "Bridging crypto with local banks. Our revolutionary PayFi infrastructure enables seamless fiat payments using cryptocurrency.",
+    "distribution": {
+      "title": "Token Distribution",
+      "totalSupply": "Total Supply",
+      "presale": "Presale",
+      "liquidity": "Liquidity",
+      "development": "Development",
+      "marketing": "Marketing",
+      "team": "Team"
+    },
+    "features": {
+      "title": "Why CryptoICO?",
+      "instantSettlements": {
+        "title": "Instant Settlements",
+        "description": "Cross-border payments settled within seconds using blockchain technology"
+      },
+      "lowFees": {
+        "title": "Low Fees",
+        "description": "Drastically reduced transaction costs compared to traditional banking"
+      },
+      "globalAccess": {
+        "title": "Global Access",
+        "description": "Send payments to any bank account worldwide, 24/7"
+      },
+      "securityFirst": {
+        "title": "Security First",
+        "description": "Military-grade encryption and decentralized architecture"
+      }
+    },
+    "nativeToken": "Native Token",
+    "powering": "Powering the future of cross-border payments"
   }
 }
