@@ -1,7 +1,7 @@
 import { useAccount } from 'wagmi';
 import { Navigate } from 'react-router-dom';
 import WalletConnect from '@/components/WalletConnect';
-import vcoinLogo from "@/assets/vcoin-logo.png";
+import vcoinLogo from "@/assets/new-logo.png";
 
 const WalletAuth = () => {
   const { isConnected } = useAccount();

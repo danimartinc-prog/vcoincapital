@@ -20,14 +20,14 @@ import {
 
 const Whitepaper = () => {
   const sections = [
-    { id: "resumen", title: "Resumen Ejecutivo", icon: BookOpen },
-    { id: "vision", title: "Visión y Misión", icon: Target },
-    { id: "problema", title: "Problema que Resolvemos", icon: TrendingUp },
-    { id: "solucion", title: "La Solución VCoin", icon: Zap },
+    { id: "resumen", title: "Executive Summary", icon: BookOpen },
+    { id: "vision", title: "Vision & Mission", icon: Target },
+    { id: "problema", title: "Problem We Solve", icon: TrendingUp },
+    { id: "solucion", title: "The VCoin Solution", icon: Zap },
     { id: "tokenomics", title: "Tokenomics", icon: Coins },
-    { id: "utilidad", title: "Utilidad del Token", icon: Users },
-    { id: "tecnologia", title: "Tecnología", icon: Shield },
-    { id: "mercado", title: "Análisis de Mercado", icon: Globe },
+    { id: "utilidad", title: "Token Utility", icon: Users },
+    { id: "tecnologia", title: "Technology", icon: Shield },
+    { id: "mercado", title: "Market Analysis", icon: Globe },
     { id: "roadmap", title: "Roadmap", icon: BarChart3 }
   ];
 
@@ -49,16 +49,16 @@ const Whitepaper = () => {
             VCoin Whitepaper
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            El futuro de la financiación híbrida: conectando inversores y emprendedores 
-            a través de un ecosistema descentralizado y transparente.
+            The future of hybrid financing: connecting investors and entrepreneurs 
+            through a decentralized and transparent ecosystem.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="gap-2">
               <Download size={20} />
-              Descargar PDF
+              Download PDF
             </Button>
             <Button variant="outline" size="lg" onClick={() => scrollToSection('resumen')}>
-              Leer Online
+              Read Online
             </Button>
           </div>
         </div>
@@ -71,7 +71,7 @@ const Whitepaper = () => {
           <div className="lg:col-span-1">
             <Card className="sticky top-24">
               <CardContent className="p-6">
-                <h3 className="font-semibold mb-4">Índice de Contenidos</h3>
+                <h3 className="font-semibold mb-4">Table of Contents</h3>
                 <nav className="space-y-2">
                   {sections.map((section) => (
                     <button
@@ -97,23 +97,23 @@ const Whitepaper = () => {
                 <CardContent className="p-8">
                   <div className="flex items-center gap-3 mb-6">
                     <BookOpen className="text-primary" size={24} />
-                    <h2 className="text-3xl font-bold">Resumen Ejecutivo</h2>
+                    <h2 className="text-3xl font-bold">Executive Summary</h2>
                   </div>
                   <div className="space-y-4 text-muted-foreground">
                     <p>
-                      VCoin representa una revolución en la forma en que se financia la innovación empresarial. 
-                      Nuestro token conecta el capital global con el talento emprendedor a través de un modelo 
-                      de financiación híbrida que combina efectivo tradicional con tokens de utilidad.
+                      VCoin represents a revolution in how business innovation is financed. 
+                      Our token connects global capital with entrepreneurial talent through a 
+                      hybrid financing model that combines traditional cash with utility tokens.
                     </p>
                     <p>
-                      En un ecosistema donde los inversores buscan oportunidades diversificadas y los emprendedores 
-                      necesitan capital accesible, VCoin actúa como el puente que hace posible esta conexión de 
-                      manera transparente, eficiente y alineada con los incentivos de toda la comunidad.
+                      In an ecosystem where investors seek diversified opportunities and entrepreneurs 
+                      need accessible capital, VCoin acts as the bridge that makes this connection possible 
+                      in a transparent, efficient way aligned with the incentives of the entire community.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                       <div className="text-center p-4 bg-primary/10 rounded-lg">
                         <h4 className="font-semibold text-primary">100M</h4>
-                        <p className="text-sm">Suministro Máximo</p>
+                        <p className="text-sm">Max Supply</p>
                       </div>
                       <div className="text-center p-4 bg-primary/10 rounded-lg">
                         <h4 className="font-semibold text-primary">Base L2</h4>
@@ -121,7 +121,7 @@ const Whitepaper = () => {
                       </div>
                       <div className="text-center p-4 bg-primary/10 rounded-lg">
                         <h4 className="font-semibold text-primary">€0.10</h4>
-                        <p className="text-sm">Precio Inicial</p>
+                        <p className="text-sm">Initial Price</p>
                       </div>
                     </div>
                   </div>
@@ -135,23 +135,23 @@ const Whitepaper = () => {
                 <CardContent className="p-8">
                   <div className="flex items-center gap-3 mb-6">
                     <Target className="text-primary" size={24} />
-                    <h2 className="text-3xl font-bold">Visión y Misión</h2>
+                    <h2 className="text-3xl font-bold">Vision & Mission</h2>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                      <h3 className="text-xl font-semibold mb-4 text-primary">Nuestra Visión</h3>
+                      <h3 className="text-xl font-semibold mb-4 text-primary">Our Vision</h3>
                       <p className="text-muted-foreground">
-                        Crear el ecosistema financiero más transparente y eficiente del mundo, donde cualquier 
-                        emprendedor con una idea valiosa pueda acceder al capital necesario y cualquier inversor 
-                        pueda participar en el futuro de la innovación.
+                        To create the world's most transparent and efficient financial ecosystem, where any 
+                        entrepreneur with a valuable idea can access the necessary capital and any investor 
+                        can participate in the future of innovation.
                       </p>
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold mb-4 text-primary">Nuestra Misión</h3>
+                      <h3 className="text-xl font-semibold mb-4 text-primary">Our Mission</h3>
                       <p className="text-muted-foreground">
-                        Democratizar el acceso al capital de riesgo mediante tecnología blockchain, eliminando 
-                        barreras geográficas y burocráticas, mientras creamos un modelo de financiación que 
-                        alinea los incentivos de inversores y emprendedores a largo plazo.
+                        To democratize access to venture capital through blockchain technology, eliminating 
+                        geographical and bureaucratic barriers, while creating a financing model that 
+                        aligns the incentives of investors and entrepreneurs in the long term.
                       </p>
                     </div>
                   </div>
@@ -165,53 +165,53 @@ const Whitepaper = () => {
                 <CardContent className="p-8">
                   <div className="flex items-center gap-3 mb-6">
                     <TrendingUp className="text-primary" size={24} />
-                    <h2 className="text-3xl font-bold">Problema que Resolvemos</h2>
+                    <h2 className="text-3xl font-bold">Problem We Solve</h2>
                   </div>
                   <div className="space-y-6">
                     <p className="text-muted-foreground">
-                      El ecosistema tradicional de financiación empresarial presenta múltiples fricciones 
-                      que limitan tanto a inversores como a emprendedores:
+                      The traditional business financing ecosystem presents multiple frictions 
+                      that limit both investors and entrepreneurs:
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-4">
-                        <h3 className="text-xl font-semibold text-accent">Para Emprendedores</h3>
+                        <h3 className="text-xl font-semibold text-accent">For Entrepreneurs</h3>
                         <ul className="space-y-2 text-muted-foreground">
                           <li className="flex items-start gap-2">
                             <ArrowRight size={16} className="mt-1 text-primary flex-shrink-0" />
-                            Acceso limitado a capital de riesgo
+                            Limited access to venture capital
                           </li>
                           <li className="flex items-start gap-2">
                             <ArrowRight size={16} className="mt-1 text-primary flex-shrink-0" />
-                            Procesos largos y burocráticos
+                            Long and bureaucratic processes
                           </li>
                           <li className="flex items-start gap-2">
                             <ArrowRight size={16} className="mt-1 text-primary flex-shrink-0" />
-                            Falta de transparencia en la evaluación
+                            Lack of transparency in evaluation
                           </li>
                           <li className="flex items-start gap-2">
                             <ArrowRight size={16} className="mt-1 text-primary flex-shrink-0" />
-                            Concentración geográfica del capital
+                            Geographic concentration of capital
                           </li>
                         </ul>
                       </div>
                       <div className="space-y-4">
-                        <h3 className="text-xl font-semibold text-accent">Para Inversores</h3>
+                        <h3 className="text-xl font-semibold text-accent">For Investors</h3>
                         <ul className="space-y-2 text-muted-foreground">
                           <li className="flex items-start gap-2">
                             <ArrowRight size={16} className="mt-1 text-primary flex-shrink-0" />
-                            Altas barreras de entrada (tickets mínimos)
+                            High entry barriers (minimum tickets)
                           </li>
                           <li className="flex items-start gap-2">
                             <ArrowRight size={16} className="mt-1 text-primary flex-shrink-0" />
-                            Falta de diversificación accesible
+                            Lack of accessible diversification
                           </li>
                           <li className="flex items-start gap-2">
                             <ArrowRight size={16} className="mt-1 text-primary flex-shrink-0" />
-                            Información asimétrica
+                            Asymmetric information
                           </li>
                           <li className="flex items-start gap-2">
                             <ArrowRight size={16} className="mt-1 text-primary flex-shrink-0" />
-                            Procesos de due diligence costosos
+                            Expensive due diligence processes
                           </li>
                         </ul>
                       </div>
@@ -227,12 +227,12 @@ const Whitepaper = () => {
                 <CardContent className="p-8">
                   <div className="flex items-center gap-3 mb-6">
                     <Zap className="text-primary" size={24} />
-                    <h2 className="text-3xl font-bold">La Solución VCoin</h2>
+                    <h2 className="text-3xl font-bold">The VCoin Solution</h2>
                   </div>
                   <div className="space-y-6">
                     <p className="text-muted-foreground">
-                      VCoin introduce un modelo revolucionario de financiación híbrida que combina lo mejor 
-                      de las finanzas tradicionales y descentralizadas:
+                      VCoin introduces a revolutionary hybrid financing model that combines the best 
+                      of traditional and decentralized finance:
                     </p>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
@@ -240,11 +240,11 @@ const Whitepaper = () => {
                         <CardContent className="p-6">
                           <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
                             <Coins className="text-primary" size={20} />
-                            Financiación Híbrida
+                            Hybrid Financing
                           </h3>
                           <p className="text-sm text-muted-foreground">
-                            Los proyectos pueden establecer objetivos tanto en efectivo (€) como en VCoin, 
-                            permitiendo múltiples formas de participación y creando un ecosistema más flexible.
+                            Projects can set goals in both cash (€) and VCoin, 
+                            allowing multiple forms of participation and creating a more flexible ecosystem.
                           </p>
                         </CardContent>
                       </Card>
@@ -253,11 +253,11 @@ const Whitepaper = () => {
                         <CardContent className="p-6">
                           <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
                             <Shield className="text-accent" size={20} />
-                            Transparencia Total
+                            Total Transparency
                           </h3>
                           <p className="text-sm text-muted-foreground">
-                            Todas las transacciones, reglas de excedente y asignaciones son visibles 
-                            on-chain, eliminando la opacidad tradicional del capital de riesgo.
+                            All transactions, overflow rules and allocations are visible 
+                            on-chain, eliminating the traditional opacity of venture capital.
                           </p>
                         </CardContent>
                       </Card>
@@ -266,11 +266,11 @@ const Whitepaper = () => {
                         <CardContent className="p-6">
                           <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
                             <Users className="text-primary" size={20} />
-                            Comunidad Alineada
+                            Aligned Community
                           </h3>
                           <p className="text-sm text-muted-foreground">
-                            Los holders de VCoin se convierten en parte activa del ecosistema, 
-                            con derecho a voto en decisiones clave y acceso preferencial a nuevos proyectos.
+                            VCoin holders become active participants in the ecosystem, 
+                            with voting rights on key decisions and preferential access to new projects.
                           </p>
                         </CardContent>
                       </Card>
@@ -279,11 +279,11 @@ const Whitepaper = () => {
                         <CardContent className="p-6">
                           <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
                             <Globe className="text-accent" size={20} />
-                            Acceso Global
+                            Global Access
                           </h3>
                           <p className="text-sm text-muted-foreground">
-                            Sin restricciones geográficas, cualquier persona en el mundo puede 
-                            participar como inversor o emprendedor, democratizando el acceso al capital.
+                            Without geographical restrictions, anyone in the world can 
+                            participate as an investor or entrepreneur, democratizing access to capital.
                           </p>
                         </CardContent>
                       </Card>
@@ -305,7 +305,7 @@ const Whitepaper = () => {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div className="space-y-6">
                       <div className="space-y-4">
-                        <h3 className="text-xl font-semibold">Especificaciones del Token</h3>
+                        <h3 className="text-xl font-semibold">Token Specifications</h3>
                         <div className="space-y-2 text-sm">
                           <div className="flex justify-between">
                             <span className="text-muted-foreground">Ticker:</span>
@@ -316,11 +316,11 @@ const Whitepaper = () => {
                             <span className="font-medium">Base (L2 Ethereum)</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-muted-foreground">Suministro Total:</span>
+                            <span className="text-muted-foreground">Total Supply:</span>
                             <span className="font-medium">100,000,000 VCOIN</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-muted-foreground">Precio Inicial:</span>
+                            <span className="text-muted-foreground">Initial Price:</span>
                             <span className="font-medium">€0.10</span>
                           </div>
                         </div>
@@ -328,7 +328,7 @@ const Whitepaper = () => {
                     </div>
                     
                     <div className="space-y-6">
-                      <h3 className="text-xl font-semibold">Distribución de Tokens</h3>
+                      <h3 className="text-xl font-semibold">Token Distribution</h3>
                       <div className="space-y-3">
                         <div className="flex justify-between items-center">
                           <span className="text-sm">Ecosystem & Incentives</span>
@@ -385,35 +385,35 @@ const Whitepaper = () => {
                 <CardContent className="p-8">
                   <div className="flex items-center gap-3 mb-6">
                     <Users className="text-primary" size={24} />
-                    <h2 className="text-3xl font-bold">Utilidad del Token</h2>
+                    <h2 className="text-3xl font-bold">Token Utility</h2>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-4">
-                      <h3 className="text-lg font-semibold text-primary">Medio de Inversión</h3>
+                      <h3 className="text-lg font-semibold text-primary">Investment Medium</h3>
                       <p className="text-sm text-muted-foreground">
-                        VCoin sirve como moneda nativa para invertir en proyectos listados en la plataforma, 
-                        creando un ciclo económico cerrado y sostenible.
+                        VCoin serves as the native currency to invest in projects listed on the platform, 
+                        creating a closed and sustainable economic cycle.
                       </p>
                     </div>
                     <div className="space-y-4">
-                      <h3 className="text-lg font-semibold text-primary">Acceso a Tiers</h3>
+                      <h3 className="text-lg font-semibold text-primary">Tier Access</h3>
                       <p className="text-sm text-muted-foreground">
-                        Los holders obtienen acceso early access, mejores límites de ticket y perks exclusivos 
-                        basados en la cantidad de VCoin que poseen.
+                        Holders get early access, better ticket limits and exclusive perks 
+                        based on the amount of VCoin they own.
                       </p>
                     </div>
                     <div className="space-y-4">
-                      <h3 className="text-lg font-semibold text-primary">Gobernanza</h3>
+                      <h3 className="text-lg font-semibold text-primary">Governance</h3>
                       <p className="text-sm text-muted-foreground">
-                        Derecho a voto sobre decisiones clave: qué verticales priorizar, uso del matching pool 
-                        y destacados en la plataforma.
+                        Voting rights on key decisions: which verticals to prioritize, matching pool usage 
+                        and featured projects on the platform.
                       </p>
                     </div>
                     <div className="space-y-4">
                       <h3 className="text-lg font-semibold text-primary">Staking</h3>
                       <p className="text-sm text-muted-foreground">
-                        Funcionalidad opcional de staking que otorga prioridad de asignación en proyectos 
-                        con alta demanda y liquidez reducida.
+                        Optional staking functionality that grants allocation priority in projects 
+                        with high demand and reduced liquidity.
                       </p>
                     </div>
                   </div>
@@ -440,7 +440,7 @@ const Whitepaper = () => {
                         <div className="flex-1">
                           <h3 className="font-semibold">2024 - MVP Launch</h3>
                           <p className="text-sm text-muted-foreground mt-1">
-                            Landing page, marketplace de proyectos, sistema de inversión demo, KYC básico
+                            Landing page, project marketplace, demo investment system, basic KYC
                           </p>
                         </div>
                       </div>
@@ -452,7 +452,7 @@ const Whitepaper = () => {
                         <div className="flex-1">
                           <h3 className="font-semibold">2025 - Token & DeFi</h3>
                           <p className="text-sm text-muted-foreground mt-1">
-                            Lanzamiento de VCoin, on-ramp fiat, staking básico, gobernanza inicial
+                            VCoin launch, fiat on-ramp, basic staking, initial governance
                           </p>
                         </div>
                       </div>
@@ -464,7 +464,7 @@ const Whitepaper = () => {
                         <div className="flex-1">
                           <h3 className="font-semibold">2025 - Expansion</h3>
                           <p className="text-sm text-muted-foreground mt-1">
-                            Auditoría de smart contracts, aplicación móvil, partnerships estratégicos
+                            Smart contract audit, mobile app, strategic partnerships
                           </p>
                         </div>
                       </div>

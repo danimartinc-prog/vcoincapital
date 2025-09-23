@@ -5,27 +5,27 @@ export const mockProjects: Project[] = [
     id: "1",
     title: "PayLink SaaS",
     slug: "paylink-saas",
-    summary: "Plataforma de pagos para pequeños comercios con integración WhatsApp y facturación automática.",
+    summary: "Payment platform for small businesses with WhatsApp integration and automatic invoicing.",
     category: "SaaS",
     stage: "MVP",
-    country: "España",
+    country: "Spain",
     goal_cash_eur: 40000,
     goal_vcoin: 80000,
     min_ticket_eur: 200,
     min_ticket_vcoin: 500,
     accepts_mix: true,
     oversubscription_rule: "pro-rata",
-    use_of_funds: "70% desarrollo producto, 20% marketing, 10% legal",
+    use_of_funds: "70% product development, 20% marketing, 10% legal",
     team: [
       { name: "Ana García", role: "CEO", linkedin: "#" },
       { name: "Carlos López", role: "CTO", linkedin: "#" }
     ],
     documents: [
       { title: "Pitch Deck", url: "#", type: "pitch" },
-      { title: "Plan Financiero", url: "#", type: "financial" }
+      { title: "Financial Plan", url: "#", type: "financial" }
     ],
-    risks: "Riesgo de mercado competitivo, dependencia de WhatsApp API",
-    jurisdiction: "España",
+    risks: "Competitive market risk, WhatsApp API dependency",
+    jurisdiction: "Spain",
     status: "closing-soon",
     cover_image: "/placeholder.svg",
     metrics: {
@@ -33,10 +33,10 @@ export const mockProjects: Project[] = [
       users: 150
     },
     perks: [
-      { title: "Acceso Beta", description: "Prueba la plataforma antes del lanzamiento", tier_requirement: 500 },
-      { title: "Consultoría", description: "1 hora de consultoría gratis", tier_requirement: 1000 }
+      { title: "Beta Access", description: "Test the platform before launch", tier_requirement: 500 },
+      { title: "Consultation", description: "1 hour of free consultation", tier_requirement: 1000 }
     ],
-    investor_rights: "Participación en revenue share del 2% durante 3 años",
+    investor_rights: "2% revenue share participation for 3 years",
     raised_cash: 32000,
     raised_vcoin: 64000,
     progress_percentage: 80
@@ -45,27 +45,27 @@ export const mockProjects: Project[] = [
     id: "2",
     title: "EcoShop Local",
     slug: "ecoshop-local",
-    summary: "Marketplace de productos sostenibles con delivery en 24h para Barcelona.",
+    summary: "Sustainable products marketplace with 24h delivery for Barcelona.",
     category: "eCom",
     stage: "growth",
-    country: "España",
+    country: "Spain",
     goal_cash_eur: 25000,
     goal_vcoin: 50000,
     min_ticket_eur: 100,
     min_ticket_vcoin: 250,
     accepts_mix: true,
     oversubscription_rule: "perks",
-    use_of_funds: "50% inventario, 30% marketing, 20% logística",
+    use_of_funds: "50% inventory, 30% marketing, 20% logistics",
     team: [
-      { name: "María Fernández", role: "Fundadora", linkedin: "#" },
-      { name: "Pedro Ruiz", role: "Operaciones", linkedin: "#" }
+      { name: "María Fernández", role: "Founder", linkedin: "#" },
+      { name: "Pedro Ruiz", role: "Operations", linkedin: "#" }
     ],
     documents: [
       { title: "Business Plan", url: "#", type: "financial" },
-      { title: "Términos", url: "#", type: "terms" }
+      { title: "Terms", url: "#", type: "terms" }
     ],
-    risks: "Estacionalidad, competencia con grandes marketplaces",
-    jurisdiction: "España",
+    risks: "Seasonality, competition with large marketplaces",
+    jurisdiction: "Spain",
     status: "open",
     cover_image: "/placeholder.svg",
     metrics: {
@@ -73,10 +73,10 @@ export const mockProjects: Project[] = [
       users: 800
     },
     perks: [
-      { title: "Descuento 10%", description: "Descuento vitalicio en todas las compras", tier_requirement: 250 },
-      { title: "Pack Eco", description: "Pack de productos sostenibles valorado en 50€", tier_requirement: 500 }
+      { title: "10% Discount", description: "Lifetime discount on all purchases", tier_requirement: 250 },
+      { title: "Eco Pack", description: "Sustainable products pack worth €50", tier_requirement: 500 }
     ],
-    investor_rights: "Rewards-based, sin participación financiera",
+    investor_rights: "Rewards-based, no financial participation",
     raised_cash: 18500,
     raised_vcoin: 37000,
     progress_percentage: 74
@@ -85,32 +85,32 @@ export const mockProjects: Project[] = [
     id: "3",
     title: "CryptoLearn",
     slug: "cryptolearn",
-    summary: "Academia online de blockchain y DeFi con certificaciones verificadas en la blockchain.",
+    summary: "Online blockchain and DeFi academy with blockchain-verified certifications.",
     category: "Crypto",
     stage: "idea",
-    country: "México",
+    country: "Mexico",
     goal_cash_eur: 15000,
     goal_vcoin: 30000,
     min_ticket_eur: 50,
     min_ticket_vcoin: 125,
     accepts_mix: false,
     oversubscription_rule: "cap",
-    use_of_funds: "60% contenido, 25% plataforma, 15% marketing",
+    use_of_funds: "60% content, 25% platform, 15% marketing",
     team: [
       { name: "Roberto Silva", role: "CEO", linkedin: "#" }
     ],
     documents: [
       { title: "MVP Demo", url: "#", type: "pitch" }
     ],
-    risks: "Regulación educativa, adopción de certificaciones blockchain",
-    jurisdiction: "México",
+    risks: "Educational regulation, blockchain certification adoption",
+    jurisdiction: "Mexico",
     status: "open",
     cover_image: "/placeholder.svg",
     perks: [
-      { title: "Curso Gratis", description: "Acceso gratuito al primer curso", tier_requirement: 125 },
-      { title: "Mentoría", description: "Sesión de mentoría 1:1", tier_requirement: 250 }
+      { title: "Free Course", description: "Free access to the first course", tier_requirement: 125 },
+      { title: "Mentorship", description: "1:1 mentorship session", tier_requirement: 250 }
     ],
-    investor_rights: "Acceso anticipado y descuentos en cursos",
+    investor_rights: "Early access and course discounts",
     raised_cash: 4200,
     raised_vcoin: 8400,
     progress_percentage: 28
