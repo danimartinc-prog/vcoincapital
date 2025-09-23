@@ -2,7 +2,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
-import { useTranslation } from "react-i18next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -10,7 +9,6 @@ import { useState } from "react";
 import { formatCurrency, formatNumber, formatPercent } from "@/lib/formatters";
 
 const ForInvestors = () => {
-  const { t } = useTranslation();
   // Investment simulator state
   const [vcoinAmount, setVcoinAmount] = useState(5000);
   const [priceMultiplier, setPriceMultiplier] = useState(100); // 100 = current price

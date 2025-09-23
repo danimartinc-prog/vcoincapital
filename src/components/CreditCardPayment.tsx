@@ -7,7 +7,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { CreditCard, Lock, Shield } from 'lucide-react';
 import { toast } from 'sonner';
-import { useTranslation } from 'react-i18next';
 import { useInvestment } from '@/hooks/useInvestment';
 import { useAuth } from '@/hooks/useAuth';
 import { formatCurrency } from '@/lib/formatters';
@@ -20,7 +19,6 @@ interface CreditCardPaymentProps {
 }
 
 const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCardPaymentProps) => {
-  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     cardNumber: '',
     expiryDate: '',

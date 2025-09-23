@@ -7,7 +7,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAccount, useBalance } from 'wagmi';
 import { toast } from 'sonner';
-import { useTranslation } from 'react-i18next';
 import { usePresaleContract } from '@/hooks/usePresaleContract';
 import { useInvestment } from '@/hooks/useInvestment';
 import { useAuth } from '@/hooks/useAuth';
@@ -20,7 +19,6 @@ interface PaymentMethodsProps {
 }
 
 const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
-  const { t } = useTranslation();
   const [amount, setAmount] = useState('');
   const [selectedMethod, setSelectedMethod] = useState('crypto');
   

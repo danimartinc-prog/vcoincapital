@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -15,7 +14,6 @@ import { mockProjects } from "@/data/mockProjects";
 
 const ProjectDetail = () => {
   const { slug } = useParams();
-  const { t } = useTranslation();
   const project = mockProjects.find(p => p.slug === slug);
   const [vcoinPriceVariation, setVcoinPriceVariation] = useState([0]);
   
@@ -25,9 +23,9 @@ const ProjectDetail = () => {
         <Header />
         <main className="pt-20 flex items-center justify-center h-screen">
           <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4">{t('projectDetail.notFound')}</h1>
+            <h1 className="text-4xl font-bold mb-4">Project not found</h1>
             <Button onClick={() => window.location.href = '/projects'}>
-              {t('projectDetail.backToProjects')}
+              Back to Projects
             </Button>
           </div>
         </main>

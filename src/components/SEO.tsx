@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet-async';
-import { useTranslation } from 'react-i18next';
 
 interface SEOProps {
   page: string;
@@ -10,13 +9,11 @@ interface SEOProps {
 }
 
 const SEO = ({ page, title, description, image, type = 'website' }: SEOProps) => {
-  const { t, i18n } = useTranslation();
-  
   const baseUrl = window.location.origin;
   const currentUrl = window.location.href;
   
-  const seoTitle = title || t(`seo.${page}.title`);
-  const seoDescription = description || t(`seo.${page}.description`);
+  const seoTitle = title || "VCoin — Where Entrepreneurs and Investors Meet";
+  const seoDescription = description || "Join the future of startup funding with VCoin. Connect entrepreneurs with investors through our revolutionary tokenized investment platform.";
   const seoImage = image || `${baseUrl}/og-image.jpg`;
   
   const languages = ['en', 'es', 'fr', 'de', 'pt', 'ru', 'zh', 'ar'];
@@ -47,7 +44,7 @@ const SEO = ({ page, title, description, image, type = 'website' }: SEOProps) =>
       <meta property="og:url" content={currentUrl} />
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content="VCoin" />
-      <meta property="og:locale" content={i18n.language} />
+      <meta property="og:locale" content="en" />
       
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -58,20 +55,6 @@ const SEO = ({ page, title, description, image, type = 'website' }: SEOProps) =>
       
       {/* Canonical */}
       <link rel="canonical" href={currentUrl.split('?')[0]} />
-      
-      {/* Hreflang */}
-      {languages.map(lang => {
-        const url = new URL(currentUrl);
-        url.searchParams.set('lang', lang);
-        return (
-          <link
-            key={lang}
-            rel="alternate"
-            hrefLang={lang}
-            href={url.toString()}
-          />
-        );
-      })}
       
       {/* JSON-LD */}
       <script type="application/ld+json">

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -14,13 +13,12 @@ interface StripePaymentProps {
 }
 
 const StripePayment = ({ projectId, amount, onSuccess, onClose }: StripePaymentProps) => {
-  const { t } = useTranslation();
   const [isProcessing, setIsProcessing] = useState(false);
   const { user } = useAuth();
 
   const handlePayment = async () => {
     if (!amount || parseFloat(amount) <= 0) {
-      toast.error(t('payments.stripe.invalidAmount'));
+      toast.error('Please enter a valid amount');
       return;
     }
 
@@ -54,7 +52,7 @@ const StripePayment = ({ projectId, amount, onSuccess, onClose }: StripePaymentP
       }
     } catch (error) {
       console.error('Payment error:', error);
-      toast.error(t('payments.stripe.error'));
+      toast.error('Error processing payment. Please try again.');
     } finally {
       setIsProcessing(false);
     }
@@ -64,19 +62,19 @@ const StripePayment = ({ projectId, amount, onSuccess, onClose }: StripePaymentP
     <Card className="w-full">
       <CardHeader>
         <CardTitle className="text-center">
-          {t('payments.stripe.title')}
+          Stripe Payment
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="text-center space-y-2">
           <div className="text-2xl font-bold">€{amount}</div>
           <div className="text-sm text-muted-foreground">
-            {t('payments.stripe.youWillReceive')}: {amount ? (parseFloat(amount) / 0.1).toFixed(2) : "0"} VCoin
+            You will receive: {amount ? (parseFloat(amount) / 0.1).toFixed(2) : "0"} VCoin
           </div>
         </div>
         
         <div className="text-xs text-muted-foreground text-center">
-          {t('payments.stripe.redirectMessage')}
+          You will be redirected to Stripe's secure payment page
         </div>
         
         <div className="flex gap-3">
@@ -85,7 +83,7 @@ const StripePayment = ({ projectId, amount, onSuccess, onClose }: StripePaymentP
             onClick={onClose}
             className="flex-1"
           >
-            {t('common.cancel')}
+            Cancel
           </Button>
           <Button 
             variant="hero"
@@ -93,7 +91,7 @@ const StripePayment = ({ projectId, amount, onSuccess, onClose }: StripePaymentP
             disabled={isProcessing}
             className="flex-1"
           >
-            {isProcessing ? t('payments.stripe.processing') : t('payments.stripe.payButton')}
+            {isProcessing ? 'Processing...' : 'Pay with Stripe'}
           </Button>
         </div>
       </CardContent>
