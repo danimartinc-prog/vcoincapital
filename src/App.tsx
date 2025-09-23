@@ -11,6 +11,7 @@ import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import WalletAuth from "./pages/WalletAuth";
 import Dashboard from "./pages/Dashboard";
+import Admin from "./pages/Admin";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
 import HowItWorks from "./pages/HowItWorks";
@@ -45,6 +46,7 @@ const App = () => (
               <Route path="/legal" element={<Legal />} />
               <Route path="/wallet-auth" element={<WalletAuth />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/admin" element={<Admin />} />
               <Route path="/payment-success" element={<PaymentSuccess />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
