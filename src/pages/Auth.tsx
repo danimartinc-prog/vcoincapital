@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/components/ui/use-toast';
 import { User, Session } from '@supabase/supabase-js';
-import vcoinLogo from "@/assets/vcoin-logo.png";
+import vcoinLogo from "@/assets/new-logo.png";
 import Header from '@/components/Header';
 
 const Auth = () => {
