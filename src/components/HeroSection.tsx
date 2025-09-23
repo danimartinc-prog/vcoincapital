@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { useTranslation } from "react-i18next";
 import ProjectSubmissionForm from "@/components/ProjectSubmissionForm";
 import PresaleWidget from "./PresaleWidget";
 import heroBg from "@/assets/hero-bg.png";
 
 const HeroSection = () => {
-  const { t } = useTranslation();
   const [showProjectForm, setShowProjectForm] = useState(false);
   return (
     <section className="min-h-screen pt-20 relative overflow-hidden">
@@ -31,26 +29,26 @@ const HeroSection = () => {
         <div className="space-y-8">
           <div className="space-y-4">
             <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-              {t('hero.title')}
+              Where Entrepreneurs
               <br />
-              {t('hero.titleLine2')}
+              and Investors Meet
               <br />
               <span className="bg-gradient-accent bg-clip-text text-transparent">
-                {t('hero.titleLine3')}
+                Powered by VCoin
               </span>
             </h1>
             
             <p className="text-xl lg:text-2xl text-muted-foreground max-w-2xl">
-              {t('hero.subtitle')}
+              VCoin is the token that connects capital with innovation. Invest in real projects, or launch yours and raise funds in a smarter way.
             </p>
           </div>
           
           <div className="flex flex-wrap gap-4 items-center">
             <Button variant="hero" size="lg" className="text-lg px-8 py-4" onClick={() => window.location.href = '/wallet-auth'}>
-              {t('hero.getVCoin')}
+              Get VCoin & Invest
             </Button>
             <Button variant="outline" size="lg" className="text-lg px-8 py-4" onClick={() => setShowProjectForm(true)}>
-              {t('hero.pitchProject')}
+              Pitch Your Project
             </Button>
           </div>
           

@@ -10,12 +10,10 @@ import { Navigate } from 'react-router-dom';
 import InvestmentStats from '@/components/InvestmentStats';
 import TransactionHistory from '@/components/TransactionHistory';
 import Header from '@/components/Header';
-import { useTranslation } from 'react-i18next';
 
 const Dashboard = () => {
   const { user, profile, loading } = useAuth();
   const { getUserInvestments } = useInvestment();
-  const { t } = useTranslation();
   const [investments, setInvestments] = useState<any[]>([]);
   const [userProjects, setUserProjects] = useState<any[]>([]);
   const [loadingData, setLoadingData] = useState(true);
@@ -52,7 +50,7 @@ const Dashboard = () => {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-muted-foreground">{t('common.loading')}</p>
+          <p className="text-muted-foreground">Loading...</p>
         </div>
       </div>
     );
@@ -70,9 +68,9 @@ const Dashboard = () => {
       <Header />
       <div className="container mx-auto px-4 py-8 mt-20">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">{t('dashboard.title')}</h1>
+          <h1 className="text-3xl font-bold mb-2">Dashboard</h1>
           <p className="text-muted-foreground">
-            {t('dashboard.welcome', { name: profile?.full_name || user.email })}
+            Welcome, {profile?.full_name || user.email}
           </p>
         </div>
 
@@ -80,42 +78,42 @@ const Dashboard = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm text-muted-foreground">{t('dashboard.totalInvested')}</CardTitle>
+              <CardTitle className="text-sm text-muted-foreground">Total Invested</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">€{totalInvested.toLocaleString()}</div>
-              <p className="text-xs text-muted-foreground">{t('dashboard.inInvestments', { count: investments.length })}</p>
+              <p className="text-xs text-muted-foreground">In {investments.length} investments</p>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm text-muted-foreground">{t('dashboard.totalVCoin')}</CardTitle>
+              <CardTitle className="text-sm text-muted-foreground">Total VCoin</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{totalVCoin.toLocaleString()}</div>
-              <p className="text-xs text-muted-foreground">{t('dashboard.accumulatedTokens')}</p>
+              <p className="text-xs text-muted-foreground">Accumulated tokens</p>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm text-muted-foreground">{t('dashboard.projects')}</CardTitle>
+              <CardTitle className="text-sm text-muted-foreground">Projects</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{userProjects.length}</div>
-              <p className="text-xs text-muted-foreground">{t('dashboard.asFounder')}</p>
+              <p className="text-xs text-muted-foreground">As founder</p>
             </CardContent>
           </Card>
         </div>
 
         <Tabs defaultValue="stats" className="space-y-6">
           <TabsList className="grid w-full grid-cols-5">
-            <TabsTrigger value="stats">{t('dashboard.statistics')}</TabsTrigger>
-            <TabsTrigger value="investments">{t('dashboard.investments')}</TabsTrigger>
-            <TabsTrigger value="transactions">{t('dashboard.transactions')}</TabsTrigger>
-            <TabsTrigger value="projects">{t('dashboard.projects')}</TabsTrigger>
-            <TabsTrigger value="profile">{t('dashboard.profile')}</TabsTrigger>
+            <TabsTrigger value="stats">Statistics</TabsTrigger>
+            <TabsTrigger value="investments">Investments</TabsTrigger>
+            <TabsTrigger value="transactions">Transactions</TabsTrigger>
+            <TabsTrigger value="projects">Projects</TabsTrigger>
+            <TabsTrigger value="profile">Profile</TabsTrigger>
           </TabsList>
 
           <TabsContent value="stats" className="space-y-4">
@@ -125,19 +123,19 @@ const Dashboard = () => {
           <TabsContent value="investments" className="space-y-4">
             <Card>
               <CardHeader>
-                <CardTitle>{t('dashboard.investmentHistory')}</CardTitle>
+                <CardTitle>Investment History</CardTitle>
               </CardHeader>
               <CardContent>
                 {loadingData ? (
                   <div className="text-center py-8">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-                    <p className="text-muted-foreground">{t('dashboard.loadingInvestments')}</p>
+                    <p className="text-muted-foreground">Loading investments...</p>
                   </div>
                 ) : investments.length === 0 ? (
                   <div className="text-center py-8">
-                    <p className="text-muted-foreground mb-4">{t('dashboard.noInvestments')}</p>
+                    <p className="text-muted-foreground mb-4">You don't have any investments yet</p>
                     <Button onClick={() => window.location.href = '/projects'}>
-                      {t('nav.exploreProjects')}
+                      Explore Projects
                     </Button>
                   </div>
                 ) : (
@@ -147,7 +145,7 @@ const Dashboard = () => {
                         <div className="flex justify-between items-start mb-2">
                           <div>
                             <h3 className="font-semibold">
-                              {investment.projects?.title || t('dashboard.unknownProject')}
+                              {investment.projects?.title || 'Unknown Project'}
                             </h3>
                             <p className="text-sm text-muted-foreground">
                               {new Date(investment.created_at).toLocaleDateString()}
@@ -164,7 +162,7 @@ const Dashboard = () => {
                         </div>
                         <div className="grid grid-cols-2 gap-4 text-sm">
                           <div>
-                            <span className="text-muted-foreground">{t('dashboard.invested')}:</span>
+                            <span className="text-muted-foreground">Invested:</span>
                             <span className="ml-2 font-medium">€{parseFloat(investment.amount_eur).toLocaleString()}</span>
                           </div>
                           <div>
@@ -193,19 +191,19 @@ const Dashboard = () => {
           <TabsContent value="projects" className="space-y-4">
             <Card>
               <CardHeader>
-                <CardTitle>{t('dashboard.myProjects')}</CardTitle>
+                <CardTitle>My Projects</CardTitle>
               </CardHeader>
               <CardContent>
                 {loadingData ? (
                   <div className="text-center py-8">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-                    <p className="text-muted-foreground">{t('dashboard.loadingProjects')}</p>
+                    <p className="text-muted-foreground">Loading projects...</p>
                   </div>
                 ) : userProjects.length === 0 ? (
                   <div className="text-center py-8">
-                    <p className="text-muted-foreground mb-4">{t('dashboard.noProjects')}</p>
+                    <p className="text-muted-foreground mb-4">You haven't submitted any projects yet</p>
                     <Button onClick={() => window.location.href = '/for-founders'}>
-                      {t('dashboard.submitProject')}
+                      Submit Project
                     </Button>
                   </div>
                 ) : (
@@ -231,11 +229,11 @@ const Dashboard = () => {
                         <p className="text-sm text-muted-foreground mb-3">{project.summary}</p>
                         <div className="grid grid-cols-2 gap-4 text-sm">
                           <div>
-                            <span className="text-muted-foreground">{t('dashboard.goal')}:</span>
+                            <span className="text-muted-foreground">Goal:</span>
                             <span className="ml-2 font-medium">€{parseFloat(project.goal_cash_eur).toLocaleString()}</span>
                           </div>
                           <div>
-                            <span className="text-muted-foreground">{t('dashboard.raised')}:</span>
+                            <span className="text-muted-foreground">Raised:</span>
                             <span className="ml-2 font-medium">€{parseFloat(project.raised_amount || '0').toLocaleString()}</span>
                           </div>
                         </div>
@@ -250,26 +248,26 @@ const Dashboard = () => {
           <TabsContent value="profile" className="space-y-4">
             <Card>
               <CardHeader>
-                <CardTitle>{t('dashboard.profileInfo')}</CardTitle>
+                <CardTitle>Profile Information</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   <div>
-                    <label className="text-sm text-muted-foreground">{t('dashboard.email')}</label>
+                    <label className="text-sm text-muted-foreground">Email</label>
                     <p className="font-medium">{user.email}</p>
                   </div>
                   <div>
-                    <label className="text-sm text-muted-foreground">{t('dashboard.name')}</label>
-                    <p className="font-medium">{profile?.full_name || t('dashboard.notSpecified')}</p>
+                    <label className="text-sm text-muted-foreground">Name</label>
+                    <p className="font-medium">{profile?.full_name || 'Not specified'}</p>
                   </div>
                   <div>
-                    <label className="text-sm text-muted-foreground">{t('dashboard.role')}</label>
+                    <label className="text-sm text-muted-foreground">Role</label>
                     <p className="font-medium capitalize">{profile?.role || 'user'}</p>
                   </div>
                   <div>
-                    <label className="text-sm text-muted-foreground">{t('dashboard.memberSince')}</label>
+                    <label className="text-sm text-muted-foreground">Member since</label>
                     <p className="font-medium">
-                      {profile?.created_at ? new Date(profile.created_at).toLocaleDateString() : t('dashboard.unknown')}
+                      {profile?.created_at ? new Date(profile.created_at).toLocaleDateString() : 'Unknown'}
                     </p>
                   </div>
                 </div>

@@ -1,18 +1,16 @@
-import i18n from '@/lib/i18n';
-
 export const formatNumber = (value: number): string => {
-  return new Intl.NumberFormat(i18n.language).format(value);
+  return new Intl.NumberFormat('en').format(value);
 };
 
 export const formatCurrency = (value: number, currency = 'EUR'): string => {
-  return new Intl.NumberFormat(i18n.language, {
+  return new Intl.NumberFormat('en', {
     style: 'currency',
     currency: currency,
   }).format(value);
 };
 
 export const formatPercent = (value: number): string => {
-  return new Intl.NumberFormat(i18n.language, {
+  return new Intl.NumberFormat('en', {
     style: 'percent',
     minimumFractionDigits: 0,
     maximumFractionDigits: 2,
@@ -20,7 +18,7 @@ export const formatPercent = (value: number): string => {
 };
 
 export const formatDate = (date: Date): string => {
-  return new Intl.DateTimeFormat(i18n.language, {
+  return new Intl.DateTimeFormat('en', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -28,7 +26,7 @@ export const formatDate = (date: Date): string => {
 };
 
 export const formatDateTime = (date: Date): string => {
-  return new Intl.DateTimeFormat(i18n.language, {
+  return new Intl.DateTimeFormat('en', {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
@@ -38,7 +36,7 @@ export const formatDateTime = (date: Date): string => {
 };
 
 export const formatShortDate = (date: Date): string => {
-  return new Intl.DateTimeFormat(i18n.language, {
+  return new Intl.DateTimeFormat('en', {
     year: 'numeric',
     month: 'short',
     day: 'numeric',

@@ -1,29 +1,27 @@
 import { Button } from "@/components/ui/button";
 import vcoinLogo from "@/assets/new-logo.png";
-import { useTranslation } from "react-i18next";
 
 const Footer = () => {
-  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
   
   const socialLinks = [
-    { name: t('footer.social.twitter'), icon: "🐦", href: "#" },
-    { name: t('footer.social.discord'), icon: "💬", href: "#" },
-    { name: t('footer.social.telegram'), icon: "📱", href: "#" },
-    { name: t('footer.social.medium'), icon: "📰", href: "#" }
+    { name: "Twitter", icon: "🐦", href: "#" },
+    { name: "Discord", icon: "💬", href: "#" },
+    { name: "Telegram", icon: "📱", href: "#" },
+    { name: "Medium", icon: "📰", href: "#" }
   ];
 
   const quickLinks = [
-    { name: t('footer.links.whitepaper'), href: "#" },
-    { name: t('footer.links.tokenomics'), href: "#tokenomics" },
-    { name: t('footer.links.roadmap'), href: "#roadmap" },
+    { name: "Whitepaper", href: "#" },
+    { name: "Tokenomics", href: "#tokenomics" },
+    { name: "Roadmap", href: "#roadmap" },
     { name: "FAQ", href: "#faq" }
   ];
 
   const legalLinks = [
-    { name: t('footer.links.privacyPolicy'), href: "#" },
-    { name: t('footer.links.termsOfService'), href: "#" },
-    { name: t('footer.links.riskDisclosure'), href: "#" }
+    { name: "Privacy Policy", href: "#" },
+    { name: "Terms of Service", href: "#" },
+    { name: "Risk Disclosure", href: "#" }
   ];
 
   return (
@@ -39,7 +37,7 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-sm text-muted-foreground max-w-xs">
-              {t('footer.subtitle')}
+              Where entrepreneurs and investors meet. Fuel innovation with smart funding solutions powered by VCoin.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social, index) => (
@@ -60,7 +58,7 @@ const Footer = () => {
           
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold mb-4 text-primary">{t('common.quickLinks')}</h3>
+            <h3 className="font-semibold mb-4 text-primary">Quick Links</h3>
             <ul className="space-y-2">
               {quickLinks.map((link, index) => (
                 <li key={index}>
@@ -77,7 +75,7 @@ const Footer = () => {
           
           {/* Legal */}
           <div>
-            <h3 className="font-semibold mb-4 text-primary">{t('common.legal')}</h3>
+            <h3 className="font-semibold mb-4 text-primary">Legal</h3>
             <ul className="space-y-2">
               {legalLinks.map((link, index) => (
                 <li key={index}>
@@ -94,18 +92,18 @@ const Footer = () => {
           
           {/* Newsletter */}
           <div>
-            <h3 className="font-semibold mb-4 text-primary">{t('footer.subscribe')}</h3>
+            <h3 className="font-semibold mb-4 text-primary">Stay Updated</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              {t('footer.subscribeSubtitle')}
+              Get the latest updates on VCoin and new project launches
             </p>
             <div className="space-y-2">
               <input 
                 type="email"
-                placeholder={t('footer.emailPlaceholder')}
+                placeholder="Enter your email"
                 className="w-full px-3 py-2 bg-input border border-border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               />
               <Button variant="default" size="sm" className="w-full">
-                {t('footer.subscribeButton')}
+                Subscribe
               </Button>
             </div>
           </div>
@@ -114,10 +112,10 @@ const Footer = () => {
         <div className="border-t border-border pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
-              {t('footer.copyright', { year: currentYear })}
+              © {currentYear} VCoin. All rights reserved.
             </p>
             <p className="text-sm text-muted-foreground">
-              {t('footer.builtWith')}
+              Built with ❤️ for the future of startups
             </p>
           </div>
         </div>

@@ -10,15 +10,12 @@ import { useToast } from '@/components/ui/use-toast';
 import { User, Session } from '@supabase/supabase-js';
 import vcoinLogo from "@/assets/vcoin-logo.png";
 import Header from '@/components/Header';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
-import { useTranslation } from 'react-i18next';
 
 const Auth = () => {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
-  const { t } = useTranslation();
 
   useEffect(() => {
     // Set up auth state listener
@@ -135,9 +132,9 @@ const Auth = () => {
             <CardContent>
               <Tabs defaultValue="signin" className="w-full">
                 <TabsList className="grid w-full grid-cols-3">
-                  <TabsTrigger value="signin">{t('auth.signIn')}</TabsTrigger>
-                  <TabsTrigger value="signup">{t('auth.signUp')}</TabsTrigger>
-                  <TabsTrigger value="reset">{t('auth.resetPassword')}</TabsTrigger>
+                  <TabsTrigger value="signin">Sign In</TabsTrigger>
+                  <TabsTrigger value="signup">Sign Up</TabsTrigger>
+                  <TabsTrigger value="reset">Reset Password</TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="signin">
@@ -172,7 +169,6 @@ const Auth = () => {
 const SignInForm = ({ onSignIn, loading }: { onSignIn: (email: string, password: string) => void; loading: boolean }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { t } = useTranslation();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -182,7 +178,7 @@ const SignInForm = ({ onSignIn, loading }: { onSignIn: (email: string, password:
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <Label htmlFor="signin-email">{t('auth.email')}</Label>
+        <Label htmlFor="signin-email">Email</Label>
         <Input
           id="signin-email"
           type="email"
@@ -192,7 +188,7 @@ const SignInForm = ({ onSignIn, loading }: { onSignIn: (email: string, password:
         />
       </div>
       <div>
-        <Label htmlFor="signin-password">{t('auth.password')}</Label>
+        <Label htmlFor="signin-password">Password</Label>
         <Input
           id="signin-password"
           type="password"
@@ -202,7 +198,7 @@ const SignInForm = ({ onSignIn, loading }: { onSignIn: (email: string, password:
         />
       </div>
       <Button type="submit" className="w-full" disabled={loading}>
-        {loading ? t('auth.loading') : t('auth.signIn')}
+        {loading ? 'Loading...' : 'Sign In'}
       </Button>
     </form>
   );
@@ -212,7 +208,6 @@ const SignUpForm = ({ onSignUp, loading }: { onSignUp: (email: string, password:
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
-  const { t } = useTranslation();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -222,7 +217,7 @@ const SignUpForm = ({ onSignUp, loading }: { onSignUp: (email: string, password:
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <Label htmlFor="signup-name">{t('dashboard.name')}</Label>
+        <Label htmlFor="signup-name">Name</Label>
         <Input
           id="signup-name"
           type="text"
@@ -232,7 +227,7 @@ const SignUpForm = ({ onSignUp, loading }: { onSignUp: (email: string, password:
         />
       </div>
       <div>
-        <Label htmlFor="signup-email">{t('auth.email')}</Label>
+        <Label htmlFor="signup-email">Email</Label>
         <Input
           id="signup-email"
           type="email"
@@ -242,7 +237,7 @@ const SignUpForm = ({ onSignUp, loading }: { onSignUp: (email: string, password:
         />
       </div>
       <div>
-        <Label htmlFor="signup-password">{t('auth.password')}</Label>
+        <Label htmlFor="signup-password">Password</Label>
         <Input
           id="signup-password"
           type="password"
@@ -253,7 +248,7 @@ const SignUpForm = ({ onSignUp, loading }: { onSignUp: (email: string, password:
         />
       </div>
       <Button type="submit" className="w-full" disabled={loading}>
-        {loading ? t('auth.loading') : t('auth.signUp')}
+        {loading ? 'Loading...' : 'Sign Up'}
       </Button>
     </form>
   );
@@ -261,7 +256,6 @@ const SignUpForm = ({ onSignUp, loading }: { onSignUp: (email: string, password:
 
 const ResetPasswordForm = ({ onReset, loading }: { onReset: (email: string) => void; loading: boolean }) => {
   const [email, setEmail] = useState('');
-  const { t } = useTranslation();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -271,18 +265,18 @@ const ResetPasswordForm = ({ onReset, loading }: { onReset: (email: string) => v
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <Label htmlFor="reset-email">{t('auth.email')}</Label>
+        <Label htmlFor="reset-email">Email</Label>
         <Input
           id="reset-email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          placeholder={t('auth.enterEmailForReset')}
+          placeholder="Enter your email address"
         />
       </div>
       <Button type="submit" className="w-full" disabled={loading}>
-        {loading ? t('auth.loading') : t('auth.sendResetLink')}
+        {loading ? 'Loading...' : 'Send Reset Link'}
       </Button>
     </form>
   );

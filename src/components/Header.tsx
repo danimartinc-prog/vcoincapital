@@ -1,12 +1,8 @@
 import { Button } from "@/components/ui/button";
 import vcoinLogo from "@/assets/new-logo.png";
 import AuthButton from "@/components/AuthButton";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
-import { useTranslation } from 'react-i18next';
 
 const Header = () => {
-  const { t } = useTranslation();
-  
   return (
     <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -19,27 +15,26 @@ const Header = () => {
         
         <nav className="hidden md:flex items-center gap-8">
           <a href="/projects" className="text-foreground hover:text-primary transition-colors">
-            {t('nav.projects')}
+            Projects
           </a>
           <a href="/how-it-works" className="text-foreground hover:text-primary transition-colors">
-            {t('nav.howItWorks')}
+            How it Works
           </a>
           <a href="/for-investors" className="text-foreground hover:text-primary transition-colors">
-            {t('nav.investors')}
+            Investors
           </a>
           <a href="/for-founders" className="text-foreground hover:text-primary transition-colors">
-            {t('nav.entrepreneurs')}
+            Entrepreneurs
           </a>
           <a href="/vcoin-token" className="text-foreground hover:text-primary transition-colors">
-            {t('nav.token')}
+            Token
           </a>
           <a href="/whitepaper" className="text-foreground hover:text-primary transition-colors">
-            {t('nav.whitepaper')}
+            Whitepaper
           </a>
         </nav>
         
         <div className="flex items-center gap-4">
-          <LanguageSwitcher />
           <AuthButton />
           <Button 
             variant="hero" 
@@ -47,7 +42,7 @@ const Header = () => {
             className="hidden md:flex"
             onClick={() => window.location.href = '/projects'}
           >
-            {t('nav.exploreProjects')}
+            Explore Projects
           </Button>
         </div>
         
