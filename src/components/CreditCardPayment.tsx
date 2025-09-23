@@ -75,22 +75,22 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
     const { cardNumber, expiryDate, cvv, holderName } = formData;
     
     if (!cardNumber || cardNumber.replace(/\s/g, '').length < 13) {
-      toast.error(t('payments.card.validation.invalidCardNumber'));
+      toast.error('Please enter a valid card number');
       return false;
     }
     
     if (!expiryDate || expiryDate.length !== 5) {
-      toast.error(t('payments.card.validation.invalidExpiryDate'));
+      toast.error('Please enter a valid expiry date');
       return false;
     }
     
     if (!cvv || cvv.length < 3) {
-      toast.error(t('payments.card.validation.invalidCVV'));
+      toast.error('Please enter a valid CVV');
       return false;
     }
     
     if (!holderName.trim()) {
-      toast.error(t('payments.card.validation.holderNameRequired'));
+      toast.error('Cardholder name is required');
       return false;
     }
     
@@ -110,7 +110,7 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
         transactionId: `card_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
       };
     } else {
-      throw new Error(t('payments.card.paymentRejected'));
+      throw new Error('Payment was rejected. Please try again.');
     }
   };
 
@@ -118,7 +118,7 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
     e.preventDefault();
     
     if (!user) {
-      toast.error(t('payments.card.authRequired'));
+      toast.error('Please log in to continue');
       return;
     }
     
@@ -128,7 +128,7 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
     
     try {
       // Simulate payment processing
-      toast.info(t('payments.card.processing'));
+      toast.info('Processing payment...');
       const paymentResult = await simulatePayment();
       
       if (paymentResult.success) {
@@ -146,13 +146,13 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
         );
         
         if (investment) {
-          toast.success(t('payments.card.successMessage', { amount: vcoinAmount }));
+          toast.success(`Investment successful! You received ${vcoinAmount} VCoin`);
           onSuccess?.();
         }
       }
     } catch (error) {
       console.error('Payment error:', error);
-      toast.error(error instanceof Error ? error.message : t('payments.card.error'));
+      toast.error(error instanceof Error ? error.message : 'Payment failed. Please try again.');
     } finally {
       setProcessing(false);
     }
@@ -163,7 +163,7 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
     if (/^4/.test(cleaned)) return 'Visa';
     if (/^5[1-5]/.test(cleaned)) return 'Mastercard';
     if (/^3[47]/.test(cleaned)) return 'Amex';
-    return t('payments.card.card');
+    return 'Card';
   };
 
   return (
@@ -171,11 +171,11 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <CreditCard className="h-5 w-5" />
-          {t('payments.card.title')}
+          Credit Card Payment
         </CardTitle>
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Shield className="h-4 w-4" />
-          {t('payments.card.securePayment')}
+          Secure Payment
         </div>
       </CardHeader>
       
@@ -185,17 +185,17 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
           <div className="p-3 bg-muted rounded-lg text-center">
             <div className="text-lg font-bold">{formatCurrency(parseFloat(amount))}</div>
             <div className="text-sm text-muted-foreground">
-              {t('payments.card.youWillReceive')}: {(parseFloat(amount) * 100).toLocaleString()} VCoin
+              You will receive: {(parseFloat(amount) * 100).toLocaleString()} VCoin
             </div>
           </div>
           
           {/* Card Number */}
           <div className="space-y-2">
-            <Label htmlFor="cardNumber">{t('payments.card.labels.cardNumber')}</Label>
+            <Label htmlFor="cardNumber">Card Number</Label>
             <div className="relative">
               <Input
                 id="cardNumber"
-                placeholder={t('payments.card.placeholders.cardNumber')}
+                placeholder="1234 5678 9012 3456"
                 value={formData.cardNumber}
                 onChange={handleCardNumberChange}
                 className="pr-20"
@@ -211,10 +211,10 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
           {/* Expiry and CVV */}
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="expiryDate">{t('payments.card.labels.expiryDate')}</Label>
+              <Label htmlFor="expiryDate">Expiry Date</Label>
               <Input
                 id="expiryDate"
-                placeholder={t('payments.card.placeholders.expiryDate')}
+                placeholder="MM/YY"
                 value={formData.expiryDate}
                 onChange={handleExpiryChange}
               />
@@ -233,10 +233,10 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
           
           {/* Cardholder Name */}
           <div className="space-y-2">
-            <Label htmlFor="holderName">{t('payments.card.labels.holderName')}</Label>
+            <Label htmlFor="holderName">Cardholder Name</Label>
             <Input
               id="holderName"
-              placeholder={t('payments.card.placeholders.holderName')}
+              placeholder="JOHN DOE"
               value={formData.holderName}
               onChange={(e) => handleInputChange('holderName', e.target.value.toUpperCase())}
             />
@@ -244,20 +244,20 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
           
           {/* Country */}
           <div className="space-y-2">
-            <Label htmlFor="country">{t('payments.card.labels.country')}</Label>
+            <Label htmlFor="country">Country</Label>
             <Select value={formData.country} onValueChange={(value) => handleInputChange('country', value)}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="ES">{t('countries.ES')}</SelectItem>
-                <SelectItem value="FR">{t('countries.FR')}</SelectItem>
-                <SelectItem value="DE">{t('countries.DE')}</SelectItem>
-                <SelectItem value="IT">{t('countries.IT')}</SelectItem>
-                <SelectItem value="PT">{t('countries.PT')}</SelectItem>
-                <SelectItem value="NL">{t('countries.NL')}</SelectItem>
-                <SelectItem value="BE">{t('countries.BE')}</SelectItem>
-                <SelectItem value="AT">{t('countries.AT')}</SelectItem>
+                <SelectItem value="ES">Spain</SelectItem>
+                <SelectItem value="FR">France</SelectItem>
+                <SelectItem value="DE">Germany</SelectItem>
+                <SelectItem value="IT">Italy</SelectItem>
+                <SelectItem value="PT">Portugal</SelectItem>
+                <SelectItem value="NL">Netherlands</SelectItem>
+                <SelectItem value="BE">Belgium</SelectItem>
+                <SelectItem value="AT">Austria</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -265,7 +265,7 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
           {/* Security Notice */}
           <div className="flex items-center gap-2 p-3 bg-muted/50 rounded-lg text-xs text-muted-foreground">
             <Lock className="h-3 w-3" />
-            {t('payments.card.securityNotice')}
+            Your payment information is secure and encrypted
           </div>
           
           {/* Action Buttons */}
@@ -277,14 +277,14 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
               disabled={processing}
               className="flex-1"
             >
-              {t('common.cancel')}
+              Cancel
             </Button>
             <Button
               type="submit"
               disabled={processing}
               className="flex-1"
             >
-              {processing ? t('payments.card.processing') : t('payments.card.payNow')}
+              {processing ? 'Processing...' : 'Pay Now'}
             </Button>
           </div>
         </form>

@@ -37,28 +37,28 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
   const paymentMethods = [
     {
       id: 'crypto',
-      title: t('payments.methods.crypto.title'),
-      description: t('payments.methods.crypto.description'),
+      title: 'Cryptocurrency',
+      description: 'Pay directly with ETH or USDT from your wallet',
       icon: Wallet,
       features: [
-        t('payments.methods.crypto.features.noFees'),
-        t('payments.methods.crypto.features.instant'),
-        t('payments.methods.crypto.features.web3')
+        'No processing fees',
+        'Instant transactions',
+        'Full Web3 integration'
       ],
-      badge: t('payments.methods.crypto.badge'),
+      badge: 'Recommended',
       badgeVariant: 'default' as const
     },
     {
       id: 'card',
-      title: t('payments.methods.card.title'),
-      description: t('payments.methods.card.description'),
+      title: 'Credit Card',
+      description: 'Traditional payment with Visa, Mastercard, and more',
       icon: CreditCard,
       features: [
-        t('payments.methods.card.features.fast'),
-        t('payments.methods.card.features.familiar'),
-        t('payments.methods.card.features.noWallet')
+        'Fast processing',
+        'Familiar payment method',
+        'No wallet required'
       ],
-      badge: t('payments.methods.card.badge'),
+      badge: 'Convenient',
       badgeVariant: 'secondary' as const
     }
   ];
@@ -75,7 +75,7 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
     }
 
     if (!amount || parseFloat(amount) <= 0) {
-      toast.error(t('payments.crypto.invalidAmount'));
+      toast.error('Please enter a valid amount');
       return;
     }
 
@@ -85,10 +85,10 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
       } else if (crypto === 'USDT') {
         await buyWithUSDT(amount);
       }
-      toast.info(t('payments.crypto.transactionSent'));
+      toast.info('Transaction sent! Please wait for confirmation.');
     } catch (error) {
       console.error('Error en la compra:', error);
-      toast.error(t('payments.crypto.error'));
+      toast.error('Transaction failed. Please try again.');
     }
   };
 
@@ -138,7 +138,7 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
               {/* Amount Input */}
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="amount">{t('payments.crypto.amountLabel')}</Label>
+                  <Label htmlFor="amount">Amount to Invest</Label>
                   <Input
                     id="amount"
                     placeholder="0.1"
@@ -148,7 +148,7 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
                   />
                   {amount && (
                     <div className="text-center text-sm text-muted-foreground">
-                      {t('payments.crypto.youWillReceive')}: {calculateTokensForETH(amount)} VCoin
+                      You will receive: {calculateTokensForETH(amount)} VCoin
                     </div>
                   )}
                 </div>
@@ -169,7 +169,7 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
                       </div>
                       <span className="text-xs text-muted-foreground">{crypto.name}</span>
                       <Badge variant="outline" className="text-xs">
-                        {t('payments.crypto.fee')}: {crypto.fee}
+                        Fee: {crypto.fee}
                       </Badge>
                     </Button>
                   ))}
@@ -178,7 +178,7 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
                 {/* Wallet Info */}
                 {isConnected && balance && (
                   <div className="p-3 bg-muted rounded-lg text-center">
-                    <div className="text-sm text-muted-foreground">{t('payments.crypto.availableBalance')}</div>
+                    <div className="text-sm text-muted-foreground">Available Balance</div>
                     <div className="font-semibold">
                       {formatNumber(parseFloat(balance.formatted))} {balance.symbol}
                     </div>
@@ -188,7 +188,7 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
                 {/* Security Notice */}
                 <div className="flex items-center gap-2 p-3 bg-muted/50 rounded-lg text-sm text-muted-foreground">
                   <Shield className="h-4 w-4" />
-                  {t('payments.crypto.secureTransactions')}
+                  Secure blockchain transactions
                 </div>
               </div>
             </TabsContent>
@@ -198,7 +198,7 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
                 projectId={projectId}
                 amount={amount || '100'}
                 onSuccess={() => {
-                  toast.success(t('payments.card.investmentSuccess'));
+                  toast.success('Investment successful!');
                   setAmount('');
                 }}
               />
@@ -211,25 +211,25 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="text-center p-4">
           <Zap className="h-8 w-8 mx-auto mb-2 text-primary" />
-          <h3 className="font-semibold mb-1">{t('payments.features.fastProcessing.title')}</h3>
+          <h3 className="font-semibold mb-1">Fast Processing</h3>
           <p className="text-sm text-muted-foreground">
-            {t('payments.features.fastProcessing.description')}
+            Lightning-fast transactions and instant confirmations
           </p>
         </Card>
         
         <Card className="text-center p-4">
           <Shield className="h-8 w-8 mx-auto mb-2 text-accent" />
-          <h3 className="font-semibold mb-1">{t('payments.features.secure.title')}</h3>
+          <h3 className="font-semibold mb-1">Secure</h3>
           <p className="text-sm text-muted-foreground">
-            {t('payments.features.secure.description')}
+            Bank-grade security and encryption for all transactions
           </p>
         </Card>
         
         <Card className="text-center p-4">
           <Clock className="h-8 w-8 mx-auto mb-2 text-secondary-foreground" />
-          <h3 className="font-semibold mb-1">{t('payments.features.available.title')}</h3>
+          <h3 className="font-semibold mb-1">24/7 Available</h3>
           <p className="text-sm text-muted-foreground">
-            {t('payments.features.available.description')}
+            Invest anytime, anywhere with our global platform
           </p>
         </Card>
       </div>

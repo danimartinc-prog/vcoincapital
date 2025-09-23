@@ -65,7 +65,7 @@ const ProjectDetail = () => {
                   <div className="grid md:grid-cols-3 gap-4 mb-6">
                     <Card>
                       <CardHeader className="pb-3">
-                        <CardTitle className="text-sm">{t('projectDetail.cashGoal')}</CardTitle>
+                        <CardTitle className="text-sm">Cash Goal</CardTitle>
                       </CardHeader>
                       <CardContent>
                         <div className="text-2xl font-bold">{formatCurrency(project.goal_cash_eur)}</div>

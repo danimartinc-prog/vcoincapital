@@ -84,17 +84,17 @@ const ForInvestors = () => {
             {/* Hero */}
             <div className="text-center mb-16">
               <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-                {t('forInvestors.hero.title')}
+                Invest in the Future
               </h1>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-                {t('forInvestors.hero.subtitle')}
+                Access exclusive startup investments with VCoin. Get early access, better perks, and multiply your investment power.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Button size="lg" onClick={() => window.location.href = '/projects'}>
-                  {t('forInvestors.hero.exploreProjects')}
+                  Explore Projects
                 </Button>
                 <Button variant="outline" size="lg" onClick={() => window.location.href = '/how-it-works'}>
-                  {t('forInvestors.hero.howItWorks')}
+                  How It Works
                 </Button>
               </div>
             </div>
