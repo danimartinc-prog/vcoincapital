@@ -1,37 +1,38 @@
 import { Button } from "@/components/ui/button";
 import vcoinLogo from "@/assets/new-logo.png";
 import WalletAuthButton from './WalletAuthButton';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
     <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+        <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
           <img src={vcoinLogo} alt="VCoin" className="w-10 h-10 animate-float" />
           <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
             VCoin
           </span>
-        </a>
+        </Link>
         
         <nav className="hidden md:flex items-center gap-8">
-          <a href="/projects" className="text-foreground hover:text-primary transition-colors">
+          <Link to="/projects" className="text-foreground hover:text-primary transition-colors">
             Projects
-          </a>
-          <a href="/how-it-works" className="text-foreground hover:text-primary transition-colors">
+          </Link>
+          <Link to="/how-it-works" className="text-foreground hover:text-primary transition-colors">
             How it Works
-          </a>
-          <a href="/for-investors" className="text-foreground hover:text-primary transition-colors">
+          </Link>
+          <Link to="/for-investors" className="text-foreground hover:text-primary transition-colors">
             Investors
-          </a>
-          <a href="/for-founders" className="text-foreground hover:text-primary transition-colors">
+          </Link>
+          <Link to="/for-founders" className="text-foreground hover:text-primary transition-colors">
             Entrepreneurs
-          </a>
-          <a href="/vcoin-token" className="text-foreground hover:text-primary transition-colors">
+          </Link>
+          <Link to="/vcoin-token" className="text-foreground hover:text-primary transition-colors">
             Token
-          </a>
-          <a href="/whitepaper" className="text-foreground hover:text-primary transition-colors">
+          </Link>
+          <Link to="/whitepaper" className="text-foreground hover:text-primary transition-colors">
             Whitepaper
-          </a>
+          </Link>
         </nav>
         
         <div className="flex items-center gap-4">
@@ -40,9 +41,9 @@ const Header = () => {
             variant="hero" 
             size="lg" 
             className="hidden md:flex"
-            onClick={() => window.location.href = '/projects'}
+            asChild
           >
-            Explore Projects
+            <Link to="/projects">Explore Projects</Link>
           </Button>
         </div>
         

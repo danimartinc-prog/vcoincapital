@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useAccount, useDisconnect } from 'wagmi';
 import { Wallet, LogOut } from 'lucide-react';
-import { useEffect } from 'react';
+
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 
 const WalletAuthButton = () => {
@@ -11,11 +11,6 @@ const WalletAuthButton = () => {
   const navigate = useNavigate();
   const { openConnectModal } = useConnectModal();
 
-  useEffect(() => {
-    if (isConnected) {
-      navigate('/dashboard');
-    }
-  }, [isConnected, navigate]);
 
   if (isConnected && address) {
     return (
