@@ -9,7 +9,7 @@ import { useAccount, useBalance } from 'wagmi';
 import { toast } from 'sonner';
 import { usePresaleContract } from '@/hooks/usePresaleContract';
 import { useInvestment } from '@/hooks/useInvestment';
-import { useAuth } from '@/hooks/useAuth';
+import { useWalletAuth } from '@/hooks/useWalletAuth';
 import { Wallet, CreditCard, Shield, Zap, Clock } from 'lucide-react';
 import CreditCardPayment from '@/components/CreditCardPayment';
 import { formatNumber } from '@/lib/formatters';

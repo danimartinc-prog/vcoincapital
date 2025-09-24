@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { useAuth } from '@/hooks/useAuth';
+import { useWalletAuth } from '@/hooks/useWalletAuth';
 import { toast } from 'sonner';
 
 export const useInvestment = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { user, profile } = useAuth();
+  const { profile } = useWalletAuth();
 
   const createInvestment = async (
     projectId: string,
@@ -14,7 +14,7 @@ export const useInvestment = () => {
     transactionHash?: string,
     currency: 'ETH' | 'USDT' | 'EUR' = 'ETH'
   ) => {
-    if (!user || !profile) {
+    if (!profile) {
       toast.error('Debes estar autenticado para invertir');
       return null;
     }

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import vcoinLogo from "@/assets/new-logo.png";
-import AuthButton from "@/components/AuthButton";
+import WalletAuthButton from './WalletAuthButton';
 
 const Header = () => {
   return (
@@ -35,7 +35,7 @@ const Header = () => {
         </nav>
         
         <div className="flex items-center gap-4">
-          <AuthButton />
+          <WalletAuthButton />
           <Button 
             variant="hero" 
             size="lg" 

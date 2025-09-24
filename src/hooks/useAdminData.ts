@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { useAuth } from '@/hooks/useAuth';
+import { useWalletAuth } from '@/hooks/useWalletAuth';
 import { toast } from 'sonner';
 
 export const useAdminData = () => {
@@ -18,7 +18,7 @@ export const useAdminData = () => {
     pendingProjects: 0,
     activeProjects: 0,
   });
-  const { user } = useAuth();
+  const { user } = useWalletAuth();
 
   // Check if user is admin
   useEffect(() => {

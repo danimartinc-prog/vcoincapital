@@ -8,7 +8,6 @@ import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import '@rainbow-me/rainbowkit/styles.css';
 import { config } from './lib/wagmi';
 import Index from "./pages/Index";
-import Auth from "./pages/Auth";
 import WalletAuth from "./pages/WalletAuth";
 import Dashboard from "./pages/Dashboard";
 import Admin from "./pages/Admin";
@@ -35,16 +34,15 @@ const App = () => (
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/auth" element={<Auth />} />
+              <Route path="/auth" element={<WalletAuth />} />
               <Route path="/projects" element={<Projects />} />
-              <Route path="/project/:slug" element={<ProjectDetail />} />
+              <Route path="/projects/:id" element={<ProjectDetail />} />
               <Route path="/how-it-works" element={<HowItWorks />} />
               <Route path="/for-investors" element={<ForInvestors />} />
               <Route path="/for-founders" element={<ForFounders />} />
               <Route path="/vcoin-token" element={<VCoinToken />} />
               <Route path="/whitepaper" element={<Whitepaper />} />
               <Route path="/legal" element={<Legal />} />
-              <Route path="/wallet-auth" element={<WalletAuth />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/payment-success" element={<PaymentSuccess />} />

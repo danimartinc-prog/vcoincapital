@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { CreditCard, Lock, Shield } from 'lucide-react';
 import { toast } from 'sonner';
 import { useInvestment } from '@/hooks/useInvestment';
-import { useAuth } from '@/hooks/useAuth';
+import { useWalletAuth } from '@/hooks/useWalletAuth';
 import { formatCurrency } from '@/lib/formatters';
 
 interface CreditCardPaymentProps {
