@@ -5,9 +5,9 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   const socialLinks = [
-    { name: "Twitter", icon: "🐦", href: "#" },
-    { name: "Discord", icon: "💬", href: "#" },
-    { name: "Telegram", icon: "📱", href: "#" },
+    { name: "Twitter", icon: "🐦", href: "https://x.com/vcoincapital" },
+    { name: "Discord", icon: "💬", href: "https://discord.com/channels/@vcoincapital" },
+    { name: "Instagram", icon: "📷", href: "https://www.instagram.com/vcoincapital/" },
     { name: "Medium", icon: "📰", href: "#" }
   ];
 
