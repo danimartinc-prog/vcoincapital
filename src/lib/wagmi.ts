@@ -11,11 +11,11 @@ export const config = createConfig({
     coinbaseWallet({ appName: 'CryptoICO' }),
   ],
   transports: {
-    [mainnet.id]: http(mainnet.rpcUrls.default.http[0]),
-    [polygon.id]: http(polygon.rpcUrls.default.http[0]),
-    [optimism.id]: http(optimism.rpcUrls.default.http[0]),
-    [arbitrum.id]: http(arbitrum.rpcUrls.default.http[0]),
-    [base.id]: http(base.rpcUrls.default.http[0]),
+    [mainnet.id]: http(),
+    [polygon.id]: http(),
+    [optimism.id]: http(),
+    [arbitrum.id]: http(),
+    [base.id]: http(),
   },
   ssr: false,
 });
