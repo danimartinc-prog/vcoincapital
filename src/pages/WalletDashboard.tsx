@@ -15,7 +15,6 @@ import {
   History,
   ShoppingBag,
   Bell,
-  Gift,
   Bitcoin,
   DollarSign,
   Lock,
@@ -25,7 +24,6 @@ import { useToast } from '@/hooks/use-toast';
 import { useAccount } from 'wagmi';
 import { Navigate } from 'react-router-dom';
 import { usePresaleContract } from '@/hooks/usePresaleContract';
-import { useInvestment } from '@/hooks/useInvestment';
 import { formatEther, parseEther } from 'viem';
 import { formatCurrency } from '@/lib/formatters';
 
@@ -54,8 +52,6 @@ const WalletDashboard = () => {
     useVCoinBalance
   } = usePresaleContract();
   
-  const { getUserInvestments } = useInvestment();
-  
   // Get real VCoin balance
   const { data: vcoinBalanceData } = useVCoinBalance(address);
   const vcoinBalance = vcoinBalanceData ? formatEther(vcoinBalanceData) : '0';
@@ -76,11 +72,13 @@ const WalletDashboard = () => {
   // Load user investments
   useEffect(() => {
     const loadInvestments = async () => {
-      const investments = await getUserInvestments();
-      setUserInvestments(investments);
+      // For now, skip loading investments until we fix the UUID/wallet address mapping
+      // const investments = await getUserInvestments();
+      // setUserInvestments(investments);
+      setUserInvestments([]);
     };
     loadInvestments();
-  }, [getUserInvestments]);
+  }, []);
 
   if (!isConnected) {
     return <Navigate to="/auth" replace />;
