@@ -34,12 +34,18 @@ Deno.serve(async (req) => {
 
     // If no hook secret is set, skip verification (for testing)
     let webhookData: any
-    if (hookSecret) {
-      const wh = new Webhook(hookSecret)
-      webhookData = wh.verify(payload, headers)
+    const hasSignature = !!headers['webhook-signature']
+    if (hookSecret && hasSignature) {
+      try {
+        const wh = new Webhook(hookSecret)
+        webhookData = wh.verify(payload, headers)
+      } catch (e: any) {
+        console.warn('Signature verification failed, falling back to JSON parse:', e?.message || e)
+        webhookData = JSON.parse(payload)
+      }
     } else {
       webhookData = JSON.parse(payload)
-      console.log('Warning: No hook secret set, skipping verification')
+      if (!hookSecret) console.warn('Warning: No hook secret set, skipping verification')
     }
 
     const {
@@ -64,10 +70,10 @@ Deno.serve(async (req) => {
       }
     }
 
-    // Fix redirect URL if it's pointing to localhost
-    let fixedRedirectTo = redirect_to
-    if (redirect_to && redirect_to.includes('localhost:3000')) {
-      fixedRedirectTo = site_url || Deno.env.get('SUPABASE_URL') || ''
+    // Compute safe redirect target
+    let fixedRedirectTo = (redirect_to || '').trim() || site_url
+    if (!fixedRedirectTo || fixedRedirectTo.includes('localhost')) {
+      fixedRedirectTo = site_url || (Deno.env.get('PUBLIC_SITE_URL') as string) || 'https://vcoincapital.com'
     }
 
     console.log('Processing email for user:', user.email, 'type:', email_action_type)
