@@ -2,3 +2,6 @@ project_id = "rbvpktatmpmnawottmwf"
 
 [functions.custom-auth-emails]
 verify_jwt = false
+
+[functions.wallet-admin]
+verify_jwt = false
