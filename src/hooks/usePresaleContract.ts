@@ -1,34 +1,37 @@
 import { useReadContract, useWriteContract, useWaitForTransactionReceipt, useAccount } from 'wagmi';
 import { parseEther, formatEther } from 'viem';
 import { 
-  PRESALE_CONTRACT_ADDRESS, 
   PRESALE_CONTRACT_ABI,
-  VCOIN_TOKEN_ADDRESS,
   VCOIN_TOKEN_ABI,
   USDT_CONTRACT_ADDRESS,
   USDT_CONTRACT_ABI
 } from '@/contracts/VCoinPresale';
+import { useContractConfig } from './useContractConfig';
 
 export const usePresaleContract = () => {
   const { chain, address: account } = useAccount();
+  const { config: contractConfig, loading: configLoading } = useContractConfig();
   
-  // Read contract data
+  // Read contract data using dynamic addresses
   const { data: tokenPrice } = useReadContract({
-    address: PRESALE_CONTRACT_ADDRESS,
+    address: contractConfig.presaleContractAddress as `0x${string}`,
     abi: PRESALE_CONTRACT_ABI,
     functionName: 'tokenPrice',
+    query: { enabled: !!contractConfig.presaleContractAddress }
   });
 
   const { data: totalRaised } = useReadContract({
-    address: PRESALE_CONTRACT_ADDRESS,
+    address: contractConfig.presaleContractAddress as `0x${string}`,
     abi: PRESALE_CONTRACT_ABI,
     functionName: 'totalRaised',
+    query: { enabled: !!contractConfig.presaleContractAddress }
   });
 
   const { data: tokensRemaining } = useReadContract({
-    address: PRESALE_CONTRACT_ADDRESS,
+    address: contractConfig.presaleContractAddress as `0x${string}`,
     abi: PRESALE_CONTRACT_ABI,
     functionName: 'tokensRemaining',
+    query: { enabled: !!contractConfig.presaleContractAddress }
   });
 
   // Write contract functions
@@ -40,9 +43,13 @@ export const usePresaleContract = () => {
 
   // Buy tokens with ETH
   const buyWithETH = async (ethAmount: string) => {
+    if (!contractConfig.presaleContractAddress) {
+      throw new Error('Presale contract address not configured');
+    }
+    
     try {
       const result = await writeContract({
-        address: PRESALE_CONTRACT_ADDRESS as `0x${string}`,
+        address: contractConfig.presaleContractAddress as `0x${string}`,
         abi: PRESALE_CONTRACT_ABI,
         functionName: 'buyTokensWithETH',
         args: [parseEther(ethAmount)],
@@ -59,20 +66,24 @@ export const usePresaleContract = () => {
 
   // Buy tokens with USDT
   const buyWithUSDT = async (usdtAmount: string) => {
+    if (!contractConfig.presaleContractAddress) {
+      throw new Error('Presale contract address not configured');
+    }
+    
     try {
       // First approve USDT spending
       await writeContract({
         address: USDT_CONTRACT_ADDRESS as `0x${string}`,
         abi: USDT_CONTRACT_ABI,
         functionName: 'approve',
-        args: [PRESALE_CONTRACT_ADDRESS as `0x${string}`, parseEther(usdtAmount)],
+        args: [contractConfig.presaleContractAddress as `0x${string}`, parseEther(usdtAmount)],
         chain,
         account: account!,
       });
 
       // Then buy tokens
       const result = await writeContract({
-        address: PRESALE_CONTRACT_ADDRESS as `0x${string}`,
+        address: contractConfig.presaleContractAddress as `0x${string}`,
         abi: PRESALE_CONTRACT_ABI,
         functionName: 'buyTokensWithUSDT',
         args: [parseEther(usdtAmount)],
@@ -89,12 +100,12 @@ export const usePresaleContract = () => {
   // Get user's VCoin balance
   const useVCoinBalance = (address: string | undefined) => {
     return useReadContract({
-      address: VCOIN_TOKEN_ADDRESS as `0x${string}`,
+      address: contractConfig.vcoinTokenAddress as `0x${string}`,
       abi: VCOIN_TOKEN_ABI,
       functionName: 'balanceOf',
       args: address ? [address as `0x${string}`] : undefined,
       query: {
-        enabled: !!address,
+        enabled: !!address && !!contractConfig.vcoinTokenAddress,
       },
     });
   };
@@ -102,12 +113,12 @@ export const usePresaleContract = () => {
   // Get user's total purchases from presale
   const useUserPurchases = (address: string | undefined) => {
     return useReadContract({
-      address: PRESALE_CONTRACT_ADDRESS as `0x${string}`,
+      address: contractConfig.presaleContractAddress as `0x${string}`,
       abi: PRESALE_CONTRACT_ABI,
       functionName: 'getUserPurchases',
       args: address ? [address as `0x${string}`] : undefined,
       query: {
-        enabled: !!address,
+        enabled: !!address && !!contractConfig.presaleContractAddress,
       },
     });
   };

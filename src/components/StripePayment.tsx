@@ -26,15 +26,14 @@ const StripePayment = ({ projectId, amount, onSuccess, onClose }: StripePaymentP
 
     try {
       const eurAmount = parseFloat(amount);
-      const tokens = eurAmount / 0.1; // Assuming 1 VCoin = €0.1
+      const tokens = eurAmount / 0.50; // VCoin price: €0.50 per token
 
-      const { data, error } = await supabase.functions.invoke('create-payment', {
+      const { data, error } = await supabase.functions.invoke('create-presale-payment', {
         body: {
           amount: eurAmount,
           tokens: tokens,
-          projectId
+          email: null // Guest checkout - email will be collected by Stripe
         },
-        // No Authorization header to avoid requiring Supabase auth
       });
 
       if (error) {
