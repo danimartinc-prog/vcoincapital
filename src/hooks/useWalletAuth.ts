@@ -19,7 +19,7 @@ export const useWalletAuth = () => {
         const { data, error } = await supabase.functions.invoke('wallet-admin', {
           body: {
             action: 'check_admin',
-            wallet_address: address
+            wallet_address: address.toLowerCase()
           }
         });
         
