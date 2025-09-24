@@ -10,8 +10,8 @@ import {
   Img,
   Button,
   Section,
-} from 'npm:@react-email/components@0.0.22'
-import * as React from 'npm:react@18.3.1'
+} from 'https://esm.sh/@react-email/components@0.0.22'
+import * as React from 'https://esm.sh/react@18.3.1'
 
 interface ConfirmationEmailProps {
   supabase_url: string
@@ -37,7 +37,7 @@ export const ConfirmationEmail = ({
       <Container style={container}>
         <Section style={logoSection}>
           <Img
-            src="https://rbvpktatmpmnawottmwf.supabase.co/storage/v1/object/public/assets/vcoin-logo.png"
+            src="/vcoin-logo.png"
             width="80"
             height="80"
             alt="VCoin Capital"

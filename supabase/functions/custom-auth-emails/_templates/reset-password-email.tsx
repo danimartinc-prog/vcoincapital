@@ -10,8 +10,8 @@ import {
   Img,
   Button,
   Section,
-} from 'npm:@react-email/components@0.0.22'
-import * as React from 'npm:react@18.3.1'
+} from 'https://esm.sh/@react-email/components@0.0.22'
+import * as React from 'https://esm.sh/react@18.3.1'
 
 interface ResetPasswordEmailProps {
   supabase_url: string
@@ -37,9 +37,9 @@ export const ResetPasswordEmail = ({
       <Container style={container}>
         <Section style={logoSection}>
           <Img
-            src="https://vcoin-capital.com/logo.png"
-            width="120"
-            height="120"
+            src="/vcoin-logo.png"
+            width="80"
+            height="80"
             alt="VCoin Capital"
             style={logo}
           />
@@ -96,17 +96,19 @@ export const ResetPasswordEmail = ({
 )
 
 const main = {
-  backgroundColor: '#0a0a0b',
+  backgroundColor: '#0f0f23',
   fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+  padding: '40px 20px',
 }
 
 const container = {
   backgroundColor: '#ffffff',
   margin: '0 auto',
-  padding: '20px 0 48px',
-  marginBottom: '64px',
-  borderRadius: '8px',
+  padding: '40px 30px',
+  marginBottom: '32px',
+  borderRadius: '12px',
   maxWidth: '600px',
+  boxShadow: '0 10px 40px rgba(139, 92, 246, 0.1)',
 }
 
 const logoSection = {
@@ -154,17 +156,19 @@ const buttonSection = {
 }
 
 const button = {
-  backgroundColor: '#dc3545',
-  borderRadius: '8px',
+  background: 'linear-gradient(135deg, #dc3545, #c82333)',
+  borderRadius: '12px',
   color: '#ffffff',
   fontSize: '18px',
-  fontWeight: 'bold',
+  fontWeight: '600',
   textDecoration: 'none',
   textAlign: 'center' as const,
   display: 'inline-block',
-  padding: '16px 32px',
+  padding: '18px 36px',
   border: 'none',
   cursor: 'pointer',
+  boxShadow: '0 4px 20px rgba(220, 53, 69, 0.3)',
+  transition: 'all 0.3s ease',
 }
 
 const code = {
@@ -183,10 +187,10 @@ const code = {
 }
 
 const warningSection = {
-  backgroundColor: '#fff3cd',
-  borderRadius: '8px',
-  margin: '32px 20px',
-  padding: '20px',
+  background: 'linear-gradient(135deg, #fff3cd, #ffeaa7)',
+  borderRadius: '12px',
+  margin: '32px 0',
+  padding: '24px',
   border: '1px solid #ffeaa7',
 }
 
