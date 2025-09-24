@@ -14,17 +14,20 @@ import {
   Copy,
   History,
   ShoppingBag,
-  Trophy,
   Bell,
   Gift,
   Bitcoin,
-  DollarSign
+  DollarSign,
+  Lock,
+  Edit3
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useAccount } from 'wagmi';
 import { Navigate } from 'react-router-dom';
 import { usePresaleContract } from '@/hooks/usePresaleContract';
+import { useInvestment } from '@/hooks/useInvestment';
 import { formatEther, parseEther } from 'viem';
+import { formatCurrency } from '@/lib/formatters';
 
 const WalletDashboard = () => {
   const { address, isConnected } = useAccount();
@@ -33,6 +36,9 @@ const WalletDashboard = () => {
   const [purchaseAmount, setPurchaseAmount] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('ETH');
   const [promoCode, setPromoCode] = useState('');
+  const [receivingAddress, setReceivingAddress] = useState('');
+  const [editingAddress, setEditingAddress] = useState(false);
+  const [userInvestments, setUserInvestments] = useState([]);
   
   // Use presale contract hooks
   const { 
@@ -44,24 +50,48 @@ const WalletDashboard = () => {
     calculateTokensForETH,
     isPending,
     isConfirming,
-    isConfirmed 
+    isConfirmed,
+    useVCoinBalance
   } = usePresaleContract();
-
-  // Mock data - replace with real data later
-  const [vcoinBalance, setVcoinBalance] = useState('15,823.31');
-  const [tokenValue, setTokenValue] = useState('$2136.147');
+  
+  const { getUserInvestments } = useInvestment();
+  
+  // Get real VCoin balance
+  const { data: vcoinBalanceData } = useVCoinBalance(address);
+  const vcoinBalance = vcoinBalanceData ? formatEther(vcoinBalanceData) : '0';
+  
+  // Calculate real token value at launch (assuming launch price of $0.15)
+  const launchPrice = 0.15;
+  const tokenValueAtLaunch = parseFloat(vcoinBalance) * launchPrice;
+  
   const [progressPercentage, setProgressPercentage] = useState(56.31);
+
+  // Initialize receiving address with current wallet
+  useEffect(() => {
+    if (address && !receivingAddress) {
+      setReceivingAddress(address);
+    }
+  }, [address, receivingAddress]);
+
+  // Load user investments
+  useEffect(() => {
+    const loadInvestments = async () => {
+      const investments = await getUserInvestments();
+      setUserInvestments(investments);
+    };
+    loadInvestments();
+  }, [getUserInvestments]);
 
   if (!isConnected) {
     return <Navigate to="/auth" replace />;
   }
 
   const copyAddress = () => {
-    if (address) {
-      navigator.clipboard.writeText(address);
+    if (receivingAddress) {
+      navigator.clipboard.writeText(receivingAddress);
       toast({
         title: "Address copied",
-        description: "Wallet address copied to clipboard",
+        description: "Receiving wallet address copied to clipboard",
       });
     }
   };
@@ -93,7 +123,7 @@ const WalletDashboard = () => {
               <Coins className="h-4 w-4 text-accent" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-foreground">{vcoinBalance}</div>
+              <div className="text-2xl font-bold text-foreground">{parseFloat(vcoinBalance).toLocaleString('en-US')}</div>
             </CardContent>
           </Card>
 
@@ -105,7 +135,7 @@ const WalletDashboard = () => {
               <TrendingUp className="h-4 w-4 text-accent" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-foreground">{tokenValue}</div>
+              <div className="text-2xl font-bold text-foreground">{formatCurrency(tokenValueAtLaunch)}</div>
             </CardContent>
           </Card>
 
@@ -117,18 +147,46 @@ const WalletDashboard = () => {
               <Wallet className="h-4 w-4 text-accent" />
             </CardHeader>
             <CardContent>
-              <div className="flex items-center gap-2">
-                <code className="text-sm bg-muted px-2 py-1 rounded">
-                  {address ? formatAddress(address) : 'No address'}
-                </code>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={copyAddress}
-                  className="h-8 w-8 p-0"
-                >
-                  <Copy className="h-3 w-3" />
-                </Button>
+              <div className="space-y-2">
+                {editingAddress ? (
+                  <div className="flex gap-2">
+                    <Input
+                      value={receivingAddress}
+                      onChange={(e) => setReceivingAddress(e.target.value)}
+                      placeholder="Enter wallet address"
+                      className="text-sm"
+                    />
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setEditingAddress(false)}
+                    >
+                      Save
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <code className="text-sm bg-muted px-2 py-1 rounded">
+                      {receivingAddress ? formatAddress(receivingAddress) : 'No address'}
+                    </code>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={copyAddress}
+                      className="h-8 w-8 p-0"
+                    >
+                      <Copy className="h-3 w-3" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setEditingAddress(true)}
+                      className="h-8 w-8 p-0"
+                    >
+                      <Edit3 className="h-3 w-3" />
+                    </Button>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
@@ -136,7 +194,7 @@ const WalletDashboard = () => {
 
         {/* Navigation Tabs */}
         <Tabs defaultValue="dashboard" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-6 bg-card/50 backdrop-blur-md">
+          <TabsList className="grid w-full grid-cols-5 bg-card/50 backdrop-blur-md">
             <TabsTrigger value="dashboard" className="flex items-center gap-2">
               <Wallet className="w-4 h-4" />
               Dashboard
@@ -149,16 +207,12 @@ const WalletDashboard = () => {
               <History className="w-4 h-4" />
               Transactions
             </TabsTrigger>
-            <TabsTrigger value="leaderboard" className="flex items-center gap-2">
-              <Trophy className="w-4 h-4" />
-              Leaderboard
-            </TabsTrigger>
             <TabsTrigger value="updates" className="flex items-center gap-2">
               <Bell className="w-4 h-4" />
               Project Updates
             </TabsTrigger>
-            <TabsTrigger value="claim" className="flex items-center gap-2">
-              <Gift className="w-4 h-4" />
+            <TabsTrigger value="claim" className="flex items-center gap-2 opacity-50" disabled>
+              <Lock className="w-4 h-4" />
               Claim
             </TabsTrigger>
           </TabsList>
@@ -350,32 +404,37 @@ const WalletDashboard = () => {
             </Card>
           </TabsContent>
 
-          <TabsContent value="leaderboard" className="space-y-6">
-            <Card className="bg-card/90 backdrop-blur-md border-primary/20">
-              <CardHeader>
-                <CardTitle>Investor Leaderboard</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-8 text-muted-foreground">
-                  <Trophy className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                  <p>Leaderboard coming soon</p>
-                  <p className="text-sm">See top investors and rankings</p>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
           <TabsContent value="updates" className="space-y-6">
             <Card className="bg-card/90 backdrop-blur-md border-primary/20">
               <CardHeader>
-                <CardTitle>Project Updates</CardTitle>
+                <CardTitle>Your Investment Projects</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-center py-8 text-muted-foreground">
-                  <Bell className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                  <p>No updates yet</p>
-                  <p className="text-sm">Project updates and announcements will appear here</p>
-                </div>
+                {userInvestments.length > 0 ? (
+                  <div className="space-y-4">
+                    {userInvestments.map((investment: any) => (
+                      <div key={investment.id} className="p-4 border rounded-lg">
+                        <div className="flex justify-between items-start mb-2">
+                          <h4 className="font-semibold">{investment.projects?.title || 'Unknown Project'}</h4>
+                          <Badge variant={investment.status === 'completed' ? 'default' : 'secondary'}>
+                            {investment.status}
+                          </Badge>
+                        </div>
+                        <div className="text-sm text-muted-foreground space-y-1">
+                          <p>Investment: {formatCurrency(parseFloat(investment.amount_eur))}</p>
+                          <p>VCoin Amount: {parseFloat(investment.amount_vcoin).toLocaleString()}</p>
+                          <p>Date: {new Date(investment.created_at).toLocaleDateString()}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-8 text-muted-foreground">
+                    <Bell className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                    <p>No investments yet</p>
+                    <p className="text-sm">Your project investments will appear here</p>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </TabsContent>
@@ -383,13 +442,22 @@ const WalletDashboard = () => {
           <TabsContent value="claim" className="space-y-6">
             <Card className="bg-card/90 backdrop-blur-md border-primary/20">
               <CardHeader>
-                <CardTitle>Claim Tokens</CardTitle>
+                <CardTitle className="flex items-center gap-2">
+                  <Lock className="w-5 h-5 text-muted-foreground" />
+                  Claim Tokens
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-center py-8 text-muted-foreground">
-                  <Gift className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                  <p>No tokens to claim yet</p>
-                  <p className="text-sm">Available tokens will appear here when ready</p>
+                  <Lock className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                  <p className="font-semibold mb-2">Claim is Currently Locked</p>
+                  <p className="text-sm">Token claiming will be available after the presale ends</p>
+                  <div className="mt-4 p-3 bg-muted/20 rounded-lg">
+                    <p className="text-xs">
+                      Your purchased tokens will be claimable once the presale period concludes. 
+                      You will be notified when claiming becomes available.
+                    </p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
