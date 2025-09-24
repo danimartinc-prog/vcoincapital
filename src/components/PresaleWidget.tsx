@@ -7,7 +7,7 @@ import { useAccount, useBalance } from 'wagmi';
 import { toast } from "sonner";
 import { usePresaleContract } from '@/hooks/usePresaleContract';
 import { useInvestment } from '@/hooks/useInvestment';
-import { useAuth } from '@/hooks/useAuth';
+// import { useWalletAuth } from '@/hooks/useWalletAuth';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import StripePayment from '@/components/StripePayment';
 
@@ -22,7 +22,7 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
   
   const { address, isConnected } = useAccount();
   const { data: balance } = useBalance({ address });
-  const { user } = useAuth();
+// const { user } = useWalletAuth();
   
   const {
     tokenPrice,
@@ -133,7 +133,7 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
       if (paymentMethod === "ETH" || paymentMethod === "USDT") {
         if (!isConnected) {
           // Redirect to wallet auth page
-          window.location.href = '/wallet-auth';
+          window.location.href = '/auth';
           return;
         }
         

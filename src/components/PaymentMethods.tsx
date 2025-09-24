@@ -24,7 +24,7 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
   
   const { address, isConnected } = useAccount();
   const { data: balance } = useBalance({ address });
-  const { user } = useAuth();
+  // Wallet-auth only; no Supabase user required
   
   const {
     buyWithETH,
@@ -69,7 +69,7 @@ const PaymentMethods = ({ projectId }: PaymentMethodsProps) => {
   ];
 
   const handleCryptoPurchase = async (crypto: string) => {
-    if (!isConnected || !user) {
+    if (!isConnected) {
       window.location.href = '/auth';
       return;
     }

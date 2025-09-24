@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/hooks/useAuth";
+// Removed useAuth - wallet-only flow
 
 interface StripePaymentProps {
   projectId: string;
@@ -14,7 +14,7 @@ interface StripePaymentProps {
 
 const StripePayment = ({ projectId, amount, onSuccess, onClose }: StripePaymentProps) => {
   const [isProcessing, setIsProcessing] = useState(false);
-  const { user } = useAuth();
+  // No Supabase user required for card; proceeding without auth
 
   const handlePayment = async () => {
     if (!amount || parseFloat(amount) <= 0) {
@@ -34,9 +34,7 @@ const StripePayment = ({ projectId, amount, onSuccess, onClose }: StripePaymentP
           tokens: tokens,
           projectId
         },
-        headers: user ? {
-          Authorization: `Bearer ${(await supabase.auth.getSession()).data.session?.access_token}`
-        } : undefined
+        // No Authorization header to avoid requiring Supabase auth
       });
 
       if (error) {

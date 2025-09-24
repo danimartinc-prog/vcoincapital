@@ -29,7 +29,7 @@ const CreditCardPayment = ({ projectId, amount, onSuccess, onClose }: CreditCard
   const [processing, setProcessing] = useState(false);
   
   const { createInvestment } = useInvestment();
-  const { user } = useAuth();
+  const { user } = useWalletAuth();
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));

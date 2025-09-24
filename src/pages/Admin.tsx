@@ -14,7 +14,7 @@ import Footer from '@/components/Footer';
 import { formatDistanceToNow } from 'date-fns';
 
 const Admin = () => {
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading: authLoading } = useWalletAuth();
   const { 
     isAdmin, 
     loading, 

@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Upload, X } from "lucide-react";
 import { supabase } from '@/integrations/supabase/client';
-import { useAuth } from '@/hooks/useAuth';
+import { useWalletAuth } from '@/hooks/useWalletAuth';
 
 interface ProjectSubmissionFormProps {
   open: boolean;
@@ -59,7 +59,7 @@ interface FormData {
 
 const ProjectSubmissionForm = ({ open, onOpenChange }: ProjectSubmissionFormProps) => {
   const { toast } = useToast();
-  const { user } = useAuth();
+  const { user } = useWalletAuth();
   const [formData, setFormData] = useState<FormData>({
     companyName: "",
     website: "",
