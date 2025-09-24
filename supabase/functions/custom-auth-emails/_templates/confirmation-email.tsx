@@ -37,9 +37,9 @@ export const ConfirmationEmail = ({
       <Container style={container}>
         <Section style={logoSection}>
           <Img
-            src="https://vcoin-capital.com/logo.png"
-            width="120"
-            height="120"
+            src="https://rbvpktatmpmnawottmwf.supabase.co/storage/v1/object/public/assets/vcoin-logo.png"
+            width="80"
+            height="80"
             alt="VCoin Capital"
             style={logo}
           />
@@ -98,17 +98,19 @@ export const ConfirmationEmail = ({
 )
 
 const main = {
-  backgroundColor: '#0a0a0b',
+  backgroundColor: '#0f0f23',
   fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+  padding: '40px 20px',
 }
 
 const container = {
   backgroundColor: '#ffffff',
   margin: '0 auto',
-  padding: '20px 0 48px',
-  marginBottom: '64px',
-  borderRadius: '8px',
+  padding: '40px 30px',
+  marginBottom: '32px',
+  borderRadius: '12px',
   maxWidth: '600px',
+  boxShadow: '0 10px 40px rgba(139, 92, 246, 0.1)',
 }
 
 const logoSection = {
@@ -164,17 +166,19 @@ const buttonSection = {
 }
 
 const button = {
-  backgroundColor: '#9b87f5',
-  borderRadius: '8px',
+  background: 'linear-gradient(135deg, #8b5cf6, #3b82f6)',
+  borderRadius: '12px',
   color: '#ffffff',
   fontSize: '18px',
-  fontWeight: 'bold',
+  fontWeight: '600',
   textDecoration: 'none',
   textAlign: 'center' as const,
   display: 'inline-block',
-  padding: '16px 32px',
+  padding: '18px 36px',
   border: 'none',
   cursor: 'pointer',
+  boxShadow: '0 4px 20px rgba(139, 92, 246, 0.3)',
+  transition: 'all 0.3s ease',
 }
 
 const code = {
@@ -193,10 +197,11 @@ const code = {
 }
 
 const benefitsSection = {
-  backgroundColor: '#f8f9fa',
-  borderRadius: '8px',
-  margin: '32px 20px',
-  padding: '20px',
+  background: 'linear-gradient(135deg, #f3f4f6, #e5e7eb)',
+  borderRadius: '12px',
+  margin: '32px 0',
+  padding: '24px',
+  border: '1px solid #e5e7eb',
 }
 
 const footer = {

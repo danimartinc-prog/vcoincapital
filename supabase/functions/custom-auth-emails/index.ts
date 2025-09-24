@@ -64,6 +64,12 @@ Deno.serve(async (req) => {
       }
     }
 
+    // Fix redirect URL if it's pointing to localhost
+    let fixedRedirectTo = redirect_to
+    if (redirect_to && redirect_to.includes('localhost:3000')) {
+      fixedRedirectTo = site_url || Deno.env.get('SUPABASE_URL') || ''
+    }
+
     console.log('Processing email for user:', user.email, 'type:', email_action_type)
 
     let html: string
@@ -78,7 +84,7 @@ Deno.serve(async (req) => {
             supabase_url: site_url || Deno.env.get('SUPABASE_URL') || '',
             token,
             token_hash,
-            redirect_to,
+            redirect_to: fixedRedirectTo,
             email_action_type,
             user_email: user.email,
           })
@@ -93,7 +99,7 @@ Deno.serve(async (req) => {
             supabase_url: site_url || Deno.env.get('SUPABASE_URL') || '',
             token,
             token_hash,
-            redirect_to,
+            redirect_to: fixedRedirectTo,
             email_action_type,
             user_email: user.email,
           })
@@ -108,7 +114,7 @@ Deno.serve(async (req) => {
     console.log('Sending email with subject:', subject)
 
     const emailResponse = await resend.emails.send({
-      from: 'VCoin Capital <noreply@vcoin-capital.com>',
+      from: 'VCoin Capital <info@vcoincapital.com>',
       to: [user.email],
       subject,
       html,
