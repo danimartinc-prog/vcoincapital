@@ -37,10 +37,10 @@ export const ConfirmationEmail = ({
       <Container style={container}>
         <Section style={logoSection}>
           <Img
-            src="/vcoin-logo.png"
+            src="https://rbvpktatmpmnawottmwf.supabase.co/storage/v1/object/public/assets/vcoin-logo.png"
             width="80"
             height="80"
-            alt="VCoin Capital"
+            alt="VCoin Capital logo"
             style={logo}
           />
         </Section>
