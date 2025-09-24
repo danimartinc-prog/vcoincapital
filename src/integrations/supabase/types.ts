@@ -336,6 +336,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      assign_wallet_admin: {
+        Args: { wallet_address: string }
+        Returns: undefined
+      }
       get_admin_stats: {
         Args: Record<PropertyKey, never>
         Returns: Json
@@ -349,6 +353,10 @@ export type Database = {
       }
       is_admin: {
         Args: { _user_id: string }
+        Returns: boolean
+      }
+      is_wallet_admin: {
+        Args: { wallet_address: string }
         Returns: boolean
       }
     }

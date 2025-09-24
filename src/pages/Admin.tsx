@@ -8,14 +8,15 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Users, FolderOpen, TrendingUp, Euro, Clock, CheckCircle, Wallet } from 'lucide-react';
+import { Users, FolderOpen, TrendingUp, Euro, Clock, CheckCircle, Wallet, Settings } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FundsConfigPanel from '@/components/FundsConfigPanel';
+import WalletAdminSetup from '@/components/WalletAdminSetup';
 import { formatDistanceToNow } from 'date-fns';
 
 const Admin = () => {
-  const { user, loading: authLoading } = useWalletAuth();
+  const { user, loading: authLoading, isAdmin: isWalletAdmin } = useWalletAuth();
   const { 
     isAdmin, 
     loading, 
@@ -160,11 +161,19 @@ const Admin = () => {
             <TabsTrigger value="users">Users</TabsTrigger>
             <TabsTrigger value="investments">Investments</TabsTrigger>
             <TabsTrigger value="transactions">Transactions</TabsTrigger>
+            <TabsTrigger value="admin-setup" className="flex items-center gap-2">
+              <Settings className="h-4 w-4" />
+              Configurar Admin
+            </TabsTrigger>
             <TabsTrigger value="funds" className="flex items-center gap-2">
               <Wallet className="h-4 w-4" />
               Configuración de Fondos
             </TabsTrigger>
           </TabsList>
+
+          <TabsContent value="admin-setup" className="space-y-4">
+            <WalletAdminSetup />
+          </TabsContent>
 
           <TabsContent value="funds" className="space-y-4">
             <FundsConfigPanel />
