@@ -327,7 +327,7 @@ const ForInvestors = () => {
                 Join hundreds of investors already diversifying with VCoin.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
-                <Button size="lg" onClick={() => window.location.href = '/wallet-auth'}>
+                <Button size="lg" onClick={() => window.location.href = '/auth'}>
                   Connect Wallet
                 </Button>
                 <Button variant="outline" size="lg" onClick={() => window.location.href = '/projects'}>

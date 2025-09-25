@@ -44,7 +44,7 @@ const HeroSection = () => {
           </div>
           
           <div className="flex flex-wrap gap-4 items-center">
-            <Button variant="hero" size="lg" className="text-lg px-8 py-4" onClick={() => window.location.href = '/wallet-auth'}>
+            <Button variant="hero" size="lg" className="text-lg px-8 py-4" onClick={() => window.location.href = '/auth'}>
               Get VCoin & Invest
             </Button>
             <Button variant="outline" size="lg" className="text-lg px-8 py-4" onClick={() => setShowProjectForm(true)}>

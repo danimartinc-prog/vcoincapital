@@ -123,18 +123,22 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
   };
 
   const handlePurchase = async () => {
+    console.log('Purchase initiated:', { amount, paymentMethod, isConnected, address });
+    
     if (!amount || parseFloat(amount) <= 0) {
       toast.error('Please enter a valid amount');
       return;
     }
 
-      try {
+    try {
       if (paymentMethod === "ETH" || paymentMethod === "USDT") {
         if (!isConnected) {
+          console.log('Wallet not connected, redirecting to auth');
           toast.error('Please connect your wallet first');
           return;
         }
         
+        console.log('Processing crypto payment:', { paymentMethod, amount });
         if (paymentMethod === "ETH") {
           await buyWithETH(amount);
           toast.info('Transaction sent. Waiting for confirmation...');
@@ -143,6 +147,7 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
           toast.info('Transaction sent. Waiting for confirmation...');
         }
       } else if (paymentMethod === "CARD") {
+        console.log('Processing card payment:', { amount });
         // For card payments, create investment directly
         const tokensAmount = parseFloat(calculateTokens(amount));
         const eurAmount = parseFloat(getEurEquivalent(amount));
@@ -159,7 +164,7 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
         toast.success(`Payment successful! You will receive ${tokensAmount} VCoin`);
       }
     } catch (error) {
-      console.error("Error en la compra:", error);
+      console.error("Error processing purchase:", error);
       toast.error('Error processing purchase. Please try again.');
     }
   };

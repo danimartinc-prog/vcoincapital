@@ -2,6 +2,8 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { Button } from '@/components/ui/button';
 
 const WalletConnect = () => {
+  console.log('WalletConnect component rendered');
+  
   return (
     <ConnectButton.Custom>
       {({
@@ -21,6 +23,8 @@ const WalletConnect = () => {
           (!authenticationStatus ||
             authenticationStatus === 'authenticated');
 
+        console.log('WalletConnect state:', { ready, connected, mounted, authenticationStatus });
+
         return (
           <div
             {...(!ready && {
@@ -34,10 +38,14 @@ const WalletConnect = () => {
           >
             {(() => {
               if (!connected) {
+                console.log('Wallet not connected, showing connect button');
                 return (
                   <Button 
                     variant="hero" 
-                    onClick={openConnectModal} 
+                    onClick={() => {
+                      console.log('Connect wallet button clicked');
+                      openConnectModal();
+                    }} 
                     type="button"
                     className="h-12 px-8 text-lg font-bold"
                   >

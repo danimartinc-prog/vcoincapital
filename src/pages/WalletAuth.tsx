@@ -6,7 +6,10 @@ import vcoinLogo from "@/assets/new-logo.png";
 const WalletAuth = () => {
   const { isConnected } = useAccount();
 
+  console.log('WalletAuth - isConnected:', isConnected);
+
   if (isConnected) {
+    console.log('User connected, redirecting to dashboard');
     return <Navigate to="/dashboard" replace />;
   }
 
@@ -30,6 +33,9 @@ const WalletAuth = () => {
           
           <div className="space-y-4">
             <WalletConnect />
+            <p className="text-xs text-muted-foreground">
+              Supported wallets: MetaMask, Coinbase Wallet, WalletConnect compatible wallets
+            </p>
             <button 
               onClick={() => window.history.back()}
               className="text-sm text-muted-foreground hover:text-foreground transition-colors underline"
