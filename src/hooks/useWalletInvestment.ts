@@ -36,7 +36,7 @@ export const useWalletInvestment = () => {
           }
         ])
         .select()
-        .single();
+        .maybeSingle();
 
       if (investmentError) {
         console.error('Error creating wallet investment:', investmentError);
@@ -60,11 +60,9 @@ export const useWalletInvestment = () => {
     if (!targetAddress) return [];
 
     try {
-      const { data, error } = await supabase
-        .from('wallet_investments')
-        .select('*')
-        .eq('wallet_address', targetAddress.toLowerCase())
-        .order('created_at', { ascending: false });
+      const { data, error } = await supabase.rpc('get_wallet_investments', {
+        target_wallet_address: targetAddress.toLowerCase()
+      });
 
       if (error) {
         console.error('Error fetching wallet investments:', error);
@@ -83,21 +81,20 @@ export const useWalletInvestment = () => {
     if (!targetAddress) return { totalVCoin: 0, totalEur: 0 };
 
     try {
-      const { data, error } = await supabase
-        .from('wallet_investments')
-        .select('amount_vcoin, amount_eur')
-        .eq('wallet_address', targetAddress.toLowerCase())
-        .eq('status', 'completed');
+      const { data, error } = await supabase.rpc('get_wallet_balance', {
+        target_wallet_address: targetAddress.toLowerCase()
+      });
 
       if (error) {
         console.error('Error fetching wallet balance:', error);
         return { totalVCoin: 0, totalEur: 0 };
       }
 
-      const totalVCoin = data?.reduce((sum, inv) => sum + Number(inv.amount_vcoin), 0) || 0;
-      const totalEur = data?.reduce((sum, inv) => sum + Number(inv.amount_eur), 0) || 0;
-
-      return { totalVCoin, totalEur };
+      const result = data?.[0];
+      return {
+        totalVCoin: Number(result?.total_vcoin || 0),
+        totalEur: Number(result?.total_eur || 0)
+      };
     } catch (error) {
       console.error('Error in getWalletBalance:', error);
       return { totalVCoin: 0, totalEur: 0 };

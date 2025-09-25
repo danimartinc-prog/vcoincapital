@@ -383,6 +383,28 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: Json
       }
+      get_wallet_balance: {
+        Args: { target_wallet_address: string }
+        Returns: {
+          total_eur: number
+          total_vcoin: number
+        }[]
+      }
+      get_wallet_investments: {
+        Args: { target_wallet_address: string }
+        Returns: {
+          amount_eur: number
+          amount_vcoin: number
+          created_at: string
+          id: string
+          payment_method: string
+          project_id: string
+          status: string
+          transaction_hash: string
+          updated_at: string
+          wallet_address: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
