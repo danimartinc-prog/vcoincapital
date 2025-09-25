@@ -24,6 +24,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useAccount } from 'wagmi';
 import { Navigate } from 'react-router-dom';
 import { usePresaleContract } from '@/hooks/usePresaleContract';
+import { useWalletInvestment } from '@/hooks/useWalletInvestment';
 import { formatEther, parseEther } from 'viem';
 import { formatCurrency } from '@/lib/formatters';
 
@@ -37,6 +38,7 @@ const WalletDashboard = () => {
   const [receivingAddress, setReceivingAddress] = useState('');
   const [editingAddress, setEditingAddress] = useState(false);
   const [userInvestments, setUserInvestments] = useState([]);
+  const [walletBalance, setWalletBalance] = useState({ totalVCoin: 0, totalEur: 0 });
   
   // Use presale contract hooks
   const { 
@@ -52,9 +54,14 @@ const WalletDashboard = () => {
     useVCoinBalance
   } = usePresaleContract();
   
-  // Get real VCoin balance
+  const { getWalletInvestments, getWalletBalance } = useWalletInvestment();
+  
+  // Get real VCoin balance from contract
   const { data: vcoinBalanceData } = useVCoinBalance(address);
-  const vcoinBalance = vcoinBalanceData ? formatEther(vcoinBalanceData) : '0';
+  const contractVcoinBalance = vcoinBalanceData ? formatEther(vcoinBalanceData) : '0';
+  
+  // Use investment balance if contract balance is 0
+  const vcoinBalance = parseFloat(contractVcoinBalance) > 0 ? contractVcoinBalance : walletBalance.totalVCoin.toString();
   
   // Calculate real token value at launch (assuming launch price of $0.15)
   const launchPrice = 0.15;
@@ -69,16 +76,22 @@ const WalletDashboard = () => {
     }
   }, [address, receivingAddress]);
 
-  // Load user investments
+  // Load user investments and balance
   useEffect(() => {
-    const loadInvestments = async () => {
-      // For now, skip loading investments until we fix the UUID/wallet address mapping
-      // const investments = await getUserInvestments();
-      // setUserInvestments(investments);
-      setUserInvestments([]);
+    const loadWalletData = async () => {
+      if (!address) return;
+      
+      const [investments, balance] = await Promise.all([
+        getWalletInvestments(address),
+        getWalletBalance(address)
+      ]);
+      
+      setUserInvestments(investments);
+      setWalletBalance(balance);
     };
-    loadInvestments();
-  }, []);
+    
+    loadWalletData();
+  }, [address, getWalletInvestments, getWalletBalance]);
 
   if (!isConnected) {
     return <Navigate to="/auth" replace />;
@@ -121,7 +134,7 @@ const WalletDashboard = () => {
               <Coins className="h-4 w-4 text-accent" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-foreground">{parseFloat(vcoinBalance).toLocaleString('en-US')}</div>
+              <div className="text-2xl font-bold text-foreground">{parseFloat(vcoinBalance).toLocaleString('en-US', { maximumFractionDigits: 2 })}</div>
             </CardContent>
           </Card>
 
@@ -413,7 +426,7 @@ const WalletDashboard = () => {
                     {userInvestments.map((investment: any) => (
                       <div key={investment.id} className="p-4 border rounded-lg">
                         <div className="flex justify-between items-start mb-2">
-                          <h4 className="font-semibold">{investment.projects?.title || 'Unknown Project'}</h4>
+                          <h4 className="font-semibold">VCoin Investment</h4>
                           <Badge variant={investment.status === 'completed' ? 'default' : 'secondary'}>
                             {investment.status}
                           </Badge>
@@ -421,7 +434,11 @@ const WalletDashboard = () => {
                         <div className="text-sm text-muted-foreground space-y-1">
                           <p>Investment: {formatCurrency(parseFloat(investment.amount_eur))}</p>
                           <p>VCoin Amount: {parseFloat(investment.amount_vcoin).toLocaleString()}</p>
+                          <p>Payment Method: {investment.payment_method}</p>
                           <p>Date: {new Date(investment.created_at).toLocaleDateString()}</p>
+                          {investment.transaction_hash && (
+                            <p className="text-xs font-mono">TX: {investment.transaction_hash.slice(0, 10)}...{investment.transaction_hash.slice(-8)}</p>
+                          )}
                         </div>
                       </div>
                     ))}

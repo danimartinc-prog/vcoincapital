@@ -331,6 +331,45 @@ export type Database = {
         }
         Relationships: []
       }
+      wallet_investments: {
+        Row: {
+          amount_eur: number
+          amount_vcoin: number
+          created_at: string
+          id: string
+          payment_method: string | null
+          project_id: string
+          status: string | null
+          transaction_hash: string | null
+          updated_at: string
+          wallet_address: string
+        }
+        Insert: {
+          amount_eur: number
+          amount_vcoin: number
+          created_at?: string
+          id?: string
+          payment_method?: string | null
+          project_id: string
+          status?: string | null
+          transaction_hash?: string | null
+          updated_at?: string
+          wallet_address: string
+        }
+        Update: {
+          amount_eur?: number
+          amount_vcoin?: number
+          created_at?: string
+          id?: string
+          payment_method?: string | null
+          project_id?: string
+          status?: string | null
+          transaction_hash?: string | null
+          updated_at?: string
+          wallet_address?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

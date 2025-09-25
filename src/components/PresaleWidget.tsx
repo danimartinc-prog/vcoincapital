@@ -6,8 +6,7 @@ import { Input } from "@/components/ui/input";
 import { useAccount, useBalance } from 'wagmi';
 import { toast } from "sonner";
 import { usePresaleContract } from '@/hooks/usePresaleContract';
-import { useInvestment } from '@/hooks/useInvestment';
-// import { useWalletAuth } from '@/hooks/useWalletAuth';
+import { useWalletInvestment } from '@/hooks/useWalletInvestment';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import StripePayment from '@/components/StripePayment';
 
@@ -38,7 +37,7 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
     error
   } = usePresaleContract();
   
-  const { createInvestment, isSubmitting } = useInvestment();
+  const { createWalletInvestment, isSubmitting } = useWalletInvestment();
   
   const presaleData = {
     raised: parseFloat(totalRaised),
@@ -106,21 +105,21 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
   }, [error]);
 
   const handleTransactionConfirmed = async () => {
-    if (!hash || !amount) return;
+    if (!hash || !amount || !address) return;
     
-    const tokensAmount = parseFloat(calculateTokensForETH(amount));
-    const eurAmount = parseFloat(amount) * 2000; // Mock ETH to EUR conversion (1 ETH = 2000 EUR)
+    const tokensAmount = parseFloat(calculateTokens(amount));
+    const eurAmount = parseFloat(getEurEquivalent(amount));
     
-    await createInvestment(
+    await createWalletInvestment(
       projectId,
       eurAmount,
       tokensAmount,
       hash,
-      paymentMethod as 'ETH' | 'USDT'
+      paymentMethod as 'ETH' | 'USDT' | 'CARD'
     );
     
     setAmount("");
-    toast.success(`Transaction confirmed! You will receive ${tokensAmount.toFixed(2)} VCoin`);
+    toast.success(`Transaction confirmed! You will receive ${tokensAmount} VCoin`);
   };
 
   const handlePurchase = async () => {
@@ -129,11 +128,10 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
       return;
     }
 
-    try {
+      try {
       if (paymentMethod === "ETH" || paymentMethod === "USDT") {
         if (!isConnected) {
-          // Redirect to wallet auth page
-          window.location.href = '/auth';
+          toast.error('Please connect your wallet first');
           return;
         }
         
@@ -145,7 +143,20 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
           toast.info('Transaction sent. Waiting for confirmation...');
         }
       } else if (paymentMethod === "CARD") {
-        setShowCardPayment(true);
+        // For card payments, create investment directly
+        const tokensAmount = parseFloat(calculateTokens(amount));
+        const eurAmount = parseFloat(getEurEquivalent(amount));
+        
+        await createWalletInvestment(
+          projectId,
+          eurAmount,
+          tokensAmount,
+          `card_${Date.now()}`, // Generate unique transaction ID for card payments
+          'CARD'
+        );
+        
+        setAmount("");
+        toast.success(`Payment successful! You will receive ${tokensAmount} VCoin`);
       }
     } catch (error) {
       console.error("Error en la compra:", error);
