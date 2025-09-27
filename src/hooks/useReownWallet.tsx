@@ -1,22 +1,22 @@
-import { useState, useCallback } from "react";
+import { createContext, useCallback, useContext, useMemo, useState, ReactNode } from "react";
 import { ethers } from "ethers";
 import { toast } from "sonner";
-import { 
-  projectId, 
-  receiverAddress, 
-  payInETH, 
-  payInUSDT, 
-  createProvider,
-  web3ModalConfig 
-} from "@/lib/web3modal";
+import { payInETH, payInUSDT } from "@/lib/web3modal";
 
-declare global {
-  interface Window {
-    ethereum?: any;
-  }
-}
+type Ctx = {
+  provider: any | null;
+  account: string | null;
+  isConnecting: boolean;
+  isConnected: boolean;
+  connectWallet: () => Promise<void>;
+  disconnectWallet: () => void;
+  buyWithETH: (amountETH: number) => Promise<string | null>;
+  buyWithUSDT: (amountUSDT: number) => Promise<string | null>;
+};
 
-export const useReownWallet = () => {
+const ReownWalletContext = createContext<Ctx | undefined>(undefined);
+
+export function ReownWalletProvider({ children }: { children: ReactNode }) {
   const [provider, setProvider] = useState<any>(null);
   const [account, setAccount] = useState<string | null>(null);
   const [isConnecting, setIsConnecting] = useState(false);
@@ -25,13 +25,11 @@ export const useReownWallet = () => {
   const connectWallet = useCallback(async () => {
     setIsConnecting(true);
     try {
-      // Try MetaMask first
-      if (window.ethereum) {
-        const ethersProvider = new ethers.BrowserProvider(window.ethereum);
-        await window.ethereum.request({ method: 'eth_requestAccounts' });
-        const signer = await ethersProvider.getSigner();
+      if ((window as any).ethereum) {
+        const browserProvider = new ethers.BrowserProvider((window as any).ethereum);
+        await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
+        const signer = await browserProvider.getSigner();
         const address = await signer.getAddress();
-        
         setProvider(signer);
         setAccount(address);
         setIsConnected(true);
@@ -55,50 +53,60 @@ export const useReownWallet = () => {
     toast.info("Wallet disconnected");
   }, []);
 
-  const buyWithETH = useCallback(async (amountETH: number) => {
+  const buyEth = useCallback(async (amountETH: number) => {
     try {
       if (!provider) {
         toast.error("Please connect your wallet first");
         return null;
       }
-      
       toast.info("Processing ETH payment...");
       const txHash = await payInETH(provider, amountETH);
       toast.success("ETH payment sent successfully!");
       return txHash;
     } catch (err: any) {
       console.error("ETH payment error:", err);
-      toast.error(err.message || "ETH payment failed");
+      toast.error(err?.message || "ETH payment failed");
       return null;
     }
   }, [provider]);
 
-  const buyWithUSDT = useCallback(async (amountUSDT: number) => {
+  const buyUsdt = useCallback(async (amountUSDT: number) => {
     try {
       if (!provider) {
         toast.error("Please connect your wallet first");
         return null;
       }
-      
       toast.info("Processing USDT payment...");
       const txHash = await payInUSDT(provider, amountUSDT);
       toast.success("USDT payment sent successfully!");
       return txHash;
     } catch (err: any) {
       console.error("USDT payment error:", err);
-      toast.error(err.message || "USDT payment failed");
+      toast.error(err?.message || "USDT payment failed");
       return null;
     }
   }, [provider]);
 
-  return {
+  const value: Ctx = useMemo(() => ({
     provider,
     account,
-    isConnected,
     isConnecting,
+    isConnected,
     connectWallet,
     disconnectWallet,
-    buyWithETH,
-    buyWithUSDT,
-  };
-};
+    buyWithETH: buyEth,
+    buyWithUSDT: buyUsdt,
+  }), [provider, account, isConnecting, isConnected, connectWallet, disconnectWallet, buyEth, buyUsdt]);
+
+  return (
+    <ReownWalletContext.Provider value={value}>
+      {children}
+    </ReownWalletContext.Provider>
+  );
+}
+
+export function useReownWallet() {
+  const ctx = useContext(ReownWalletContext);
+  if (!ctx) throw new Error("useReownWallet must be used within ReownWalletProvider");
+  return ctx;
+}
