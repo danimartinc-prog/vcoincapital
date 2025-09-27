@@ -188,6 +188,28 @@ const ProjectSubmissionForm = ({ open, onOpenChange }: ProjectSubmissionFormProp
         console.error('Error inserting contact information:', contactError);
         // Don't throw here as the project was already created successfully
       }
+
+      // Send email notification
+      try {
+        const emailData = {
+          ...formData,
+          files: files.map(f => ({ name: f.name, size: f.size }))
+        };
+        
+        const { error: emailError } = await supabase.functions.invoke('send-project-submission', {
+          body: emailData
+        });
+        
+        if (emailError) {
+          console.error('Error sending email:', emailError);
+          // Don't fail the submission if email fails
+        } else {
+          console.log('Email notification sent successfully');
+        }
+      } catch (emailError) {
+        console.error('Error sending email notification:', emailError);
+        // Don't fail the submission if email fails
+      }
       
       toast({
         title: "Project Submitted!",
