@@ -53,14 +53,34 @@ export function ReownWalletProvider({ children }: { children: ReactNode }) {
     toast.info("Wallet disconnected");
   }, []);
 
+  const ensureConnected = useCallback(async (): Promise<any | null> => {
+    if (provider) return provider;
+    try {
+      if ((window as any).ethereum) {
+        const browserProvider = new ethers.BrowserProvider((window as any).ethereum);
+        await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
+        const signer = await browserProvider.getSigner();
+        const address = await signer.getAddress();
+        setProvider(signer);
+        setAccount(address);
+        setIsConnected(true);
+        return signer;
+      }
+    } catch (e) {
+      console.error('Auto-connect error:', e);
+    }
+    return null;
+  }, [provider]);
+
   const buyEth = useCallback(async (amountETH: number) => {
     try {
-      if (!provider) {
-        toast.error("Please connect your wallet first");
+      const signer = await ensureConnected();
+      if (!signer) {
+        toast.error("Please install MetaMask or another Web3 wallet");
         return null;
       }
       toast.info("Processing ETH payment...");
-      const txHash = await payInETH(provider, amountETH);
+      const txHash = await payInETH(signer, amountETH);
       toast.success("ETH payment sent successfully!");
       return txHash;
     } catch (err: any) {
@@ -68,16 +88,17 @@ export function ReownWalletProvider({ children }: { children: ReactNode }) {
       toast.error(err?.message || "ETH payment failed");
       return null;
     }
-  }, [provider]);
+  }, [ensureConnected]);
 
   const buyUsdt = useCallback(async (amountUSDT: number) => {
     try {
-      if (!provider) {
-        toast.error("Please connect your wallet first");
+      const signer = await ensureConnected();
+      if (!signer) {
+        toast.error("Please install MetaMask or another Web3 wallet");
         return null;
       }
       toast.info("Processing USDT payment...");
-      const txHash = await payInUSDT(provider, amountUSDT);
+      const txHash = await payInUSDT(signer, amountUSDT);
       toast.success("USDT payment sent successfully!");
       return txHash;
     } catch (err: any) {
@@ -85,7 +106,7 @@ export function ReownWalletProvider({ children }: { children: ReactNode }) {
       toast.error(err?.message || "USDT payment failed");
       return null;
     }
-  }, [provider]);
+  }, [ensureConnected]);
 
   const value: Ctx = useMemo(() => ({
     provider,

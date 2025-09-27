@@ -107,14 +107,8 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
 
     try {
       if (paymentMethod === "ETH" || paymentMethod === "USDT") {
-        if (!isConnected) {
-          console.log('Wallet not connected, redirecting to auth');
-          toast.error('Please connect your wallet first');
-          return;
-        }
-        
         console.log('Processing crypto payment:', { paymentMethod, amount });
-        let txHash = null;
+        let txHash: string | null = null;
         if (paymentMethod === "ETH") {
           txHash = await buyWithETH(parseFloat(amount));
         } else {
