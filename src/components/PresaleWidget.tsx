@@ -3,9 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Input } from "@/components/ui/input";
-import { useAccount, useBalance } from 'wagmi';
 import { toast } from "sonner";
-import { usePresaleContract } from '@/hooks/usePresaleContract';
+import { useReownWallet } from '@/hooks/useReownWallet';
 import { useWalletInvestment } from '@/hooks/useWalletInvestment';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import StripePayment from '@/components/StripePayment';
@@ -19,32 +18,21 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
   const [paymentMethod, setPaymentMethod] = useState("ETH");
   const [showCardPayment, setShowCardPayment] = useState(false);
   
-  const { address, isConnected } = useAccount();
-  const { data: balance } = useBalance({ address });
-// const { user } = useWalletAuth();
-  
-  const {
-    tokenPrice,
-    totalRaised,
-    tokensRemaining,
-    buyWithETH,
-    buyWithUSDT,
-    calculateTokensForETH,
-    isPending,
-    isConfirming,
-    isConfirmed,
-    hash,
-    error
-  } = usePresaleContract();
+  const { 
+    account, 
+    isConnected, 
+    buyWithETH, 
+    buyWithUSDT 
+  } = useReownWallet();
   
   const { createWalletInvestment, isSubmitting } = useWalletInvestment();
   
   const presaleData = {
-    raised: parseFloat(totalRaised),
-    tokensRemaining: parseFloat(tokensRemaining),
-    currentPrice: parseFloat(tokenPrice),
-    nextPrice: parseFloat(tokenPrice) * 1.2,
-    progress: (parseFloat(totalRaised) / 1000000) * 100 // Assuming 1M total goal
+    raised: 125000,
+    tokensRemaining: 8750000,
+    currentPrice: 0.1,
+    nextPrice: 0.12,
+    progress: 12.5
   };
 
   // Calculate tokens based on payment method and VCoin price (€0.1 per VCoin)
@@ -89,23 +77,10 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
     { symbol: "CARD", name: "Credit Card", icon: "💳" }
   ];
 
-  // Handle transaction confirmation
-  useEffect(() => {
-    if (isConfirmed && hash) {
-      handleTransactionConfirmed();
-    }
-  }, [isConfirmed, hash]);
+  // Transaction handling will be done in the payment methods directly
 
-  // Handle contract errors
-    useEffect(() => {
-    if (error) {
-      console.error("Contract error:", error);
-      toast.error('Error processing purchase. Please try again.');
-    }
-  }, [error]);
-
-  const handleTransactionConfirmed = async () => {
-    if (!hash || !amount || !address) return;
+  const handleTransactionConfirmed = async (txHash: string) => {
+    if (!txHash || !amount || !account) return;
     
     const tokensAmount = parseFloat(calculateTokens(amount));
     const eurAmount = parseFloat(getEurEquivalent(amount));
@@ -114,7 +89,7 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
       projectId,
       eurAmount,
       tokensAmount,
-      hash,
+      txHash,
       paymentMethod as 'ETH' | 'USDT' | 'CARD'
     );
     
@@ -123,7 +98,7 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
   };
 
   const handlePurchase = async () => {
-    console.log('Purchase initiated:', { amount, paymentMethod, isConnected, address });
+    console.log('Purchase initiated:', { amount, paymentMethod, isConnected, account });
     
     if (!amount || parseFloat(amount) <= 0) {
       toast.error('Please enter a valid amount');
@@ -139,12 +114,15 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
         }
         
         console.log('Processing crypto payment:', { paymentMethod, amount });
+        let txHash = null;
         if (paymentMethod === "ETH") {
-          await buyWithETH(amount);
-          toast.info('Transaction sent. Waiting for confirmation...');
+          txHash = await buyWithETH(parseFloat(amount));
         } else {
-          await buyWithUSDT(amount);
-          toast.info('Transaction sent. Waiting for confirmation...');
+          txHash = await buyWithUSDT(parseFloat(amount));
+        }
+        
+        if (txHash) {
+          await handleTransactionConfirmed(txHash);
         }
       } else if (paymentMethod === "CARD") {
         console.log('Processing card payment:', { amount });
@@ -169,7 +147,7 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
     }
   };
 
-  const isLoading = isPending || isConfirming || isSubmitting;
+  const isLoading = isSubmitting;
 
   const handleCardPaymentSuccess = () => {
     setShowCardPayment(false);
@@ -247,9 +225,9 @@ const PresaleWidget = ({ projectId = "default-project" }: PresaleWidgetProps) =>
             {isLoading ? 'Processing...' : 'Buy Now'}
           </Button>
           
-          {isConnected && balance && (
+          {isConnected && account && (
             <div className="text-center text-sm text-muted-foreground">
-              Balance: {parseFloat(balance.formatted).toFixed(4)} {balance.symbol}
+              Connected: {account.slice(0, 6)}...{account.slice(-4)}
             </div>
           )}
           
