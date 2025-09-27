@@ -1,7 +1,4 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-import { Resend } from "npm:resend@2.0.0";
-
-const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -9,52 +6,36 @@ const corsHeaders = {
 };
 
 interface ProjectSubmissionRequest {
-  // Company Information
   companyName: string;
   website: string;
   founded: string;
   location: string;
-  
-  // Project Details
   projectName: string;
   oneLinePitch: string;
   problemSolution: string;
   targetMarket: string;
   businessModel: string;
-  
-  // Financial Information
   fundingAmount: string;
   useOfFunds: string;
   revenue: string;
   projectedRevenue: string;
-  
-  // Team
   founderBackground: string;
   teamSize: string;
   keyTeamMembers: string;
-  
-  // Traction
   currentTraction: string;
   customers: string;
   partnerships: string;
-  
-  // Competition & Strategy
   competition: string;
   competitiveAdvantage: string;
   goToMarketStrategy: string;
-  
-  // Contact
   founderName: string;
   email: string;
   linkedin: string;
   phone: string;
-  
-  // Files
   files: Array<{name: string, size: number}>;
 }
 
 const handler = async (req: Request): Promise<Response> => {
-  // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
@@ -184,16 +165,29 @@ const handler = async (req: Request): Promise<Response> => {
       </div>
     `;
 
-    const emailResponse = await resend.emails.send({
-      from: "VCoin Capital <noreply@resend.dev>",
-      to: ["info@vcoincapital.com"],
-      subject: `🚀 Nueva Propuesta: ${submissionData.companyName} - ${submissionData.projectName}`,
-      html: emailHTML,
+    // Use Resend API directly via fetch
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${Deno.env.get("RESEND_API_KEY")}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: 'VCoin Capital <noreply@resend.dev>',
+        to: ['info@vcoincapital.com'],
+        subject: `🚀 Nueva Propuesta: ${submissionData.companyName} - ${submissionData.projectName}`,
+        html: emailHTML,
+      }),
     });
 
+    if (!response.ok) {
+      throw new Error(`Resend API error: ${response.statusText}`);
+    }
+
+    const emailResponse = await response.json();
     console.log("Project submission email sent successfully:", emailResponse);
 
-    return new Response(JSON.stringify({ success: true, emailId: emailResponse.data?.id }), {
+    return new Response(JSON.stringify({ success: true, emailId: emailResponse.id }), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
