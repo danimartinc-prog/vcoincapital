@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -24,9 +24,9 @@ const ProjectDetail = () => {
         <main className="pt-20 flex items-center justify-center h-screen">
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-4">Project not found</h1>
-            <Button onClick={() => window.location.href = '/projects'}>
-              Back to Projects
-            </Button>
+            <Link to="/projects">
+              <Button>Back to Projects</Button>
+            </Link>
           </div>
         </main>
         <Footer />
@@ -34,7 +34,7 @@ const ProjectDetail = () => {
     );
   }
 
-  const baseVcoinPrice = 0.50; // €0.50 por VCOIN base
+  const baseVcoinPrice = 0.50; // €0.50 per VCOIN base
   const currentVcoinPrice = baseVcoinPrice * (1 + vcoinPriceVariation[0] / 100);
   const vcoinValueInEur = project.goal_vcoin * currentVcoinPrice;
   const totalProjectValue = project.goal_cash_eur + vcoinValueInEur;
@@ -301,9 +301,9 @@ const ProjectDetail = () => {
                       </div>
                     )}
 
-                    <Button className="w-full h-12 text-lg font-bold" onClick={() => window.location.href = '/auth'}>
-                      Invest now
-                    </Button>
+                    <Link to="/auth">
+                      <Button className="w-full h-12 text-lg font-bold">Invest now</Button>
+                    </Link>
 
                     <div className="text-xs text-center text-muted-foreground">
                       By clicking you accept the terms and conditions. 
