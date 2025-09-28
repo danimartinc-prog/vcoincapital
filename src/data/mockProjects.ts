@@ -17,8 +17,8 @@ export const mockProjects: Project[] = [
     oversubscription_rule: "pro-rata",
     use_of_funds: "70% product development, 20% marketing, 10% legal",
     team: [
-      { name: "Ana García", role: "CEO", linkedin: "#" },
-      { name: "Carlos López", role: "CTO", linkedin: "#" }
+      { name: "Anna Garcia", role: "CEO", linkedin: "#" },
+      { name: "Charles Lopez", role: "CTO", linkedin: "#" }
     ],
     documents: [
       { title: "Pitch Deck", url: "#", type: "pitch" },
@@ -57,8 +57,8 @@ export const mockProjects: Project[] = [
     oversubscription_rule: "perks",
     use_of_funds: "50% inventory, 30% marketing, 20% logistics",
     team: [
-      { name: "María Fernández", role: "Founder", linkedin: "#" },
-      { name: "Pedro Ruiz", role: "Operations", linkedin: "#" }
+      { name: "Maria Fernandez", role: "Founder", linkedin: "#" },
+      { name: "Peter Ruiz", role: "Operations", linkedin: "#" }
     ],
     documents: [
       { title: "Business Plan", url: "#", type: "financial" },
@@ -97,7 +97,7 @@ export const mockProjects: Project[] = [
     oversubscription_rule: "cap",
     use_of_funds: "60% content, 25% platform, 15% marketing",
     team: [
-      { name: "Roberto Silva", role: "CEO", linkedin: "#" }
+      { name: "Robert Silva", role: "CEO", linkedin: "#" }
     ],
     documents: [
       { title: "MVP Demo", url: "#", type: "pitch" }

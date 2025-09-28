@@ -63,7 +63,7 @@ const Projects = () => {
               </p>
             </div>
 
-            {/* Filtros */}
+            {/* Filters */}
             <div className="flex flex-wrap gap-4 mb-8">
               <Input
                 placeholder="Search projects..."
@@ -99,7 +99,7 @@ const Projects = () => {
               </Select>
             </div>
 
-            {/* Grid de proyectos */}
+            {/* Projects grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredProjects.map((project) => (
                 <Card key={project.id} className="hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/50">
