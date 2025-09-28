@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -141,12 +142,11 @@ const Projects = () => {
                         </div>
                       </div>
 
-                    <Button 
-                      className="w-full" 
-                      onClick={() => window.location.href = `/project/${project.slug}`}
-                    >
-                      View project
-                    </Button>
+                    <Link to={`/projects/${project.slug}`}>
+                      <Button className="w-full">
+                        View project
+                      </Button>
+                    </Link>
                   </CardContent>
                 </Card>
               ))}

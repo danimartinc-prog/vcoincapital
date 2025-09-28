@@ -36,7 +36,7 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/auth" element={<WalletAuth />} />
               <Route path="/projects" element={<Projects />} />
-              <Route path="/projects/:id" element={<ProjectDetail />} />
+              <Route path="/projects/:slug" element={<ProjectDetail />} />
               <Route path="/how-it-works" element={<HowItWorks />} />
               <Route path="/for-investors" element={<ForInvestors />} />
               <Route path="/for-founders" element={<ForFounders />} />
