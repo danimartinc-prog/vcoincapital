@@ -12,10 +12,10 @@ const Footer = () => {
   ];
 
   const quickLinks = [
-    { name: "Whitepaper", href: "#" },
-    { name: "Tokenomics", href: "#tokenomics" },
-    { name: "Roadmap", href: "#roadmap" },
-    { name: "FAQ", href: "#faq" }
+    { name: "Whitepaper", href: "/whitepaper" },
+    { name: "Tokenomics", href: "/vcoin-token#tokenomics" },
+    { name: "Roadmap", href: "/roadmap" },
+    { name: "FAQ", href: "/#faq" }
   ];
 
   const legalLinks = [

@@ -30,6 +30,9 @@ const Header = () => {
           <Link to="/vcoin-token" className="text-foreground hover:text-primary transition-colors">
             Token
           </Link>
+          <Link to="/roadmap" className="text-foreground hover:text-primary transition-colors">
+            Roadmap
+          </Link>
           <Link to="/whitepaper" className="text-foreground hover:text-primary transition-colors">
             Whitepaper
           </Link>

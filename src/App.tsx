@@ -21,6 +21,7 @@ import Whitepaper from "./pages/Whitepaper";
 import Legal from "./pages/Legal";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import NotFound from "./pages/NotFound";
+import Roadmap from "./pages/Roadmap";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
               <Route path="/for-founders" element={<ForFounders />} />
               <Route path="/vcoin-token" element={<VCoinToken />} />
               <Route path="/whitepaper" element={<Whitepaper />} />
+              <Route path="/roadmap" element={<Roadmap />} />
               <Route path="/legal" element={<Legal />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/admin" element={<Admin />} />
